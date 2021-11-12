@@ -10,9 +10,35 @@ import org.springframework.web.bind.annotation.RestController
 
 @Controller
 class TestController (private val testService:TestService){
-    @RequestMapping("/hello")
+    @RequestMapping("/index")
     fun index(): String {
         val test = testService.getTasks()
-        return "hello";
+        return "index";
+    }
+    @RequestMapping("/login")
+    fun login(): String {
+        val test = testService.getTasks()
+        return "login";
+    }
+    @RequestMapping("/book")
+    fun book(): String {
+        val test = testService.getTasks()
+        return "book";
+    }
+    @RequestMapping("/book2")
+    fun book2(): String {
+        val test = testService.getTasks()
+        return "book2";
+    }
+    @RequestMapping("/bookCheck")
+    fun bookCheck(): String {
+        val test = testService.getTasks()
+        return "bookCheck";
+    }
+    @RequestMapping("/flightInfo")
+    fun flightInfo(): String {
+        val test = testService.getTasks()
+        return "flightInfo";
     }
 }
+
