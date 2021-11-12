@@ -31,31 +31,49 @@
             </div>
         </div>
     </nav>
-    <div class="login">
-        <h1>Login</h1>
+    <div class="signUp">
+        <h1>Sign Up</h1>
         <form method="post" action="#">
             <div class="txt_field">
-                <input type="text" required>
+                <input type="text" id="name" name="name" required>
+                <span></span>
+                <label>이름</label>
+            </div>
+            <div class="txt_field">
+                <input type="text" id="id" name="id" required>
                 <span></span>
                 <label>아이디</label>
             </div>
             <div class="txt_field">
-                <input type="password" required>
+                <input type="password" id="password" name="password" required>
                 <span></span>
                 <label>비밀번호</label>
             </div>
-            <div class="pass">비밀번호 찾기</div>
-            <input type="submit" value="로그인">
-            <div class="signup_link">
-                <a href="signUp">회원가입</a>
+            <div class="txt_field">
+                <input type="password" id="checkPassword" name="checkPassword" required>
+                <span></span>
+                <label>비밀번호 확인</label>
             </div>
-            <div class="social-icons">
-                <img src="images/facebook.png">
-                <img src="images/google.jpg">
-                <img src="images/kakao.png">
+            <div class="txt_field">
+                <input type="text" id="age" name="age" required>
+                <span></span>
+                <label>나이</label>
             </div>
+            <div class="txt_field">
+                <input type="text" id="email" name="email" required>
+                <span></span>
+                <label>이메일</label>
+            </div>
+            <div class="txt_field">
+                <input type="text" id="address" name="address" required>
+                <span></span>
+                <label>주소</label>
+            </div>
+            <input type="submit" value="회원가입"><br>
         </form>
-    </div>
+    </div><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+    <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+    <br><br><br><br><br>
 
 </div>
 </body>

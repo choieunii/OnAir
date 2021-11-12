@@ -139,6 +139,26 @@ nav .dropdown:hover .dropdown-button { background-color: #fff; color:#000 }
     padding:0 40px;
     box-sizing: border-box;
 }
+.signUp{
+    position:absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width:450px;
+    height:680px;
+    background-color: #fff;
+    border-radius: 10px;
+}
+.signUp h1{
+    text-align: center;
+    padding: 0 0 20px 0;
+    margin-top: 10px;
+    border-bottom:1px solid silver;
+}
+.signUp form{
+    padding:0 40px;
+    box-sizing: border-box;
+}
 form .txt_field{
     position:relative;
     border-bottom: 2px solid #adadad;

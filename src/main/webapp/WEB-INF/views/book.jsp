@@ -73,17 +73,17 @@
                 </div>
                 <div class="number-box">
                     <input type="button" id="sub-adult" value="-">
-                    <input type="text" id="adult" max="10" readonly="" value="0">
+                    <input type="text" id="adult" name="adult" max="10" readonly="" value="0">
                     <input type="button" id="add-adult" value="+">
                 </div>&nbsp;&nbsp;&nbsp;
                 <div class="number-box">
                     <input type="button" id="sub-children" value="-">
-                    <input type="text" id="children" max="10" readonly="" value="0">
+                    <input type="text" id="children" name="children" max="10" readonly="" value="0">
                     <input type="button" id="add-children" value="+">
                 </div>&nbsp;&nbsp;&nbsp;
                 <div class="number-box">
                     <input type="button" id="sub-infant" value="-">
-                    <input type="text" id="infant" max="10" readonly="" value="0">
+                    <input type="text" id="infant" name="infant" max="10" readonly="" value="0">
                     <input type="button" id="add-infant" value="+">
                 </div>
 
