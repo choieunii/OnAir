@@ -16,6 +16,13 @@
             display: block;
         }
     </style>
+    <script type="text/javascript">
+        function openPayment(){
+            window.name = "parentForm";
+            window.open("payment",
+                "chkForm", "width=600, height=500, resizable = no, scrollbars = no");
+        }
+    </script>
 </head>
 <body>
 <div class="header">
@@ -584,7 +591,10 @@
                 }
             %>
             <button class="button-1" style="left:0%; background-color: #bcbcbc;" onclick="history.back()">이전</button>
-            <button class="button-1">결제</button><br><br><br><br><br><br>
+            <button id="click" class="button-1" onclick="openPayment()">결제</button>
+
+            <br><br><br><br><br><br>
+
         </div>
     </div>
 </div>

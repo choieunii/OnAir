@@ -33,7 +33,7 @@
     </nav>
     <div class="signUp">
         <h1>Sign Up</h1>
-        <form method="post" action="#">
+        <form method="post" action="#" onsubmit="return checkValue()">
             <div class="txt_field">
                 <input type="text" id="name" name="name" required>
                 <span></span>
@@ -45,14 +45,15 @@
                 <label>아이디</label>
             </div>
             <div class="txt_field">
-                <input type="password" id="password" name="password" required>
+                <input type="password" id="password" name="password" onchange="checkPassword()"  required>
                 <span></span>
                 <label>비밀번호</label>
             </div>
             <div class="txt_field">
-                <input type="password" id="checkPassword" name="checkPassword" required>
+                <input type="password" id="checkPassword" name="checkPassword" onchange="checkPassword()"  required>
                 <span></span>
                 <label>비밀번호 확인</label>
+                <span id="check"></span>
             </div>
             <div class="txt_field">
                 <input type="text" id="age" name="age" required>
@@ -74,7 +75,7 @@
     </div><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
     <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
     <br><br><br><br><br>
-
 </div>
+<script src="js/checkSignUp.js"></script>
 </body>
 </html>
