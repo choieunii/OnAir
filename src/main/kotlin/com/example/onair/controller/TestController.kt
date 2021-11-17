@@ -45,10 +45,5 @@ class TestController (private val testService:TestService){
         val test = testService.getTasks()
         return "signUp";
     }
-    @RequestMapping("/payment")
-    fun payment(): String {
-        val test = testService.getTasks()
-        return "payment";
-    }
 }
 
