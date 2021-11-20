@@ -7,7 +7,7 @@ import javax.persistence.Table
 
 @Entity
 @Table(name = "bookCheck")
-data class BookCheck(
+data class BookCheck( // data class -> equals, copy, toString, componentN
     @Id
     @Column(name = "CustomerID", nullable=false) //
     var CustomerID: String,

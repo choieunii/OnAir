@@ -9,7 +9,5 @@ class FlightService (private val flightRepository: FlightRepository) {
     fun getTasks(): List<Flight> =
         flightRepository.findAll()
 
-    fun post(flight: Flight){
-        flightRepository.save(flight)
-    }
+
 }
