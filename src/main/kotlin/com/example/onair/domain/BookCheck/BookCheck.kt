@@ -13,6 +13,8 @@ data class BookCheck( // data class -> equals, copy, toString, componentN
     var CustomerID: String,
     @Column(name = "FlightNum", nullable=false) //
     var FlightNum: Int,
+    @Column(name = "DepartmentDate", nullable=false) //
+    var DepartmentDate: String,
     @Column(name = "Gender", nullable=false) //
     var Gender: String,
     @Column(name = "FirstName", nullable=false) //

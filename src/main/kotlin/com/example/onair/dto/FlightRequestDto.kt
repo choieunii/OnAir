@@ -6,6 +6,7 @@ data class FlightRequestDto ( // data class -> equals, copy, toString, component
     var FlightNum: Int,
     var DepartmentAirport: String,
     var ArriveAirport: String,
+    var DepartmentDate: String,
     var EconomyCharge: Int,
     var BusinessCharge: Int,
     var FirstCharge: Int

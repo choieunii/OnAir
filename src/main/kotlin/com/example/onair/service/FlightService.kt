@@ -8,6 +8,4 @@ import org.springframework.stereotype.Service
 class FlightService (private val flightRepository: FlightRepository) {
     fun getTasks(): List<Flight> =
         flightRepository.findAll()
-
-
 }

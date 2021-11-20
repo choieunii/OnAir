@@ -15,6 +15,8 @@ data class Flight( // data class -> equals, copy, toString, componentN
         var DepartmentAirport: String,
         @Column(name = "ArriveAirport", nullable=false) //
         var ArriveAirport: String,
+        @Column(name = "DepartmentDate", nullable = false) //
+        var DepartmentDate: String,
         @Column(name = "EconomyCharge", nullable=false) //
         var EconomyCharge: Int,
         @Column(name = "BusinessCharge", nullable=false) //
