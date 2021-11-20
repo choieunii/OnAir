@@ -8,10 +8,10 @@ import org.springframework.stereotype.Service
 
 @Service
 class BookCheckService (private val bookCheckRepository: BookCheckRepository){
-    fun getTasks(): List<Flight> =
+    fun getTasks(): List<BookCheck> =
         bookCheckRepository.findAll()
 
-    fun post(flight: Flight){
-        bookCheckRepository.save(flight)
+    fun post(bookCheck: BookCheck){
+        bookCheckRepository.save(bookCheck)
     }
 }
