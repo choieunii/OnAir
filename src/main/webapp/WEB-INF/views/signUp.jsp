@@ -40,7 +40,7 @@
                 <label>이름</label>
             </div>
             <div class="txt_field">
-                <input type="text" id="user_id" name="user_id" required>
+                <input type="text" id="userId" name="userId" required>
                 <span></span>
                 <label>아이디</label>
             </div>
@@ -61,7 +61,7 @@
                 <label>나이</label>
             </div>
             <div class="txt_field">
-                <input type="text" id="phone_num" name="phone_num" required>
+                <input type="text" id="phoneNum" name="phoneNum" required>
                 <span></span>
                 <label>전화번호</label>
             </div>

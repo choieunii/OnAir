@@ -35,12 +35,12 @@
         <h1>Login</h1>
         <form method="post" action="login">
             <div class="txt_field">
-                <input type="text" required>
+                <input type="text" name="id" id="id" required>
                 <span></span>
                 <label>아이디</label>
             </div>
             <div class="txt_field">
-                <input type="password" required>
+                <input type="password" name="password" id="password"required>
                 <span></span>
                 <label>비밀번호</label>
             </div>
