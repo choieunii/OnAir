@@ -12,18 +12,12 @@ import javax.servlet.http.HttpSession
 
 @Service
 class UserService(private val userRepository: UserRepository) {
-    fun login(user_id: String, password: String, session:HttpSession): String {
+    fun login(user_id: String, password: String): Pair<User?,String> {
         val user = userRepository.findByUserId(user_id);
         if (user?.password.equals(password)) {
-            session.setAttribute("user_id",user?.userId);
-            session.setAttribute("password",user?.password);
-            session.setAttribute("name",user?.name);
-            session.setAttribute("age",user?.age);
-            session.setAttribute("phone_num",user?.phoneNum);
-            session.setAttribute("email",user?.email);
-            return "Success"
+            return Pair(user, "Success");
         }
-        return "Failed"
+        return Pair(null,"Failed");
     }
 
     fun signUp(request: SignUpRequestDto): String {
