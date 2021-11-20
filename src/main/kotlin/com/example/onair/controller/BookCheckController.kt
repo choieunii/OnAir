@@ -7,8 +7,8 @@ import org.springframework.web.bind.annotation.RequestMapping
 @Controller
 class BookCheckController (private val bookCheckService: BookCheckService){
     @RequestMapping("/bookCheck")
-    fun flightInfo(): String {
+    fun bookCheck(): String {
         val bookCheck = bookCheckService.getTasks()
-        return "flightInfo";
+        return "bookCheck";
     }
 }
