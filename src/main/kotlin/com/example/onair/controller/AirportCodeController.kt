@@ -34,7 +34,7 @@ class AirportCodeController(private val airportCodeService: AirportCodeService) 
         }
         rd.close()
         conn.disconnect()
-        println(sb.toString()) // 결과 문자열 출력하는 부분
+        println(sb.toString()) // 결과 문자열 확인하는 부분
 
         airportCodeService.getCodeMap(sb) // AirportCodeService로 결과 문자열 보내는 부분
     }

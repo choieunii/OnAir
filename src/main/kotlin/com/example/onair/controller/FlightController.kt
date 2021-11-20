@@ -83,7 +83,7 @@ class FlightController (private val flightService:FlightService){
         }
         rd.close()
         conn.disconnect()
-        println(sb.toString()) // 샘플 데이터에서 결과 문자열 출력하는 부분
+        println(sb.toString()) // 샘플 데이터에서 결과 문자열 확인하는 부분
 
     }
 }
