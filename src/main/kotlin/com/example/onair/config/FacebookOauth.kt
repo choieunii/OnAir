@@ -7,11 +7,11 @@ import org.springframework.web.client.RestTemplate
 import org.springframework.web.util.UriComponentsBuilder
 
 class FacebookOauth(
-        val facebookLoginUrl: String = "",
-        val facebookClientId: String = "",
-        val facebookRedirectUrl: String = "",
-        val facebookClientSecret: String = "",
-        val facebookTokenBaseUrl: String = ""
+        val facebookLoginUrl: String = "https://www.facebook.com/v12.0/dialog/oauth",
+        val facebookClientId: String = "3007966882774836",
+        val facebookRedirectUrl: String = "http://localhost:8080/login/oauth/facebook",
+        val facebookClientSecret: String = "e7827fcd410ba6a14f51a51188615690",
+        val facebookTokenBaseUrl: String = "https://graph.facebook.com/v12.0/oauth/access_token"
 ) {
 
     fun getOauthRedirectURL(): String {

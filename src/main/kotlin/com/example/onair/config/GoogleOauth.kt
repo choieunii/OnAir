@@ -6,11 +6,11 @@ import org.springframework.http.HttpMethod
 import org.springframework.web.client.RestTemplate
 
 class GoogleOauth (
-        val googleLoginUrl:String = "",
-        val googleClientId:String = "",
-        val googleRedirectUrl:String   = "",
-        val googleClientSecret:String = "",
-        val googleTokenBaseUrl:String = ""
+        val googleLoginUrl:String = "https://accounts.google.com",
+        val googleClientId:String = "988322772158-f4vi9q2dkluucvhht4h2v6ao2tf7hs4c.apps.googleusercontent.com",
+        val googleRedirectUrl:String   = "http://localhost:8080/login/oauth/google",
+        val googleClientSecret:String = "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",
+        val googleTokenBaseUrl:String = "https://oauth2.googleapis.com/token"
 ) {
 
     fun getOauthRedirectURL(): String {

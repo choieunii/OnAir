@@ -33,7 +33,7 @@
     </nav>
     <div class="login">
         <h1>Login</h1>
-        <form method="post" action="#">
+        <form method="post" action="login">
             <div class="txt_field">
                 <input type="text" required>
                 <span></span>
@@ -50,13 +50,12 @@
                 <a href="signUp">회원가입</a>
             </div>
             <div class="social-icons">
-                <img src="images/facebook.png">
-                <img src="images/google.jpg">
-                <img src="images/kakao.png">
+                <a href="login/facebook"><img src="images/facebook.png"></a>
+                <a href="login/google"><img src="images/google.jpg"></a>
+                <a href="login/kakao"><img src="images/kakao.png"></a>
             </div>
         </form>
     </div>
-
 </div>
 </body>
 </html>
