@@ -15,11 +15,6 @@ class TestController (private val testService:TestService){
         val test = testService.getTasks()
         return "index";
     }
-    @RequestMapping("/login")
-    fun login(): String {
-        val test = testService.getTasks()
-        return "login";
-    }
     @RequestMapping("/book")
     fun book(): String {
         val test = testService.getTasks()
