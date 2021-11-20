@@ -9,16 +9,16 @@ import javax.persistence.Table
 @Table(name = "flight")
 data class Flight(
         @Id
-        @Column(name = "schLineType") // 항공편종류 D / I 국내 / 국제
-        var schLineType: String = "",
-        @Column(name = "schIOType") // 운행타입 I / 0 도착 / 출발
-        var schIOType: String = "",
-        @Column(name = "schAirCode") // 공항코드 GMP
-        var schAirCode: String = "",
+        @Column(name = "schDate") // 검색일자
+        var schDate: String = "",
+        @Column(name = "schDeptCityCode") // 도착 도시 코드
+        var schDeptCityCode: String = "",
+        @Column(name = "schArrvCityCode") // 출항 도시 코드
+        var schArrvCityCode: String = "",
+        @Column(name = "schAirLine") // 	항공편 코드
+        var schAirLine: String = "",
+        @Column(name = "schFlightNum") // 항공편 넘버
+        var schFlightNum: String = "",
         @Column(name = "serviceKey") // 인증키
-        var serviceKey: String = "",
-        @Column(name = "schStTime") // 예정시간 0600
-        var schStTime: String = "",
-        @Column(name = "schEdTime") // 변경시간 1800
-        var schEdTime: String = ""
+        var serviceKey: String = "yte0lqvUBjmStje3Bv6YEA5dectrmAum%2BiBn%2FCK3vg3OZo1NTSaI%2BFpfJYfuA5%2FO3Q6VXBMMMUlmAbCZnIaBVA%3D%3D"
 )
