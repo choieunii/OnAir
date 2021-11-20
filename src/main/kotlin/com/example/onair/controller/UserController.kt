@@ -8,7 +8,6 @@ import com.example.onair.service.UserService
 import org.springframework.stereotype.Controller
 import org.springframework.ui.Model
 import org.springframework.web.bind.annotation.*
-import sun.security.x509.OIDMap.addAttribute
 import javax.servlet.http.HttpServletRequest
 import javax.servlet.http.HttpSession
 
