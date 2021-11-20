@@ -1,6 +1,7 @@
 package com.example.onair.controller
 
 import com.example.onair.domain.test.TestRepository
+import com.example.onair.service.FlightService
 import com.example.onair.service.TestService
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Controller

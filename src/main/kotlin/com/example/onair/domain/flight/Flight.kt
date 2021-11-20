@@ -9,14 +9,16 @@ import javax.persistence.Table
 @Table(name = "flight")
 data class Flight(
         @Id
-        @Column(name = "id")
-        var id: String = "",
-        @Column(name = "name")
-        var name: String = "",
-        @Column(name = "type")
-        var type: String = "",
-        @Column(name = "password")
-        var password: String = "",
-        @Column(name = "email")
-        var email: String = ""
+        @Column(name = "schLineType") // 항공편종류 D / I 국내 / 국제
+        var schLineType: String = "",
+        @Column(name = "schIOType") // 운행타입 I / 0 도착 / 출발
+        var schIOType: String = "",
+        @Column(name = "schAirCode") // 공항코드 GMP
+        var schAirCode: String = "",
+        @Column(name = "serviceKey") // 인증키
+        var serviceKey: String = "",
+        @Column(name = "schStTime") // 예정시간 0600
+        var schStTime: String = "",
+        @Column(name = "schEdTime") // 변경시간 1800
+        var schEdTime: String = ""
 )
