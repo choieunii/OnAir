@@ -16,6 +16,13 @@
             display: block;
         }
     </style>
+    <script type="text/javascript">
+        function openPayment(){
+            window.name = "parentForm";
+            window.open("payment",
+                "chkForm", "width=600, height=500, resizable = no, scrollbars = no");
+        }
+    </script>
 </head>
 <body>
 <div class="header">
@@ -40,27 +47,36 @@
     <div class="frame">
         <div class="sub-frame">
             <h1 style="text-align: center;">탑승자 정보</h1><br><hr><br><br><br>
-            <h2>성인1</h2>
+
+            <%
+                int adult = Integer.parseInt(request.getParameter("adult"));
+                int children = Integer.parseInt(request.getParameter("children"));
+                int infant = Integer.parseInt(request.getParameter("infant"));
+                int k=1, i=1, j=1;
+                while(k <= adult) {
+
+            %>
+            <h2>성인<%=k %></h2>
             <table>
                 <tbody>
                 <tr>
                     <th>성별</th>
                     <td style="font-size: 18px;">
-                        <input type="radio"	id="radMale1"	name="radGender1" value="M"><label for="radMale1">&nbsp;남자</label>&nbsp;&nbsp;&nbsp;
-                        <input type="radio"	id="radFemale1"	name="radGender1" value="F"><label for="radFemale1">&nbsp;여자</label>
+                        <input type="radio"	id="adultMale"	name="adultGender" value="M"><label for="adultMale">&nbsp;남자</label>&nbsp;&nbsp;&nbsp;
+                        <input type="radio"	id="adultFemale"	name="adultGender" value="F"><label for="adultFemale">&nbsp;여자</label>
                     </td>
                 </tr>
                 <tr>
                     <th>이름</th>
                     <td>
-                        <input type="text"	id="txtLastName1" name="txtLastName" value="" placeholder="성(영문)" title="성"	style="width:35%; text-transform:none; ime-mode:disabled; font-size: 18px; padding:5px; border:1px solid #bcbcbc; border-radius:3px;" />
-                        <input type="text" id="txtFirstName1" name="txtFirstName" value="" placeholder="이름" title="이름" style="width:55%; text-transform:none; ime-mode:disabled; font-size: 18px; padding:5px; border:1px solid #bcbcbc; border-radius:3px;" />
+                        <input type="text"	id="adultLastName" name="adultLastName" value="" placeholder="성(영문)" title="성"	style="width:35%; text-transform:none; ime-mode:disabled; font-size: 18px; padding:5px; border:1px solid #bcbcbc; border-radius:3px;" />
+                        <input type="text" id="adultFirstName" name="adultFirstName" value="" placeholder="이름" title="이름" style="width:55%; text-transform:none; ime-mode:disabled; font-size: 18px; padding:5px; border:1px solid #bcbcbc; border-radius:3px;" />
                     </td>
                 </tr>
                 <tr>
                     <th>생년월일</th>
                     <td>
-                        <select id="selectBirthDateYear_1" name="selAirline" title="생년월일 연도" style="width: 30%;  font-size: 18px; padding:5px; border:1px solid #bcbcbc; border-radius:3px;">
+                        <select id="adultYear" name="adultYear" title="생년월일 연도" style="width: 30%;  font-size: 18px; padding:5px; border:1px solid #bcbcbc; border-radius:3px;">
                             <option value="">년</option>
                             <option value="2021"> 2021</option>
                             <option value="2020"> 2020</option>
@@ -125,7 +141,7 @@
                             <option value="1961"> 1961</option>
                             <option value="1960"> 1960</option>
                         </select>
-                        <select id="selectBirthDateMonth_1" name="selAirline" title="생년월일 월" style="width: 30%;  font-size: 18px; padding:5px; border:1px solid #bcbcbc; border-radius:3px;">
+                        <select id="adultMonth" name="adultMonth" title="생년월일 월" style="width: 30%;  font-size: 18px; padding:5px; border:1px solid #bcbcbc; border-radius:3px;">
                             <option value="">월</option>
                             <option value="01">01</option>
                             <option value="02">02</option>
@@ -140,7 +156,7 @@
                             <option value="11">11</option>
                             <option value="12">12</option>
                         </select>
-                        <select id="selectBirthDateDay_1" name="selAirline" title="생년월일 일" style="width: 29.5%;  font-size: 18px; padding:5px; border:1px solid #bcbcbc; border-radius:3px;">
+                        <select id="adultDay" name="adultDay" title="생년월일 일" style="width: 29.5%;  font-size: 18px; padding:5px; border:1px solid #bcbcbc; border-radius:3px;">
                             <option value="">일</option>
                             <option value="01"> 01</option>
                             <option value="02"> 02</option>
@@ -179,7 +195,7 @@
                 <tr>
                     <th>회원번호<br><p style="font-size: 15px;">(탑승객)</p></th>
                     <td>
-                        <select id="selAirline1" name="selAirline" title="항공사" style="width: 40%;   font-size: 18px; padding:5px; border:1px solid #bcbcbc; border-radius:3px;"">
+                        <select id="adultAirLine" name="adultAirLine" title="항공사" style="width: 40%;   font-size: 18px; padding:5px; border:1px solid #bcbcbc; border-radius:3px;"">
                         <option value="SA" >남아프리카항공 - Voyager</option>
                         <option value="LH" >루프트한자 - Miles &amp; More</option>
                         <option value="SN" >브뤼셀항공 - Miles &amp; More</option>
@@ -207,33 +223,39 @@
                         <option value="TK" >터키항공 - Miles &amp; Smiles</option>
                         <option value="LO" >폴란드항공 - Miles &amp; More</option>
                         </select>
-                        <input type="text" id="txtFfpNumber1" name="txtFfpNumber" maxlength="9" title="" value="645246448" style="width:50%;  font-size: 18px; padding:5px; border:1px solid #bcbcbc; border-radius:3px;"" />
+                        <input type="text" id="adultUserNum" name="adultUserNum" maxlength="9" title="" value="645246448" style="width:50%;  font-size: 18px; padding:5px; border:1px solid #bcbcbc; border-radius:3px;"" />
                     </td>
                 </tr>
                 </tbody>
             </table><br><br><br>
-
-            <h2>성인2</h2>
+            <%
+                    k++;
+                }
+            %>
+            <%
+                while(i <= children) {
+            %>
+            <h2>유아<%=i %></h2>
             <table>
                 <tbody>
                 <tr>
                     <th>성별</th>
                     <td style="font-size: 18px;">
-                        <input type="radio"	id="radMale1"	name="radGender1" value="M"><label for="radMale1">&nbsp;남자</label>&nbsp;&nbsp;&nbsp;
-                        <input type="radio"	id="radFemale1"	name="radGender1" value="F"><label for="radFemale1">&nbsp;여자</label>
+                        <input type="radio"	id="childrenMale"	name="childrenMale" value="M"><label for="childrenMale">&nbsp;남자</label>&nbsp;&nbsp;&nbsp;
+                        <input type="radio"	id="childrenFemale"	name="childrenFemale" value="F"><label for="childrenFemale">&nbsp;여자</label>
                     </td>
                 </tr>
                 <tr>
                     <th>이름</th>
                     <td>
-                        <input type="text"	id="txtLastName1" name="txtLastName" value="" placeholder="성(영문)" title="성"	style="width:35%; text-transform:none; ime-mode:disabled; font-size: 18px; padding:5px; border:1px solid #bcbcbc; border-radius:3px;" />
-                        <input type="text" id="txtFirstName1" name="txtFirstName" value="" placeholder="이름" title="이름" style="width:55%; text-transform:none; ime-mode:disabled; font-size: 18px; padding:5px; border:1px solid #bcbcbc; border-radius:3px;" />
+                        <input type="text"	id="childrenLastName" name="childrenLastName" value="" placeholder="성(영문)" title="성"	style="width:35%; text-transform:none; ime-mode:disabled; font-size: 18px; padding:5px; border:1px solid #bcbcbc; border-radius:3px;" />
+                        <input type="text" id="childrenFirstName" name="childrenFirstName" value="" placeholder="이름" title="이름" style="width:55%; text-transform:none; ime-mode:disabled; font-size: 18px; padding:5px; border:1px solid #bcbcbc; border-radius:3px;" />
                     </td>
                 </tr>
                 <tr>
                     <th>생년월일</th>
                     <td>
-                        <select id="selectBirthDateYear_1" name="selAirline" title="생년월일 연도" style="width: 30%;  font-size: 18px; padding:5px; border:1px solid #bcbcbc; border-radius:3px;">
+                        <select id="childrenYear" name="childrenYear" title="생년월일 연도" style="width: 30%;  font-size: 18px; padding:5px; border:1px solid #bcbcbc; border-radius:3px;">
                             <option value="">년</option>
                             <option value="2021"> 2021</option>
                             <option value="2020"> 2020</option>
@@ -298,7 +320,7 @@
                             <option value="1961"> 1961</option>
                             <option value="1960"> 1960</option>
                         </select>
-                        <select id="selectBirthDateMonth_1" name="selAirline" title="생년월일 월" style="width: 30%;  font-size: 18px; padding:5px; border:1px solid #bcbcbc; border-radius:3px;">
+                        <select id="childrenMonth" name="childrenMonth" title="생년월일 월" style="width: 30%;  font-size: 18px; padding:5px; border:1px solid #bcbcbc; border-radius:3px;">
                             <option value="">월</option>
                             <option value="01">01</option>
                             <option value="02">02</option>
@@ -313,7 +335,7 @@
                             <option value="11">11</option>
                             <option value="12">12</option>
                         </select>
-                        <select id="selectBirthDateDay_1" name="selAirline" title="생년월일 일" style="width: 29.5%;  font-size: 18px; padding:5px; border:1px solid #bcbcbc; border-radius:3px;">
+                        <select id="childrenDay" name="childrenDay" title="생년월일 일" style="width: 29.5%;  font-size: 18px; padding:5px; border:1px solid #bcbcbc; border-radius:3px;">
                             <option value="">일</option>
                             <option value="01"> 01</option>
                             <option value="02"> 02</option>
@@ -352,7 +374,7 @@
                 <tr>
                     <th>회원번호<br><p style="font-size: 15px;">(탑승객)</p></th>
                     <td>
-                        <select id="selAirline1" name="selAirline" title="항공사" style="width: 40%;   font-size: 18px; padding:5px; border:1px solid #bcbcbc; border-radius:3px;"">
+                        <select id="childrenAirLine" name="childrenAirLine" title="항공사" style="width: 40%;   font-size: 18px; padding:5px; border:1px solid #bcbcbc; border-radius:3px;"">
                         <option value="SA" >남아프리카항공 - Voyager</option>
                         <option value="LH" >루프트한자 - Miles &amp; More</option>
                         <option value="SN" >브뤼셀항공 - Miles &amp; More</option>
@@ -380,33 +402,39 @@
                         <option value="TK" >터키항공 - Miles &amp; Smiles</option>
                         <option value="LO" >폴란드항공 - Miles &amp; More</option>
                         </select>
-                        <input type="text" id="txtFfpNumber1" name="txtFfpNumber" maxlength="9" title="" value="645246448" style="width:50%;  font-size: 18px; padding:5px; border:1px solid #bcbcbc; border-radius:3px;"" />
+                        <input type="text" id="childrenUserNum" name="childrenUserNum" maxlength="9" title="" value="645246448" style="width:50%;  font-size: 18px; padding:5px; border:1px solid #bcbcbc; border-radius:3px;"" />
                     </td>
                 </tr>
                 </tbody>
             </table><br><br><br>
-
-            <h2>유아1</h2>
+            <%
+                    i++;
+                }
+            %>
+            <%
+                while(j <= infant) {
+            %>
+            <h2>영아<%=j %></h2>
             <table>
                 <tbody>
                 <tr>
                     <th>성별</th>
                     <td style="font-size: 18px;">
-                        <input type="radio"	id="radMale1"	name="radGender1" value="M"><label for="radMale1">&nbsp;남자</label>&nbsp;&nbsp;&nbsp;
-                        <input type="radio"	id="radFemale1"	name="radGender1" value="F"><label for="radFemale1">&nbsp;여자</label>
+                        <input type="radio"	id="infantMale"	name="infantMale" value="M"><label for="infantMale">&nbsp;남자</label>&nbsp;&nbsp;&nbsp;
+                        <input type="radio"	id="infantFemale"	name="infantFemale" value="F"><label for="infantFemale">&nbsp;여자</label>
                     </td>
                 </tr>
                 <tr>
                     <th>이름</th>
                     <td>
-                        <input type="text"	id="txtLastName1" name="txtLastName" value="" placeholder="성(영문)" title="성"	style="width:35%; text-transform:none; ime-mode:disabled; font-size: 18px; padding:5px; border:1px solid #bcbcbc; border-radius:3px;" />
-                        <input type="text" id="txtFirstName1" name="txtFirstName" value="" placeholder="이름" title="이름" style="width:55%; text-transform:none; ime-mode:disabled; font-size: 18px; padding:5px; border:1px solid #bcbcbc; border-radius:3px;" />
+                        <input type="text"	id="infantLastName" name="infantLastName" value="" placeholder="성(영문)" title="성"	style="width:35%; text-transform:none; ime-mode:disabled; font-size: 18px; padding:5px; border:1px solid #bcbcbc; border-radius:3px;" />
+                        <input type="text" id="infantFirstName" name="infantFirstName" value="" placeholder="이름" title="이름" style="width:55%; text-transform:none; ime-mode:disabled; font-size: 18px; padding:5px; border:1px solid #bcbcbc; border-radius:3px;" />
                     </td>
                 </tr>
                 <tr>
                     <th>생년월일</th>
                     <td>
-                        <select id="selectBirthDateYear_1" name="selAirline" title="생년월일 연도" style="width: 30%;  font-size: 18px; padding:5px; border:1px solid #bcbcbc; border-radius:3px;">
+                        <select id="infantYear" name="infantYear" title="생년월일 연도" style="width: 30%;  font-size: 18px; padding:5px; border:1px solid #bcbcbc; border-radius:3px;">
                             <option value="">년</option>
                             <option value="2021"> 2021</option>
                             <option value="2020"> 2020</option>
@@ -471,7 +499,7 @@
                             <option value="1961"> 1961</option>
                             <option value="1960"> 1960</option>
                         </select>
-                        <select id="selectBirthDateMonth_1" name="selAirline" title="생년월일 월" style="width: 30%;  font-size: 18px; padding:5px; border:1px solid #bcbcbc; border-radius:3px;">
+                        <select id="infantMonth" name="infantMonth" title="생년월일 월" style="width: 30%;  font-size: 18px; padding:5px; border:1px solid #bcbcbc; border-radius:3px;">
                             <option value="">월</option>
                             <option value="01">01</option>
                             <option value="02">02</option>
@@ -486,7 +514,7 @@
                             <option value="11">11</option>
                             <option value="12">12</option>
                         </select>
-                        <select id="selectBirthDateDay_1" name="selAirline" title="생년월일 일" style="width: 29.5%;  font-size: 18px; padding:5px; border:1px solid #bcbcbc; border-radius:3px;">
+                        <select id="infantDay" name="infantDay" title="생년월일 일" style="width: 29.5%;  font-size: 18px; padding:5px; border:1px solid #bcbcbc; border-radius:3px;">
                             <option value="">일</option>
                             <option value="01"> 01</option>
                             <option value="02"> 02</option>
@@ -525,65 +553,48 @@
                 <tr>
                     <th>회원번호<br><p style="font-size: 15px;">(탑승객)</p></th>
                     <td>
-                        <select id="selAirline1" name="selAirline" title="항공사" style="width: 40%;   font-size: 18px; padding:5px; border:1px solid #bcbcbc; border-radius:3px;">
-                            <option value="SA" >남아프리카항공 - Voyager</option>
-                            <option value="LH" >루프트한자 - Miles &amp; More</option>
-                            <option value="SN" >브뤼셀항공 - Miles &amp; More</option>
-                            <option value="LX" >스위스항공 - Miles&amp;More</option>
-                            <option value="SK" >스칸디나비아항공 - EuroBonus</option>
-                            <option value="ZH" >심천항공 - PhoenixMiles</option>
-                            <option value="SQ" >싱가포르항공 - KrisFlyer</option>
-                            <option value="AV" >아비앙카항공 - LifeMiles</option>
-                            <option value="OZ" selected="selected">아시아나항공 - Asiana Club</option>
-                            <option value="A3" >에게안항공 - Miles+Bonus</option>
-                            <option value="BR" >에바항공 - Infinity Mileagelands</option>
-                            <option value="CA" >에어 차이나 - PhoenixMiles</option>
-                            <option value="NZ" >에어뉴질랜드 - Airpoints</option>
-                            <option value="AI" >에어인디아 - FlyingReturns</option>
-                            <option value="AC" >에어캐나다 - Aeroplan</option>
-                            <option value="ET" >에티오피아항공 - Sheba Miles</option>
-                            <option value="OS" >오스트리아항공 - Miles &amp; More</option>
-                            <option value="UA" >유나이티드항공 - MileagePlus</option>
-                            <option value="MS" >이집트항공 - EGYPTAIR Plus</option>
-                            <option value="NH" >전일본공수(ANA) - ANA Mileage Club</option>
-                            <option value="CM" >코파항공 - ConnectMiles</option>
-                            <option value="OU" >크로아티아항공 - Miles &amp; More</option>
-                            <option value="TG" >타이항공 - Royal Orchid Plus</option>
-                            <option value="TP" >탑포르투갈 - TAP Miles &amp; Go</option>
-                            <option value="TK" >터키항공 - Miles &amp; Smiles</option>
-                            <option value="LO" >폴란드항공 - Miles &amp; More</option>
+                        <select id="infantAirLine" name="infantAirLine" title="항공사" style="width: 40%;   font-size: 18px; padding:5px; border:1px solid #bcbcbc; border-radius:3px;"">
+                        <option value="SA" >남아프리카항공 - Voyager</option>
+                        <option value="LH" >루프트한자 - Miles &amp; More</option>
+                        <option value="SN" >브뤼셀항공 - Miles &amp; More</option>
+                        <option value="LX" >스위스항공 - Miles&amp;More</option>
+                        <option value="SK" >스칸디나비아항공 - EuroBonus</option>
+                        <option value="ZH" >심천항공 - PhoenixMiles</option>
+                        <option value="SQ" >싱가포르항공 - KrisFlyer</option>
+                        <option value="AV" >아비앙카항공 - LifeMiles</option>
+                        <option value="OZ" selected="selected">아시아나항공 - Asiana Club</option>
+                        <option value="A3" >에게안항공 - Miles+Bonus</option>
+                        <option value="BR" >에바항공 - Infinity Mileagelands</option>
+                        <option value="CA" >에어 차이나 - PhoenixMiles</option>
+                        <option value="NZ" >에어뉴질랜드 - Airpoints</option>
+                        <option value="AI" >에어인디아 - FlyingReturns</option>
+                        <option value="AC" >에어캐나다 - Aeroplan</option>
+                        <option value="ET" >에티오피아항공 - Sheba Miles</option>
+                        <option value="OS" >오스트리아항공 - Miles &amp; More</option>
+                        <option value="UA" >유나이티드항공 - MileagePlus</option>
+                        <option value="MS" >이집트항공 - EGYPTAIR Plus</option>
+                        <option value="NH" >전일본공수(ANA) - ANA Mileage Club</option>
+                        <option value="CM" >코파항공 - ConnectMiles</option>
+                        <option value="OU" >크로아티아항공 - Miles &amp; More</option>
+                        <option value="TG" >타이항공 - Royal Orchid Plus</option>
+                        <option value="TP" >탑포르투갈 - TAP Miles &amp; Go</option>
+                        <option value="TK" >터키항공 - Miles &amp; Smiles</option>
+                        <option value="LO" >폴란드항공 - Miles &amp; More</option>
                         </select>
-                        <input type="text" id="txtFfpNumber1" name="txtFfpNumber" maxlength="9" title="" value="645246448" style="width:50%;  font-size: 18px; padding:5px; border:1px solid #bcbcbc; border-radius:3px;">
+                        <input type="text" id="infantUserNum" name="infantUserNum" maxlength="9" title="" value="645246448" style="width:50%;  font-size: 18px; padding:5px; border:1px solid #bcbcbc; border-radius:3px;"" />
                     </td>
                 </tr>
                 </tbody>
             </table><br><br><br>
-
-            <h1 style="text-align: center;">예약자 연락처 정보</h1><br><hr><br><br><br>
-            <table>
-                <tbody>
-                <tr>
-                    <th>이메일</th>
-                    <td style="font-size: 18px;">
-                        <input type="text"id="txtSendEmail" title="이메일" value="dhkdwkdlfrjf@naver.com" class="mar_ri40" style="width:60%; ime-mode:disabled; font-size: 18px; padding:5px; border:1px solid #bcbcbc; border-radius:3px;">
-                        &nbsp;&nbsp;&nbsp;
-                        <input type="checkbox"	id="chkAgreeSendEmail" checked />
-                        <label for="chkAgreeSendEmail">이메일 항공권 수신동의</label>
-                    </td>
-                </tr>
-                <tr>
-                    <th>전화번호</th>
-                    <td style="font-size: 18px;">
-                        <input type="text" id="txtSendSMS1" maxlength="12" title="전화번호" value="01095643580" class="mar_ri40" style="width:60%; font-size: 18px; padding:5px; border:1px solid #bcbcbc; border-radius:3px;"  placeholder="휴대폰번호"  />
-                        &nbsp;&nbsp;&nbsp;
-                        <input type="checkbox" id="chkAgreeSendSMS" checked/>
-                        <label for="chkAgreeSendSMS">SMS 수신 동의</label>
-                    </td>
-                </tr>
-                </tbody>
-            </table><br><br><br>
+            <%
+                    j++;
+                }
+            %>
             <button class="button-1" style="left:0%; background-color: #bcbcbc;" onclick="history.back()">이전</button>
-            <button class="button-1">결제</button><br><br><br><br><br><br>
+            <button id="click" class="button-1" onclick="openPayment()">결제</button>
+
+            <br><br><br><br><br><br>
+
         </div>
     </div>
 </div>

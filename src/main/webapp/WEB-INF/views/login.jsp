@@ -47,7 +47,7 @@
             <div class="pass">비밀번호 찾기</div>
             <input type="submit" value="로그인">
             <div class="signup_link">
-                <a href="#">회원가입</a>
+                <a href="signUp">회원가입</a>
             </div>
             <div class="social-icons">
                 <img src="images/facebook.png">
