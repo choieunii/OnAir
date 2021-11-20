@@ -11,5 +11,7 @@ data class BookCheckRequestDto ( // data class -> equals, copy, toString, compon
     var LastName: String,
     var BirthDate: String,
     var AirLine: String,
-    var SeatClass: String
+    var SeatClass: String,
+    val ArriveAirport: String,
+    val DepartmentAirport: String
 )

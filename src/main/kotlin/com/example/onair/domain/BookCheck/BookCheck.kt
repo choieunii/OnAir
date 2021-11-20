@@ -26,5 +26,9 @@ data class BookCheck( // data class -> equals, copy, toString, componentN
     @Column(name = "AirLine", nullable=false) //
     var AirLine: String,
     @Column(name = "SeatClass", nullable=false) //
-    var SeatClass: String
+    var SeatClass: String,
+    @Column(name = "ArriveAirport", nullable=false) //
+    val ArriveAirport: String,
+    @Column(name = "DepartmentAirport", nullable=false) //
+    val DepartmentAirport: String
 )
