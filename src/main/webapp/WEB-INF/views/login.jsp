@@ -44,7 +44,6 @@
                 <span></span>
                 <label>비밀번호</label>
             </div>
-            <div class="pass">비밀번호 찾기</div>
             <input type="submit" value="로그인">
             <div class="signup_link">
                 <a href="signUp">회원가입</a>
