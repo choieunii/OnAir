@@ -6,8 +6,10 @@ import com.example.onair.config.KakaoOauth
 import com.example.onair.dto.SignUpRequestDto
 import com.example.onair.service.UserService
 import org.springframework.stereotype.Controller
+import org.springframework.ui.Model
 import org.springframework.web.bind.annotation.*
 import javax.servlet.http.HttpServletRequest
+import javax.servlet.http.HttpSession
 
 
 @Controller
@@ -17,10 +19,11 @@ class UserController (private val userService: UserService){
         return "login";
     } // 세션 등록, 포인트 변수 넣기 = 0,
     @PostMapping("/login")
-    fun login(id: String, password: String): String {
-        val response = userService.login(id,password)
-        println(response)
-        if(response.equals("Success")){
+    fun login(id: String, password: String, session: HttpSession): String {
+        val (user, res) = userService.login(id,password)
+        println(res)
+
+        if(res.equals("Success")){
             return "index"
         }
         return "login";
@@ -32,9 +35,10 @@ class UserController (private val userService: UserService){
     }
 
     @PostMapping("/signUp")
-    fun signUp(request : SignUpRequestDto): String {
+    fun signUp(request : SignUpRequestDto, model:Model): String {
         println(request)
         val response = userService.signUp(request)
+        model.addAttribute("response",response)
         if(response.equals("Success")){
             return "login"
         }

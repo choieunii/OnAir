@@ -7,16 +7,17 @@ import com.example.onair.config.KakaoOauth
 import com.example.onair.domain.User.User
 import com.example.onair.dto.SignUpRequestDto
 import org.springframework.stereotype.Service
+import javax.servlet.http.HttpSession
 
 
 @Service
 class UserService(private val userRepository: UserRepository) {
-    fun login(user_id: String, password: String): String {
+    fun login(user_id: String, password: String): Pair<User?,String> {
         val user = userRepository.findByUserId(user_id);
         if (user?.password.equals(password)) {
-            return "Success"
+            return Pair(user, "Success");
         }
-        return "Failed"
+        return Pair(null,"Failed");
     }
 
     fun signUp(request: SignUpRequestDto): String {

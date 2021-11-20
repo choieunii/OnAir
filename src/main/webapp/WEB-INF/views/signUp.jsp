@@ -1,4 +1,5 @@
 <%@ page language="java" contentType="text/html;charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ page import="java.io.PrintWriter"%>
 <%@ page import="java.sql.Connection" %>
 <%@ page import="java.sql.PreparedStatement" %>
@@ -33,6 +34,7 @@
     </nav>
     <div class="signUp">
         <h1>Sign Up</h1>
+        <h1>${response}</h1>
         <form method="post" action="signUp" onsubmit="return checkValue()">
             <div class="txt_field">
                 <input type="text" id="name" name="name" required>
