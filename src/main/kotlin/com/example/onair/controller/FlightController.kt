@@ -37,31 +37,31 @@ class FlightController (private val flightService:FlightService){
         ) /*Service Key*/
         urlBuilder.append(
             "&" + URLEncoder.encode("schDate", "UTF-8") + "=" + URLEncoder.encode(
-                "20121010",
+                "20121010", // 검색날짜 입력 부분
                 "UTF-8"
             )
         ) /*검색일자*/
         urlBuilder.append(
             "&" + URLEncoder.encode("schDeptCityCode", "UTF-8") + "=" + URLEncoder.encode(
-                "GMP",
+                "GMP", // 도착 도시 코드 입력 부분
                 "UTF-8"
             )
         ) /*도착 도시 코드*/
         urlBuilder.append(
             "&" + URLEncoder.encode("schArrvCityCode", "UTF-8") + "=" + URLEncoder.encode(
-                "PUS",
+                "PUS", // 출항 도시 코드 입력 부분
                 "UTF-8"
             )
         ) /*출항 도시 코드*/
         urlBuilder.append(
             "&" + URLEncoder.encode("schAirLine", "UTF-8") + "=" + URLEncoder.encode(
-                "AB",
+                "AB", // 항공편 코드 입력 부분
                 "UTF-8"
             )
         ) /*항공편 코드*/
         urlBuilder.append(
             "&" + URLEncoder.encode("schFlightNum", "UTF-8") + "=" + URLEncoder.encode(
-                "1",
+                "1", // 항공편 넘버 입력 부분
                 "UTF-8"
             )
         ) /*항공편 넘버*/
@@ -83,21 +83,8 @@ class FlightController (private val flightService:FlightService){
         }
         rd.close()
         conn.disconnect()
-        println(sb.toString())
+        println(sb.toString()) // 샘플 데이터에서 결과 문자열 출력하는 부분
 
-        val numOfRowsArr = line?.split("<numOfRows>","</numOfRows>")
-        val numOfRows: Int? = numOfRowsArr?.get(1)?.toInt()
-        val codesArr = line?.split("<cityCode>","</cityCode><cityEng>","</cityEng>")
-
-        var codeMap= mutableMapOf<String,String>()
-        if (numOfRows != null) {
-            if (codesArr != null) {
-                for (i in 0 until numOfRows) {
-                    codeMap.put(codesArr.get(i*3+1), codesArr.get(i*3+2))
-                }
-            }
-        }
-        println(codeMap)
     }
 
     @GetMapping("/getAirportCodeInformation")
@@ -133,7 +120,7 @@ class FlightController (private val flightService:FlightService){
         if (numOfRows != null) {
             if (codesArr != null) {
                 for (i in 0 until numOfRows) {
-                    codeMap.put(codesArr.get(i*3+1), codesArr.get(i*3+2))
+                    codeMap.put(codesArr.get(i*3+1), codesArr.get(i*3+2)) // 도시 코드 : 도시 이름
                 }
             }
         }
