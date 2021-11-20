@@ -25,7 +25,13 @@ class UserController (private val userService: UserService){
         }
         return "login";
     } // 세션 등록, 포인트 변수 넣기 = 0,
-    @RequestMapping("/signup")
+
+    @GetMapping("/signup")
+    fun signUp(): String {
+        return "signup";
+    }
+
+    @PostMapping("/signup")
     fun signUp(request : SignUpRequestDto): String {
         val response = userService.signUp(request)
         if(response.equals("Success")){
