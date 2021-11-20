@@ -28,18 +28,19 @@ class UserController (private val userService: UserService){
         return "login";
     } // 세션 등록, 포인트 변수 넣기 = 0,
 
-    @GetMapping("/signup")
+    @GetMapping("/signUp")
     fun signUp(): String {
-        return "signup";
+        return "signUp";
     }
 
-    @PostMapping("/signup")
+    @PostMapping("/signUp")
     fun signUp(request : SignUpRequestDto): String {
+        println(request)
         val response = userService.signUp(request)
         if(response.equals("Success")){
             return "login"
         }
-        return "signup";
+        return "signUp";
     }
 
     @RequestMapping("/login/google")

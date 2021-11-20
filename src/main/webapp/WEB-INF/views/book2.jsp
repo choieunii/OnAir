@@ -62,8 +62,8 @@
                 <tr>
                     <th>성별</th>
                     <td style="font-size: 18px;">
-                        <input type="radio"	id="adultMale"	name="adultGender" value="M"><label for="adultMale">&nbsp;남자</label>&nbsp;&nbsp;&nbsp;
-                        <input type="radio"	id="adultFemale"	name="adultGender" value="F"><label for="adultFemale">&nbsp;여자</label>
+                        <input type="radio"	id="adultMale"	name="adultGender<%=k %>" value="M"><label for="adultMale">&nbsp;남자</label>&nbsp;&nbsp;&nbsp;
+                        <input type="radio"	id="adultFemale"	name="adultGender<%=k %>" value="F"><label for="adultFemale">&nbsp;여자</label>
                     </td>
                 </tr>
                 <tr>

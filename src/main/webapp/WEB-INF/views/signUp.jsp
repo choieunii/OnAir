@@ -33,14 +33,14 @@
     </nav>
     <div class="signUp">
         <h1>Sign Up</h1>
-        <form method="post" action="#" onsubmit="return checkValue()">
+        <form method="post" action="signUp" onsubmit="return checkValue()">
             <div class="txt_field">
                 <input type="text" id="name" name="name" required>
                 <span></span>
                 <label>이름</label>
             </div>
             <div class="txt_field">
-                <input type="text" id="id" name="id" required>
+                <input type="text" id="userId" name="userId" required>
                 <span></span>
                 <label>아이디</label>
             </div>
@@ -61,14 +61,14 @@
                 <label>나이</label>
             </div>
             <div class="txt_field">
+                <input type="text" id="phoneNum" name="phoneNum" required>
+                <span></span>
+                <label>전화번호</label>
+            </div>
+            <div class="txt_field">
                 <input type="text" id="email" name="email" required>
                 <span></span>
                 <label>이메일</label>
-            </div>
-            <div class="txt_field">
-                <input type="text" id="address" name="address" required>
-                <span></span>
-                <label>주소</label>
             </div>
             <input type="submit" value="회원가입"><br>
         </form>

@@ -10,11 +10,11 @@ import org.springframework.web.client.RestTemplate
 
 
 class KakaoOauth (
-        val kakaoLoginUrl:String = "",
-        val kakaoClientId:String = "",
-        val kakaoRedirectUrl:String   = "",
-        val kakaoClientSecret:String = "",
-        val kakaoTokenBaseUrl:String = ""
+        val kakaoLoginUrl:String = "https://kauth.kakao.com",
+        val kakaoClientId:String = "3c98fa396165c14a012856967b4b7b49",
+        val kakaoRedirectUrl:String   = "http://localhost:8080/login/oauth/kakao",
+        val kakaoClientSecret:String = "darEri5VGYNHwEAnnYJVCnjyZ7zdV3JB",
+        val kakaoTokenBaseUrl:String = "https://kauth.kakao.com/oauth/token"
 ) {
 
     fun getOauthRedirectURL(): String {
