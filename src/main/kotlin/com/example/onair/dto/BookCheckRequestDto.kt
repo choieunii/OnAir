@@ -2,7 +2,7 @@ package com.example.onair.dto
 
 import javax.persistence.Column
 
-data class BookCheckRequestDto {
+data class BookCheckRequestDto (
     var CustomerID: String,
     var FlightNum: Int,
     var Gender: String,
@@ -11,4 +11,4 @@ data class BookCheckRequestDto {
     var BirthDate: String,
     var AirLine: String,
     var SeatClass: String
-}
+)
