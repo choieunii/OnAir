@@ -1,5 +1,7 @@
 package com.example.onair.controller
 
+import com.example.onair.service.AirportCodeService
+import com.example.onair.service.FlightService
 import jdk.internal.org.jline.utils.InputStreamReader
 import org.springframework.web.bind.annotation.GetMapping
 import java.io.BufferedReader
@@ -8,7 +10,7 @@ import java.net.HttpURLConnection
 import java.net.URL
 import java.net.URLEncoder
 
-class AirportCodeController {
+class AirportCodeController(private val airportCodeService: AirportCodeService) {
     @GetMapping("/getAirportCodeInformation")
     @kotlin.Throws(IOException::class)
     fun apiCode(args: Array<String>) {
@@ -32,20 +34,8 @@ class AirportCodeController {
         }
         rd.close()
         conn.disconnect()
-        println(sb.toString())
+        println(sb.toString()) // 결과 문자열 출력하는 부분
 
-        val numOfRowsArr = line?.split("<numOfRows>","</numOfRows>")
-        val numOfRows: Int? = numOfRowsArr?.get(1)?.toInt()
-        val codesArr = line?.split("<cityCode>","</cityCode><cityEng>","</cityEng>")
-
-        var codeMap= mutableMapOf<String,String>()
-        if (numOfRows != null) {
-            if (codesArr != null) {
-                for (i in 0 until numOfRows) {
-                    codeMap.put(codesArr.get(i*3+1), codesArr.get(i*3+2)) // 도시 코드 : 도시 이름
-                }
-            }
-        }
-        println(codeMap)
+        airportCodeService.getCodeMap(sb) // AirportCodeService로 결과 문자열 보내는 부분
     }
 }
