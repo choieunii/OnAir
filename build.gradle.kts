@@ -6,6 +6,7 @@ plugins {
 	kotlin("jvm") version "1.4.32"
 	kotlin("plugin.spring") version "1.4.32"
 	kotlin("plugin.jpa") version "1.4.32"
+	kotlin("plugin.serialization") version "1.5.0"
 }
 
 group = "com.example"
@@ -22,8 +23,13 @@ dependencies {
 	implementation("org.springframework.boot:spring-boot-starter-web")
 	implementation("org.jetbrains.kotlin:kotlin-reflect")
 	implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
+//	implementation ("org.springframework.boot:spring-boot-starter-oauth2-client")
+//	implementation("org.springframework.boot:spring-boot-starter-security")
 	implementation("javax.servlet:jstl")
 	implementation("org.apache.tomcat.embed:tomcat-embed-jasper")
+	implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.2.0")
+	implementation("org.projectlombok:lombok:1.18.18")
+	developmentOnly("org.springframework.boot:spring-boot-devtools")
 	testImplementation("org.springframework.boot:spring-boot-starter-test")
 }
 
