@@ -47,9 +47,10 @@
         </div>
     </div>
     <div class="arrow">
-        <img src="images/back.png">
-        <img src="images/next.png">
+        <img id="back-button" src="images/back.png">
+        <img id="next-button" src="images/next.png">
     </div>
 </div>
+<script src="js/index.js"></script>
 </body>
 </html>
