@@ -6,29 +6,31 @@ import org.springframework.stereotype.Service
 
 @Service
 class BookCheckService (private val bookCheckRepository: BookCheckRepository){
-    fun check(customerID: String): Boolean {
+    fun checkExistence(customerID: String): Boolean {
         val bookCheck: BookCheck? = bookCheckRepository.findByCustomerID(customerID)
 
-        if (bookCheck != null) {
-            BookCheckRequestDto(
-                CustomerID=bookCheck.CustomerID,
-                FlightNum=bookCheck.FlightNum,
-                DepartmentDate=bookCheck.DepartmentDate,
-                Gender=bookCheck.Gender,
-                FirstName=bookCheck.FirstName,
-                LastName=bookCheck.LastName,
-                BirthDate=bookCheck.BirthDate,
-                AirLine=bookCheck.AirLine,
-                SeatClass=bookCheck.SeatClass,
-                ArriveAirport=bookCheck.ArriveAirport,
-                DepartmentAirport=bookCheck.DepartmentAirport
-            )
-            return true
-        }
-        return false
-        }
+        return bookCheck != null
+    }
 
-    fun print(request: BookCheckRequestDto): Map<String, String> {
+    fun getDto(customerID: String): BookCheckRequestDto {
+        val bookCheck: BookCheck = bookCheckRepository.findByCustomerID(customerID)!!
+
+        return BookCheckRequestDto(
+            bookCheck.CustomerID,
+            bookCheck.FlightNum,
+            bookCheck.DepartmentDate,
+            bookCheck.Gender,
+            bookCheck.FirstName,
+            bookCheck.LastName,
+            bookCheck.BirthDate,
+            bookCheck.AirLine,
+            bookCheck.SeatClass,
+            bookCheck.ArriveAirport,
+            bookCheck.DepartmentAirport
+        )
+    }
+
+    fun getInformation(request: BookCheckRequestDto): Map<String, String> {
         return mapOf(
             "name" to request.LastName + request.FirstName,
             "AirLine" to request.AirLine,
