@@ -10,8 +10,8 @@ import org.springframework.web.bind.annotation.RequestMapping
 class BookCheckController (private val bookCheckService: BookCheckService){
     @RequestMapping("/bookCheck")
     //존재 여부 확인
-    fun checkExistence(customerID: String): Boolean {
-        return bookCheckService.checkExistence(customerID)
+    fun isExistence(customerID: String): Boolean {
+        return bookCheckService.isExistence(customerID)
     }
 
     //다른 함수에서 사용할 request(dto) 가져오기

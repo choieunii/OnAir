@@ -6,7 +6,7 @@ import org.springframework.stereotype.Service
 
 @Service
 class BookCheckService (private val bookCheckRepository: BookCheckRepository){
-    fun checkExistence(customerID: String): Boolean {
+    fun isExistence(customerID: String): Boolean {
         val bookCheck: BookCheck? = bookCheckRepository.findByCustomerID(customerID)
 
         return bookCheck != null
