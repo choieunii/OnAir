@@ -22,8 +22,9 @@ class UserController (private val userService: UserService){
     @PostMapping("/login")
     fun login(id: String, password: String, session:HttpSession): String {
         val (user, res) = userService.login(id,password)
-
         if(res.equals("Success")){
+            userService.setSessionUser(user, session);
+            val test = session.getAttribute("email")
             return "index"
         }
         return "login";
@@ -62,11 +63,12 @@ class UserController (private val userService: UserService){
 
 
     @RequestMapping("/login/oauth/google")
-    fun googleLogin(code: String,model:Model): String {
+    fun googleLogin(code: String,model:Model,session:HttpSession): String {
         val token = userService.googleLogin(code);
         val (user, res)  = userService.getGoogleUserInfo(token);
         println(user)
         if(res == "login"){
+            userService.setSessionUser(user as User?, session);
             return "redirect:/index";
         }else{
             model.addAttribute("user",user)
@@ -76,11 +78,12 @@ class UserController (private val userService: UserService){
     }
 
     @RequestMapping("/login/oauth/facebook")
-    fun facebookLogin(code:String,model:Model): String {
+    fun facebookLogin(code:String,model:Model,session:HttpSession): String {
         val token = userService.facebookLogin(code);
         val (user, res)  = userService.getFacebookUserInfo(token);
         println(user)
         if(res == "login"){
+            userService.setSessionUser(user as User?, session);
             return "redirect:/index";
         }else{
             //(userId=12323130, name=홍길동)
@@ -90,11 +93,12 @@ class UserController (private val userService: UserService){
     }
 
     @RequestMapping("/login/oauth/kakao")
-    fun kakaoLogin(code:String,model:Model): String {
+    fun kakaoLogin(code:String,model:Model,session:HttpSession): String {
         val token = userService.kakaoLogin(code);
         val (user, res)  = userService.getKakaoUserInfo(token);
         println(user)
         if(res == "login"){
+            userService.setSessionUser(user as User?, session);
             return "redirect:/index";
         }else{
             model.addAttribute("user",user)

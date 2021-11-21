@@ -30,7 +30,8 @@ class UserService(private val userRepository: UserRepository) {
                 name = request.name,
                 age = request.age,
                 phoneNum = request.phoneNum,
-                email = request.email);
+                email = request.email,
+                point = 0);
 
         val checkId = userRepository.findByUserId(request.userId);
         val checkEmail = userRepository.findByEmail(request.email);
@@ -90,8 +91,8 @@ class UserService(private val userRepository: UserRepository) {
 
     fun getKakaoUserInfo(token: String): Pair<*, String> {
         val res = KakaoOauth().getKakaoUserInfo(token);
-        val properties:Map<String,*> = res?.get("properties") as Map<String, *>
-        val profile:Map<String,*> = res?.get("kakao_account") as Map<String, *>
+        val properties: Map<String, *> = res?.get("properties") as Map<String, *>
+        val profile: Map<String, *> = res?.get("kakao_account") as Map<String, *>
 
         val checkUserEmail = userRepository.findByEmail(profile.get("email").toString());
 
@@ -102,7 +103,16 @@ class UserService(private val userRepository: UserRepository) {
                 name = properties.get("nickname").toString(),
                 age = profile.get("age_range").toString(),
                 email = profile.get("email").toString(),
-                );
+        );
         return Pair(newUser, "signUp");
+    }
+
+    fun setSessionUser(user: User?, session: HttpSession) {
+        session.setAttribute("user_id", user?.userId);
+        session.setAttribute("name", user?.name);
+        session.setAttribute("age", user?.age);
+        session.setAttribute("phone_num", user?.phoneNum);
+        session.setAttribute("email", user?.email);
+        session.setAttribute("point", user?.point);
     }
 }
