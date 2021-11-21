@@ -27,7 +27,7 @@ class BookCheckController (private val bookCheckService: BookCheckService){
 
     //map에서 특정 조건에 맞는 정보 하나만 가져오기
     fun getInformationSelected(request: BookCheckRequestDto, select : String): String? {
-        return getInformationMap(request)[select]
+        return bookCheckService.getInformation(request)[select]
     }
 
 }
