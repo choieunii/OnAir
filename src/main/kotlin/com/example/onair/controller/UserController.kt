@@ -23,12 +23,12 @@ class UserController (private val userService: UserService){
     fun login(id: String, password: String, session:HttpSession): String {
         val (user, res) = userService.login(id,password)
         if(res.equals("Success")){
-            userService.setSessionUser(user, session);
-            val test = session.getAttribute("email")
+            userService.setSessionUser(user, session); // Service 보면 코드 확인 가능
+            // 세션에 사용자 정보가 추가된다.
             return "index"
         }
         return "login";
-    } // 세션 등록, 포인트 변수 넣기 = 0,
+    }
 
     @GetMapping("/signUp")
     fun signUp(): String {
@@ -40,10 +40,12 @@ class UserController (private val userService: UserService){
         println(request)
         val response = userService.signUp(request)
         model.addAttribute("response",response)
+        //위의 코드처럼 작성 시 아래의 return 되는 페이지에서 해당 변수의 값을 사용할수 있음.
+        // jsp에서 사용하고 싶은 변수는 model에 담아 전달해주면 된다.
         if(response.equals("Success")){
-            return "login"
+            return "login" // 회원가입에 성공하면 로그인 페이지로 이동
         }
-        return "signUp";
+        return "signUp";//실패하면 회원가입 페이지로 이동
     }
 
     @RequestMapping("/login/google")
@@ -66,12 +68,16 @@ class UserController (private val userService: UserService){
     fun googleLogin(code: String,model:Model,session:HttpSession): String {
         val token = userService.googleLogin(code);
         val (user, res)  = userService.getGoogleUserInfo(token);
-        println(user)
         if(res == "login"){
+            //만약 소셜로그인으로 회원가입을 한적이 있을 경우 로그인 되어 세션에 값이 저장된다.
             userService.setSessionUser(user as User?, session);
             return "redirect:/index";
         }else{
             model.addAttribute("user",user)
+            //처음 소셜로그인으로 로그인 할 경우 회원가입이 필요하다.
+            //추가적인 정보를 적어야 하기 때문에 소셜로그인에서 받아올 수 있는 값을 받아와 user에 넣어놨음.
+            //jsp에서는 해당 값을 input에 넣어서 없는 값만 사용자에게 입력 받도록 한다.
+            //카카오, 구글, 페북 각각 내용이 다르므로, 주석에 있는 양식을 참고하여 필요한 내용만 가져다 쓰기
             //(userId=123156, name=홍길동, email=123456@gmail.com)
             return "redirect:/signUp"
         }
@@ -81,7 +87,6 @@ class UserController (private val userService: UserService){
     fun facebookLogin(code:String,model:Model,session:HttpSession): String {
         val token = userService.facebookLogin(code);
         val (user, res)  = userService.getFacebookUserInfo(token);
-        println(user)
         if(res == "login"){
             userService.setSessionUser(user as User?, session);
             return "redirect:/index";
@@ -96,7 +101,6 @@ class UserController (private val userService: UserService){
     fun kakaoLogin(code:String,model:Model,session:HttpSession): String {
         val token = userService.kakaoLogin(code);
         val (user, res)  = userService.getKakaoUserInfo(token);
-        println(user)
         if(res == "login"){
             userService.setSessionUser(user as User?, session);
             return "redirect:/index";
