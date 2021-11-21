@@ -32,7 +32,7 @@ class BookCheckService (private val bookCheckRepository: BookCheckRepository){
 
     fun getInformation(request: BookCheckRequestDto): Map<String, String> {
         return mapOf(
-            "name" to request.LastName + request.FirstName,
+            "Name" to request.LastName + request.FirstName,
             "AirLine" to request.AirLine,
             "DepartmentAirport" to request.DepartmentAirport,
             "ArriveAirport" to request.ArriveAirport,
