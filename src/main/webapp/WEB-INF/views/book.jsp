@@ -50,16 +50,16 @@
                 </div>
                 <div style="display: flex;">
                     <div class="txt_field" style="width:33%">
-                        <input type="text" style="font-size: 22px;" required>
+                        <input type="text" name="departmentAirport" id="departmentAirport" style="font-size: 22px;" required>
                         <span></span>
                         <label style="font-size: 20px;">출발지</label>
                     </div>
-                    <div class="txt_field" style="width:33%">
+                    <div class="txt_field" name="arriveAirport" id="arriveAirport" style="width:33%">
                         <input type="text" style="font-size: 22px;" required>
                         <span></span>
                         <label style="font-size: 20px;">도착지</label>
                     </div>
-                    <div class="txt_field" style="width:33%">
+                    <div class="txt_field" name="departmentDate" id="departmentDate" style="width:33%">
                         <input type="text" onfocus="(this.type='date')" onblur="(this.type='text')" style="font-size: 22px;" required>
                         <span></span>
                         <label style="font-size: 20px;">탑승일</label>

@@ -1,56 +1,66 @@
 package com.example.onair.config
 
+import org.springframework.beans.factory.annotation.Value
 import org.springframework.http.HttpEntity
 import org.springframework.http.HttpHeaders
 import org.springframework.http.HttpMethod
 import org.springframework.http.MediaType
 import org.springframework.http.client.HttpComponentsClientHttpRequestFactory
+import org.springframework.util.LinkedMultiValueMap
+import org.springframework.util.MultiValueMap
 import org.springframework.web.client.HttpClientErrorException
 import org.springframework.web.client.RestTemplate
+import org.springframework.web.util.UriComponentsBuilder
 
 
-class KakaoOauth (
-        val kakaoLoginUrl:String = "",
-        val kakaoClientId:String = "",
-        val kakaoRedirectUrl:String   = "",
-        val kakaoClientSecret:String = "",
-        val kakaoTokenBaseUrl:String = ""
+class KakaoOauth(
+        val kakaoLoginUrl: String = "",
+        val kakaoClientId: String = "",
+        val kakaoRedirectUrl: String = "",
+        val kakaoClientSecret: String = "",
+        val kakaoTokenBaseUrl: String = ""
 ) {
 
     fun getOauthRedirectURL(): String {
         return (kakaoLoginUrl.toString() + "/oauth/authorize?response_type=code&client_id=" + kakaoClientId + "&redirect_uri=" + kakaoRedirectUrl)
     }
-    fun requestAccessToken(code : String): String {
-        val restTemplate = RestTemplate();
 
-        val params = mutableMapOf<String, String>();
-        params.put("grant_type", "authorization_code")
-        params.put("client_id", kakaoClientId)
-        params.put("redirect_uri", kakaoRedirectUrl)
-        params.put("client_secret",kakaoClientSecret)
-        params.put("code", code)
-        println("확인 : "+code )
+    fun requestAccessToken(code: String): String {
+        val restTemplate = RestTemplate();
+        val data = LinkedMultiValueMap<String, String>();
+        data["grant_type"] = "authorization_code"
+        data["client_id"] = kakaoClientId
+        data["redirect_uri"] = kakaoRedirectUrl
+        data["client_secret"] = kakaoClientSecret
+        data["code"] = code
 
         val headers = HttpHeaders();
-        headers.set("Content-type", "application/x-www-form-urlencoded");
-        headers.setContentType(MediaType.APPLICATION_JSON);
+        headers.set("Content-Type", "application/x-www-form-urlencoded;charset=utf-8");
+        headers.contentType = MediaType.APPLICATION_FORM_URLENCODED;
 
-        val request = HttpEntity<Map<String,String>>(params);
-        try{
+        val request = HttpEntity<MultiValueMap<String, String>>(data, headers);
+
+        try {
             val apiResponse = restTemplate.postForEntity(kakaoTokenBaseUrl, request, Map::class.java)
-            println(apiResponse)
-        }catch(e: HttpClientErrorException){
+            val responseBody = apiResponse.getBody()
+            val token = responseBody?.get("access_token").toString();
+            return token;
+        } catch (e: HttpClientErrorException) {
             println(e.message)
             println(e)
         }
         return "";
     }
-    fun getGoogleUserInfo(token : String): Map<*,*>? {
-        val requestUrl = "https://www.googleapis.com/oauth2/v2/userinfo";
+
+    fun getKakaoUserInfo(token: String): Map<*, *>? {
+        val requestUrl = "https://kapi.kakao.com/v2/user/me";
         val restTemplate = RestTemplate();
         val headers = HttpHeaders();
+        println(token)
         headers.set("Authorization", "Bearer $token");
-        val request = HttpEntity<String>(headers);
+        headers.set("Content-Type", "application/x-www-form-urlencoded;charset=utf-8");
+
+        val request = HttpEntity<MultiValueMap<String,String>>(headers);
         val response = restTemplate.exchange(requestUrl, HttpMethod.GET, request, Map::class.java)
         val body = response.getBody()
         return body

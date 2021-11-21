@@ -33,30 +33,28 @@
     </nav>
     <div class="login">
         <h1>Login</h1>
-        <form method="post" action="#">
+        <form method="post" action="login">
             <div class="txt_field">
-                <input type="text" required>
+                <input type="text" name="id" id="id" required>
                 <span></span>
                 <label>아이디</label>
             </div>
             <div class="txt_field">
-                <input type="password" required>
+                <input type="password" name="password" id="password"required>
                 <span></span>
                 <label>비밀번호</label>
             </div>
-            <div class="pass">비밀번호 찾기</div>
             <input type="submit" value="로그인">
             <div class="signup_link">
                 <a href="signUp">회원가입</a>
             </div>
             <div class="social-icons">
-                <img src="images/facebook.png">
-                <img src="images/google.jpg">
-                <img src="images/kakao.png">
+                <a href="login/facebook"><img src="images/facebook.png"></a>
+                <a href="login/google"><img src="images/google.jpg"></a>
+                <a href="login/kakao"><img src="images/kakao.png"></a>
             </div>
         </form>
     </div>
-
 </div>
 </body>
 </html>

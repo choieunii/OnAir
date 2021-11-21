@@ -34,7 +34,7 @@ class FacebookOauth(
         return token;
     }
 
-    fun getFacebookUserInfo(token: String): String {
+    fun getFacebookUserInfo(token: String):  Map<*,*>? {
         val restTemplate = RestTemplate();
         val requestUrl = "https://graph.facebook.com/me";
         val uri = UriComponentsBuilder.fromHttpUrl(requestUrl)
@@ -43,6 +43,6 @@ class FacebookOauth(
         val response = restTemplate.getForEntity(uri.build().toUri(), Map::class.java)
         val body = response.getBody()
         println(body)
-        return "";
+        return body;
     }
 }

@@ -1,5 +1,6 @@
 package com.example.onair.domain.User
 
+import org.hibernate.annotations.ColumnDefault
 import javax.persistence.*
 
 @Table(name="user")
@@ -19,7 +20,10 @@ class User (
         @Column(name="phone_num", nullable=false)
         var phoneNum: String,
         @Column(name="email", nullable=false)
-        var email: String
+        var email: String,
+        @Column(name="point")
+        @ColumnDefault("0")
+        var point: Int
 ){
     override fun toString():String{
         return "";
