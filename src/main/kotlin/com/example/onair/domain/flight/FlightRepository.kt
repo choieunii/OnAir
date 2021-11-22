@@ -6,6 +6,4 @@ import org.springframework.stereotype.Repository
 
 @Repository
 interface FlightRepository : JpaRepository<Flight, String>{
-    @Query("select * from Flight")
-    fun findFlight(): List<Flight>
 }

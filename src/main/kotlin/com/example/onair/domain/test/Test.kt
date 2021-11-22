@@ -6,7 +6,7 @@ import javax.persistence.Id
 import javax.persistence.Table
 @Entity
 @Table(name = "FLIGHT_INFORMATION")
-data class FLIGHT_INFORMATION (
+data class Test (
         @Id
         @Column(name = "FlightNum")
         var FlightNum : Number = 0,

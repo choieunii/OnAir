@@ -31,11 +31,6 @@ class TestController (private val testService:TestService){
         val test = testService.getTasks()
         return "bookCheck";
     }
-    @RequestMapping("/flightInfo")
-    fun flightInfo(): String {
-        val test = testService.getTasks()
-        return "flightInfo";
-    }
     @RequestMapping("/signUp")
     fun signUp(): String {
         val test = testService.getTasks()
