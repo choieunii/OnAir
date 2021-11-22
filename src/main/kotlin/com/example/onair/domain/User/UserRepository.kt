@@ -8,5 +8,5 @@ interface UserRepository: JpaRepository<User, Long> {
     fun findByEmail(email: String): User?
 
     @Query("UPDATE User SET point = :point WHERE user_id = :userId")
-    fun updateUserPoint(point: String, userId: String): User?
+    fun updateUserPoint(point: Int, userId: String): User?
 }

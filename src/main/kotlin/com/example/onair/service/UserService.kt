@@ -133,7 +133,7 @@ class UserService(private val userRepository: UserRepository) {
         return updateUser;
     }
 
-    fun updateMyPoint(point: String, userId: String): Int? {
+    fun updateMyPoint(point: Int, userId: String): Int? {
         val newPoint = userRepository.updateUserPoint(point, userId);
         return newPoint?.point;
     }

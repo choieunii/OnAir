@@ -66,6 +66,19 @@
     </nav>
     <div class="login">
         <h1>Login</h1>
+        <c:set var="response" value="${response}" />
+        <%
+            String res = (String)pageContext.getAttribute("response") ;
+        %>
+        <%
+            if (res!=null) {
+        %>
+        <script type="text/javascript">
+            alert("<%=res%>");
+        </script>
+        <%
+            } else {}
+        %>
         <form method="post" action="login">
             <div class="txt_field">
                 <input type="text" name="id" id="id" required>

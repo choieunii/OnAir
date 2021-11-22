@@ -134,7 +134,7 @@
                             </div><br><br>
                             <script>
                                 $(document).ready(function() {
-                                    $("input[name='charge']:radio").change(function () {
+                                    $("input[name='point']:radio").change(function () {
                                         //라디오 버튼 값을 가져온다.
                                         var charge = this.value;
                                         var point = <%=session.getAttribute("point")%>;
