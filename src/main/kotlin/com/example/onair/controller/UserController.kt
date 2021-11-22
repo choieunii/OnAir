@@ -128,17 +128,21 @@ class UserController(private val userService: UserService) {
     }
 
     @PostMapping("/myPage")
-    fun updateMyPage(req: MyPageUpdateDto,session: HttpSession): String{
+    fun updateMyPage(req: MyPageUpdateDto,session: HttpSession, model: Model): String{
         val updateUser = userService.updateMyPageInfo(req);
+        var res="회원 정보가 수정되었습니다."
         userService.setSessionUser(updateUser, session);
+        model.addAttribute("response", res)
         return "myPage";
     }
 
     @PostMapping("/point")
-    fun updateMyPoint(point: Int, session: HttpSession): String{
+    fun updateMyPoint(point: Int, session: HttpSession, model: Model): String{
         val userId:String = session.getAttribute("user_id") as String;
         val updatePoint = userService.updateMyPoint(point, userId);
+        var res="포인트 충전이 완료되었습니다."
         session.setAttribute("point", updatePoint);
+        model.addAttribute("response", res)
         return "myPage";
     }
 }

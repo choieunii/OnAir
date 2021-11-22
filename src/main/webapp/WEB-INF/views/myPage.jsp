@@ -1,4 +1,5 @@
 <%@ page language="java" contentType="text/html;charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ page import="java.io.PrintWriter"%>
 <%@ page import="java.sql.Connection" %>
 <%@ page import="java.sql.PreparedStatement" %>
@@ -74,6 +75,19 @@
     <div class="frame">
         <div class="sub-frame">
             <h1 style="text-align: center;">마이페이지</h1><br><hr><br><br><br>
+            <c:set var="response" value="${response}" />
+            <%
+                String res = (String)pageContext.getAttribute("response") ;
+            %>
+            <%
+                if (res!=null) {
+            %>
+            <script type="text/javascript">
+                alert("<%=res%>");
+            </script>
+            <%
+                } else {}
+            %>
             <div class="tabs">
                 <input type="radio" class="tabs__radio" name="tabs-example" id="tab1" checked>
                 <label for="tab1" class="tabs__label">회원정보 수정</label>
