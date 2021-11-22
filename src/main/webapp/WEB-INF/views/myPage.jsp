@@ -79,31 +79,31 @@
                 <label for="tab1" class="tabs__label">회원정보 수정</label>
                 <div class="tabs__content">
                     <br><br>
-                    <form action="" method="post">
+                    <form action="myPage" method="post">
                         <div class="user-details">
                             <div class="input-box">
                                 <span class="details">아이디</span>
-                                <input type="text" value="<%=session.getAttribute("user_id")%>" required>
+                                <input type="text" name="userId" value="<%=session.getAttribute("user_id")%>" required>
                             </div>
                             <div class="input-box">
                                 <span class="details">비밀번호</span>
-                                <input type="password" value="<%=session.getAttribute("password")%>" required>
+                                <input type="password" name="password" value="<%=session.getAttribute("password")%>" required>
                             </div>
                             <div class="input-box">
                                 <span class="details">이름</span>
-                                <input type="text" value="<%=session.getAttribute("name")%>" required>
+                                <input type="text" name="name" value="<%=session.getAttribute("name")%>" required>
                             </div>
                             <div class="input-box">
                                 <span class="details">나이</span>
-                                <input type="text" value="<%=session.getAttribute("age")%>" required>
+                                <input type="text" name="age" value="<%=session.getAttribute("age")%>" required>
                             </div>
                             <div class="input-box">
                                 <span class="details">전화번호</span>
-                                <input type="text" value="<%=session.getAttribute("phone_num")%>" required>
+                                <input type="text" name="phoneNum" value="<%=session.getAttribute("phone_num")%>" required>
                             </div>
                             <div class="input-box">
                                 <span class="details">email</span>
-                                <input type="text" value="<%=session.getAttribute("email")%>" required>
+                                <input type="text" name="email" value="<%=session.getAttribute("email")%>" required>
                             </div>
                         </div><br><br>
 

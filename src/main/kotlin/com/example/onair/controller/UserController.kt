@@ -4,6 +4,7 @@ import com.example.onair.config.FacebookOauth
 import com.example.onair.config.GoogleOauth
 import com.example.onair.config.KakaoOauth
 import com.example.onair.domain.User.User
+import com.example.onair.dto.MyPageUpdateDto
 import com.example.onair.dto.SignUpRequestDto
 import com.example.onair.service.UserService
 import org.springframework.stereotype.Controller
@@ -126,5 +127,11 @@ class UserController(private val userService: UserService) {
         }
     }
 
+    @PostMapping("/myPage")
+    fun updateMyPage(req: MyPageUpdateDto,session: HttpSession): String{
+        val updateUser = userService.updateMyPageInfo(req);
+        userService.setSessionUser(updateUser, session);
+        return "myPage";
+    }
 }
 
