@@ -5,10 +5,7 @@ import com.example.onair.domain.User.UserRepository
 import com.example.onair.config.GoogleOauth
 import com.example.onair.config.KakaoOauth
 import com.example.onair.domain.User.User
-import com.example.onair.dto.FacebookSignUpRequestDto
-import com.example.onair.dto.GoogleSignUpRequestDto
-import com.example.onair.dto.KakaoSignUpRequestDto
-import com.example.onair.dto.SignUpRequestDto
+import com.example.onair.dto.*
 import org.springframework.stereotype.Service
 import javax.servlet.http.HttpSession
 
@@ -17,10 +14,15 @@ import javax.servlet.http.HttpSession
 class UserService(private val userRepository: UserRepository) {
     fun login(user_id: String, password: String): Pair<User?, String> {
         val user = userRepository.findByUserId(user_id);
-        if (user?.password.equals(password)) {
-            return Pair(user, "Success");
+        if(user == null){
+            return Pair(null, "ID가 존재하지 않습니다.")
+        }else {
+            if (user?.password.equals(password)) {
+                return Pair(user, "Success");
+            }else {
+                return Pair(null, "비밀번호가 일치하지 않습니다.");
+            }
         }
-        return Pair(null, "Failed");
     }
 
     fun signUp(request: SignUpRequestDto): String {
@@ -55,10 +57,13 @@ class UserService(private val userRepository: UserRepository) {
 
         if (checkUserEmail != null) return Pair(checkUserEmail, "login"); //없으면 필요한 정보와, 로그인이라는 값을 리턴함
 
-        val newUser = GoogleSignUpRequestDto(
+        val newUser = SocialLoginSignUpRequestDto(
                 userId = res?.get("id").toString(),
                 name = res?.get("name").toString(),
-                email = res?.get("email").toString());
+                email = res?.get("email").toString(),
+                age = "",
+                type = "google"
+                );
         // User 가 아닌 더 적은 내용을 리턴하고 싶어서 data class를 하나 생성하였음.
         //위에 보면 리턴이 Pair<User,String> 가 아닌 Pair<*,String>이기에 다르게 리턴이 가능하다.
         return Pair(newUser, "signUp");
@@ -75,9 +80,13 @@ class UserService(private val userRepository: UserRepository) {
 
         if (checkUserId != null) return Pair(checkUserId, "login");
 
-        val newUser = FacebookSignUpRequestDto(
+        val newUser = SocialLoginSignUpRequestDto(
                 userId = res?.get("id").toString(),
-                name = res?.get("name").toString());
+                name = res?.get("name").toString(),
+                age = "",
+                email = "",
+                type = "facebook"
+        );
 
         return Pair(newUser, "signUp");
     }
@@ -96,11 +105,12 @@ class UserService(private val userRepository: UserRepository) {
 
         if (checkUserEmail != null) return Pair(checkUserEmail, "login");
 
-        val newUser = KakaoSignUpRequestDto(
+        val newUser = SocialLoginSignUpRequestDto(
                 userId = res.get("id").toString(),
                 name = properties.get("nickname").toString(),
                 age = profile.get("age_range").toString(),
                 email = profile.get("email").toString(),
+                type = "kakao"
         );
         return Pair(newUser, "signUp");
     }

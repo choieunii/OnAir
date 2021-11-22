@@ -81,12 +81,12 @@
         %>
         <form method="post" action="signUp" onsubmit="return checkValue()">
             <div class="txt_field">
-                <input type="text" id="name" name="name" required>
+                <input type="text" id="name" name="name" value="${user.name}"required>
                 <span></span>
                 <label>이름</label>
             </div>
             <div class="txt_field">
-                <input type="text" id="userId" name="userId" required>
+                <input type="text" id="userId" name="userId" value="${user.userId}" required>
                 <span></span>
                 <label>아이디</label>
             </div>
@@ -102,7 +102,7 @@
                 <span id="check"></span>
             </div>
             <div class="txt_field">
-                <input type="text" id="age" name="age" required>
+                <input type="text" id="age" name="age" value="${user.age}" required>
                 <span></span>
                 <label>나이</label>
             </div>
@@ -112,7 +112,8 @@
                 <label>전화번호</label>
             </div>
             <div class="txt_field">
-                <input type="text" id="email" name="email" required>
+                <input type="text" id="email" name="email" value="${user.email}" required>
+                <input type="hidden" id="socialType" name="socialType" value="${user.type}" required>
                 <span></span>
                 <label>이메일</label>
             </div>
