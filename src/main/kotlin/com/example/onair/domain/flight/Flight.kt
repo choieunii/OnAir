@@ -7,18 +7,20 @@ import javax.persistence.Table
 
 @Entity
 @Table(name = "flight")
-data class Flight(
+data class Flight( // data class -> equals, copy, toString, componentN
         @Id
-        @Column(name = "FlightNum") //
-        var FlightNum: Int = -1,
-        @Column(name = "DepartmentAirport") //
-        var DepartmentAirport: String = "",
-        @Column(name = "ArriveAirport") //
-        var ArriveAirport: String = "",
-        @Column(name = "EconomyCharge") //
-        var EconomyCharge: Int = -1,
-        @Column(name = "BusinessCharge") //
-        var BusinessCharge: Int = -1,
-        @Column(name = "FirstCharge") //
-        var FirstCharge: Int = -1
+        @Column(name = "FlightNum", nullable=false) //
+        var FlightNum: Int,
+        @Column(name = "DepartmentAirport", nullable=false) //
+        var DepartmentAirport: String,
+        @Column(name = "ArriveAirport", nullable=false) //
+        var ArriveAirport: String,
+        @Column(name = "DepartmentDate", nullable = false) //
+        var DepartmentDate: String,
+        @Column(name = "EconomyCharge", nullable=false) //
+        var EconomyCharge: Int,
+        @Column(name = "BusinessCharge", nullable=false) //
+        var BusinessCharge: Int,
+        @Column(name = "FirstCharge", nullable=false) //
+        var FirstCharge: Int
 )
