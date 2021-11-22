@@ -8,23 +8,14 @@ data class SignUpRequestDto (
         var name: String,
         var age: String,
         var phoneNum: String,
-        var email: String
+        var email: String,
+        var socialType: String?,
 )
 
-data class GoogleSignUpRequestDto (
-        var userId: String,
-        var name: String,
-        var email: String
-)
-
-data class KakaoSignUpRequestDto (
+data class SocialLoginSignUpRequestDto (
         var userId: String,
         var name: String,
         var age: String,
-        var email: String
-)
-
-data class FacebookSignUpRequestDto (
-        var userId: String,
-        var name: String,
+        var email: String,
+        var type: String,
 )
