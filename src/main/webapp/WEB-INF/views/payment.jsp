@@ -75,7 +75,7 @@
             <div class="dropdown-content">
                 <p><%=name%>님,</p>
                 <p style="padding-top: 0px">환영합니다!</p><hr>
-                <a href="#">마이페이지</a>
+                <a href="myPage">마이페이지</a>
                 <a href="#">공지사항</a>
                 <a href="#">이벤트</a>
                 <a href="#">신고하기</a>
