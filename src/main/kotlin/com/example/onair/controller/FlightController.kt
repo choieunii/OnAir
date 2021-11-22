@@ -20,7 +20,7 @@ import java.net.URLEncoder
 class FlightController (private val flightService:FlightService){
     @RequestMapping("/flightInfo")
     fun flightInfo(): String {
-        val flight = flightService.getTasks()
+        val flight = flightService.getFlightInfo()
         return "flightInfo";
     }
 }

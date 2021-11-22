@@ -27,8 +27,21 @@ import java.net.URLEncoder
 
 @Service
 class FlightService (private val flightRepository: FlightRepository) {
-    fun getTasks(): List<Flight> =
-        flightRepository.findAll()
+    fun getFlightInfo(): List<Flight>{
+        val restTemplate = RestTemplate();
+        val openApiUrl = "http://openapi.tago.go.kr/openapi/service/DmstcFlightNvgInfoService/getFlightOpratInfoList";
+        val uri = UriComponentsBuilder.fromHttpUrl(openApiUrl)
+                .queryParam("serviceKey","")
+                .queryParam("numOfRows",10)
+                .queryParam("pageNo",1)
+                .queryParam("depAirportId","NAARKJJ")
+                .queryParam("arrAirportId","NAARKPC")
+                .queryParam("depPlandTime","20201201")
+                .queryParam("airlineId","AAR")
+
+        val response = restTemplate.getForEntity(uri.build().toUri(), Map::class.java)
+
+    }
 
     fun post(flight: Flight){
         flightRepository.save(flight)
