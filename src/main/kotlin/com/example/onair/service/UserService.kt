@@ -117,7 +117,7 @@ class UserService(private val userRepository: UserRepository) {
         return Pair(newUser, "signUp");
     }
 
-    fun updateMyPageInfo(req: MyPageUpdateDto) : User{
+    fun updateMyPageInfo(req: MyPageUpdateDto): User {
         val user = userRepository.findByUserId(req.userId);
         val updateUser = User(
             id = user!!.id,
@@ -132,6 +132,11 @@ class UserService(private val userRepository: UserRepository) {
         userRepository.save(updateUser);
         return updateUser;
     }
+
+//    fun updateMyPoint(point: Int, userId: String): Int? {
+//        val newPoint = userRepository.updateUserPoint(point, userId);
+//        return newPoint?.point;
+//    }
 
     fun setSessionUser(user: User?, session: HttpSession) {
         session.setAttribute("user_id", user?.userId);

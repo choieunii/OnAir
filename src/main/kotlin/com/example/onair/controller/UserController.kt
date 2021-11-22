@@ -133,5 +133,13 @@ class UserController(private val userService: UserService) {
         userService.setSessionUser(updateUser, session);
         return "myPage";
     }
+
+//    @PostMapping("/point")
+//    fun updateMyPoint(point: Int, session: HttpSession): String{
+//        val userId:String = session.getAttribute("user_id") as String;
+//        val updatePoint = userService.updateMyPoint(point, userId);
+//        session.setAttribute("point", updatePoint);
+//        return "myPage";
+//    }
 }
 
