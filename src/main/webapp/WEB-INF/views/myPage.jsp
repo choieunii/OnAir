@@ -114,22 +114,22 @@
                 <label for="tab2" class="tabs__label">포인트 충전</label>
                 <div class="tabs__content">
                     <br><br>
-                    <form action="#" method="post">
+                    <form action="point" method="post">
                         <div class="">
                             <div style="display: flex; font-size: 20px">
                                 <img src="images/money.png" width="30px">&nbsp;&nbsp;
                                 <label for="point">충전할 금액</label>
                             </div><br>
                             <div class="seat" id="point" style="display: flex; font-size: 20px">
-                                <input type="radio" class="radio-input" name="charge" id="10000" value="10000" autocomplete="off" required>
+                                <input type="radio" class="radio-input" name="point" id="10000" value=10000 autocomplete="off" required>
                                 <label class="radio-label" for="10000" style="height:60px; padding:15px; font-size: 20px;">+10000</label>
-                                <input type="radio" class="radio-input" name="charge" id="50000" value="50000" autocomplete="off" required>
+                                <input type="radio" class="radio-input" name="point" id="50000" value=50000 autocomplete="off" required>
                                 <label class="radio-label" for="50000" style="height:60px; padding:15px; font-size: 20px;">+50000</label>
-                                <input type="radio" class="radio-input" name="charge" id="100000" value="100000" autocomplete="off" required>
+                                <input type="radio" class="radio-input" name="point" id="100000" value=100000 autocomplete="off" required>
                                 <label class="radio-label" for="100000" style="height:60px; padding:15px; font-size: 20px;">+100000</label>
-                                <input type="radio" class="radio-input" name="charge" id="200000" value="200000" autocomplete="off" required>
+                                <input type="radio" class="radio-input" name="point" id="200000" value=200000 autocomplete="off" required>
                                 <label class="radio-label" for="200000" style="height:60px; padding:15px; font-size: 20px;">+200000</label>
-                                <input type="radio" class="radio-input" name="charge" id="300000" value="300000" autocomplete="off" required>
+                                <input type="radio" class="radio-input" name="point" id="300000" value=300000 autocomplete="off" required>
                                 <label class="radio-label" for="300000" style="height:60px; padding:15px; font-size: 20px;">+300000</label>
                             </div><br><br>
                             <script>
