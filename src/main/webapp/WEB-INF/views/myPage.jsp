@@ -145,11 +145,11 @@
                             </script>
                             <div style="display: flex; font-size: 20px">
                                 <div style="width: 50%">
-                                    <label>충전 전</label>
+                                    <label>충전 전&nbsp;&nbsp; : </label>&nbsp;&nbsp;&nbsp;
                                     <span id="beforeCharge"><%=session.getAttribute("point")%></span>원
                                 </div>
                                 <div style="width: 50%">
-                                    <label>충전 후</label>
+                                    <label>충전 후&nbsp;&nbsp; :</label>&nbsp;&nbsp;&nbsp;
                                     <span id="afterCharge"></span>원
                                 </div>
                             </div>
