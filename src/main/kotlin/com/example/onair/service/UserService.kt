@@ -134,8 +134,10 @@ class UserService(private val userRepository: UserRepository) {
     }
 
     fun updateMyPoint(point: Int, userId: String): Int? {
-        val newPoint = userRepository.updateUserPoint(point, userId);
-        return newPoint?.point;
+        val user = userRepository.findByUserId(userId);
+        val newPoint = user?.point!!.plus(point);
+        val update = userRepository.updateUserPoint(newPoint, userId);
+        return newPoint;
     }
 
     fun setSessionUser(user: User?, session: HttpSession) {

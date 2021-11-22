@@ -136,7 +136,6 @@ class UserController(private val userService: UserService) {
 
     @PostMapping("/point")
     fun updateMyPoint(point: Int, session: HttpSession): String{
-        println(point)
         val userId:String = session.getAttribute("user_id") as String;
         val updatePoint = userService.updateMyPoint(point, userId);
         session.setAttribute("point", updatePoint);
