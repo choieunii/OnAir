@@ -34,7 +34,19 @@
     </nav>
     <div class="signUp">
         <h1>Sign Up</h1>
-        <h1>${response}</h1>
+        <c:set var="response" value="${response}" />
+        <%
+            String res = (String)pageContext.getAttribute("response") ;
+        %>
+        <%
+            if (res!=null) {
+        %>
+        <script type="text/javascript">
+            alert("<%=res%>");
+        </script>
+        <%
+            } else {}
+        %>
         <form method="post" action="signUp" onsubmit="return checkValue()">
             <div class="txt_field">
                 <input type="text" id="name" name="name" required>
