@@ -13,6 +13,11 @@ import java.net.URLEncoder
 class FlightService (private val flightRepository: FlightRepository){
     fun getTasks() =
         flightRepository.findAll()
-
-
+        
+    fun getFlightNum(dep : String, ari : String, date : String) : Int{
+        return flightRepository.getFlightNum(dep, ari, date)
+    }
+    fun getCharge(type : String, flightNum : Int) : Int {
+        return flightRepository.getCharge(type, flightNum)
+    }
 }
