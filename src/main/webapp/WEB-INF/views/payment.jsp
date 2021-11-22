@@ -26,6 +26,11 @@
             box-shadow: none;
             border:none;
         }
+        nav .dropdown:hover .dropdown-content {
+            background-color: grey;
+            display: block;
+            z-index: 10;
+        }
     </style>
 </head>
 <body>
@@ -43,7 +48,7 @@
             if(user_id == null) {
         %>
         <ul>
-            <li><a href="#">예약안내</a><li>
+            <li><a href="guide">예약안내</a><li>
             <li><a href="flightInfo">운행정보</a><li>
             <li><a href="bookCheck">예약조회</a><li>
             <li><a href="login">로그인</a><li>
@@ -60,7 +65,7 @@
         } else {
         %>
         <ul>
-            <li><a href="#">예약안내</a><li>
+            <li><a href="guide">예약안내</a><li>
             <li><a href="flightInfo">운행정보</a><li>
             <li><a href="bookCheck">예약조회</a><li>
             <li><a href="logout">로그아웃</a><li>
