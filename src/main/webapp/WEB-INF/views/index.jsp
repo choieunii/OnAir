@@ -26,7 +26,7 @@
             if(user_id == null) {
         %>
         <ul>
-            <li><a href="#">예약안내</a><li>
+            <li><a href="guide">예약안내</a><li>
             <li><a href="flightInfo">운행정보</a><li>
             <li><a href="bookCheck">예약조회</a><li>
             <li><a href="login">로그인</a><li>

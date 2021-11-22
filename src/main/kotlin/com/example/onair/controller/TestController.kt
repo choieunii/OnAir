@@ -45,5 +45,10 @@ class TestController (private val testService:TestService){
         val test = testService.getTasks()
         return "payment";
     }
+    @RequestMapping("/guide")
+    fun guideInfo(): String {
+        val test = testService.getTasks()
+        return "guide";
+    }
 }
 
