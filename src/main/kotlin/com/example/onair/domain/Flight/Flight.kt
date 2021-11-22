@@ -1,4 +1,4 @@
-package com.example.onair.domain.flight
+package com.example.onair.domain.Flight
 
 import javax.persistence.Column
 import javax.persistence.Entity

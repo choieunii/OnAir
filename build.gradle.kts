@@ -25,6 +25,7 @@ dependencies {
 	implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
 //	implementation ("org.springframework.boot:spring-boot-starter-oauth2-client")
 //	implementation("org.springframework.boot:spring-boot-starter-security")
+	implementation ("com.google.code.gson:gson:2.8.5")
 	implementation("javax.servlet:jstl")
 	implementation("org.apache.tomcat.embed:tomcat-embed-jasper")
 	implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.2.0")
