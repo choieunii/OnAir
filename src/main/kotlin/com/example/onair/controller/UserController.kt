@@ -22,13 +22,15 @@ class UserController(private val userService: UserService) {
     } // 세션 등록, 포인트 변수 넣기 = 0,
 
     @PostMapping("/login")
-    fun login(id: String, password: String, session: HttpSession): String {
+    fun login(id: String, password: String, model: Model, session: HttpSession): String {
         val (user, res) = userService.login(id, password)
         if (res.equals("Success")) {
             userService.setSessionUser(user, session); // Service 보면 코드 확인 가능
             // 세션에 사용자 정보가 추가된다.
             return "index"
         }
+        model.addAttribute("response", res)
+        println(res)
         return "login";
     }
 
@@ -85,7 +87,7 @@ class UserController(private val userService: UserService) {
             userService.setSessionUser(user as User?, session);
             return "redirect:/index";
         } else {
-            redirectAttributes.addFlashAttribute("user", user)
+            redirectAttributes.addFlashAttribute("user", user) // redirect 시 이렇게 해야 jsp에서 값을 읽을 수 있음
             //처음 소셜로그인으로 로그인 할 경우 회원가입이 필요하다.
             //추가적인 정보를 적어야 하기 때문에 소셜로그인에서 받아올 수 있는 값을 받아와 user에 넣어놨음.
             //jsp에서는 해당 값을 input에 넣어서 없는 값만 사용자에게 입력 받도록 한다.

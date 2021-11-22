@@ -14,10 +14,15 @@ import javax.servlet.http.HttpSession
 class UserService(private val userRepository: UserRepository) {
     fun login(user_id: String, password: String): Pair<User?, String> {
         val user = userRepository.findByUserId(user_id);
-        if (user?.password.equals(password)) {
-            return Pair(user, "Success");
+        if(user == null){
+            return Pair(null, "ID가 존재하지 않습니다.")
+        }else {
+            if (user?.password.equals(password)) {
+                return Pair(user, "Success");
+            }else {
+                return Pair(null, "비밀번호가 일치하지 않습니다.");
+            }
         }
-        return Pair(null, "Failed");
     }
 
     fun signUp(request: SignUpRequestDto): String {
