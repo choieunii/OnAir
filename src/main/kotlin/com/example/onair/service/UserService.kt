@@ -113,4 +113,8 @@ class UserService(private val userRepository: UserRepository) {
         session.setAttribute("email", user?.email);
         session.setAttribute("point", user?.point);
     }
+
+    fun resetSessionUser(session: HttpSession) {
+        session.invalidate();
+    }
 }

@@ -30,6 +30,12 @@ class UserController (private val userService: UserService){
         return "login";
     }
 
+    @RequestMapping("/logout")
+    fun logout(session: HttpSession): String {
+        userService.resetSessionUser(session); // Service 보면 코드 확인 가능
+        return "index"
+    }
+
     @GetMapping("/signUp")
     fun signUp(): String {
         return "signUp";

@@ -48,7 +48,8 @@ nav .dropdown-content {
     padding: 5px;
     box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
 }
-nav .dropdown-content a {
+nav .dropdown-content a,
+nav .dropdown-content p {
     color: #fff;
     padding: 8px;
     text-decoration: none;
