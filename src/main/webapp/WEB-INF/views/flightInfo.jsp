@@ -116,7 +116,8 @@
                     <tbody>
                     <tr>
                         <th>항공번호</th>
-                        <th>항공사명</th>
+                        <th>출발날짜</th>
+                        <th>도착날짜</th>
                         <th>출발시간</th>
                         <th>도착시간</th>
                         <th>출발공항</th>
@@ -127,18 +128,19 @@
                         List<Flight> res = (List<Flight>) pageContext.getAttribute("flight");
                         System.out.println(res);
                         if(res!=null){
-                        for (Flight f : res) {
+                            for (Flight f : res) {
                     %>
                     <tr>
                         <td><%=f.getFN()%></td>
-                        <td><%=f.getDMA()%></td>
-                        <td><%=f.getAA()%></td>
                         <td><%=f.getDD()%></td>
+                        <td><%=f.getAD()%></td>
+                        <td><%=f.getDT()%></td>
+                        <td><%=f.getAT()%></td>
                         <td><%=f.getDMA()%></td>
                         <td><%=f.getAA()%></td>
                     </tr>
                     <%
-                        }
+                            }
                         }
                     %>
                     </tbody>
