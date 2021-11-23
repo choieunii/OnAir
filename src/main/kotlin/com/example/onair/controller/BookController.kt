@@ -93,15 +93,15 @@ class BookController (private val bookService: BookService, private val flightSe
         var flightNum = session.getAttribute("flightNum")
         var price = 0
 
-        //session에 저장되어있는 grade, flightNum을 이용하여 totalPrice 구하기
-        if (grade.equals("economy"))
-            price = flightService.getCharge("EconomyCharge", flightNum as Int)
-        else if (grade.equals("business"))
-            price = flightService.getCharge("BusinessCharge", flightNum as Int)
-        else if (grade.equals("first"))
-            price = flightService.getCharge("FirstCharge", flightNum as Int)
-
-        session.setAttribute("totalCharge", price * totalNum)
+//        //session에 저장되어있는 grade, flightNum을 이용하여 totalPrice 구하기
+//        if (grade.equals("economy"))
+//            price = flightService.getCharge("EconomyCharge", flightNum as Int)
+//        else if (grade.equals("business"))
+//            price = flightService.getCharge("BusinessCharge", flightNum as Int)
+//        else if (grade.equals("first"))
+//            price = flightService.getCharge("FirstCharge", flightNum as Int)
+//
+//        session.setAttribute("totalCharge", price * totalNum)
 
         return "payment"
     }
@@ -111,17 +111,17 @@ class BookController (private val bookService: BookService, private val flightSe
         var totalCharge = session.getAttribute("totalCharge") as Int
         var userId = session.getAttribute("userId") as String
 
-
-        var result = userService.setBalance(totalCharge, userId)
+//
+//        var result = userService.setBalance(totalCharge, userId)
 
         //성공 시 사람 수만큼 DB에 추가
-        if (result.equals("success")) {
-            var passengerList = session.getAttribute("PassengerList") as ArrayList<PassengerDto>
-            var flightNum = session.getAttribute("flightNum") as Int
-            var seatClass = session.getAttribute("seatClass") as String
-            for (i : Int in 0 until passengerList.size) {
-                bookService.addToDB(passengerList.get(i), userId, flightNum, seatClass)
-            }
+//        if (result.equals("success")) {
+//            var passengerList = session.getAttribute("PassengerList") as ArrayList<PassengerDto>
+//            var flightNum = session.getAttribute("flightNum") as Int
+//            var seatClass = session.getAttribute("seatClass") as String
+//            for (i : Int in 0 until passengerList.size) {
+//                bookService.addToDB(passengerList.get(i), userId, flightNum, seatClass)
+//            }
 
 
             //사용했던 session의 attribute 초기화
@@ -133,12 +133,12 @@ class BookController (private val bookService: BookService, private val flightSe
             return "bookCheck"
         }
 
-        else {
-            //값 업데이트 실패 시 실패했다는 값 model에 넣어서 결제 페이지로.
-            model.addAttribute("result", "failed")
-            return "payment"
-        }
+//        else {
+//            //값 업데이트 실패 시 실패했다는 값 model에 넣어서 결제 페이지로.
+//            model.addAttribute("result", "failed")
+//            return "payment"
+//        }
 
     }
 
-}
+

@@ -19,8 +19,8 @@ class FlightController (private val flightService:FlightService){
         val departmentAirport = request.getParameter("departmentAirport")
         val arriveAirport = request.getParameter("arriveAirport")
         val departmentDate = request.getParameter("departmentDate")
-        val flightNum = flightService.getFlightNum(departmentAirport, arriveAirport, departmentDate)
-        session.setAttribute("flightNum", flightNum)
+//        val flightNum = flightService.getFlightNum(departmentAirport, arriveAirport, departmentDate)
+//        session.setAttribute("flightNum", flightNum)
         session.setAttribute("grade", request.getParameter("grade"))
         return "book2"
     }

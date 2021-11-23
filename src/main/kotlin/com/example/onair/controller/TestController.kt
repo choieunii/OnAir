@@ -20,21 +20,21 @@ class TestController (private val testService:TestService){
         val test = testService.getTasks()
         return "book";
     }
-    @RequestMapping("/book2")
-    fun book2(): String {
-        val test = testService.getTasks()
-        return "book2";
-    }
+//    @RequestMapping("/book2")
+//    fun book2(): String {
+//        val test = testService.getTasks()
+//        return "book2";
+//    }
     @RequestMapping("/bookCheck")
     fun bookCheck(): String {
         val test = testService.getTasks()
         return "bookCheck";
     }
-    @RequestMapping("/flightInfo")
-    fun flightInfo(): String {
-        val test = testService.getTasks()
-        return "flightInfo";
-    }
+//    @RequestMapping("/flightInfo")
+//    fun flightInfo(): String {
+//        val test = testService.getTasks()
+//        return "flightInfo";
+//    }
     @RequestMapping("/signUp")
     fun signUp(): String {
         val test = testService.getTasks()

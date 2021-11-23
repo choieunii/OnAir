@@ -118,28 +118,28 @@ class UserService(private val userRepository: UserRepository) {
         session.invalidate();
     }
     
-    fun setBalance(totalPrice : Int, userId : String) : String{
-        //기존 잔고 저장
-        var oldBalance = userRepository.getBalance(userId)
-
-        //차감 후 값 계산
-        var calculatedBalance = oldBalance - totalPrice
-
-        //수행
-        userRepository.setBalance(calculatedBalance, userId)
-
-        //수행 후 잔고 저장
-        var newBalance = userRepository.getBalance(userId)
-
-        //멀쩡히 잘 차감되었으면 success 반환
-        if (newBalance == calculatedBalance)
-            return "success"
-
-        //아니면 원래 값으로 되돌리고 failed 반환
-        else {
-            userRepository.setBalance(oldBalance, userId)
-            return "failed"
-        }
-    }    
+//    fun setBalance(totalPrice : Int, userId : String) : String{
+//        //기존 잔고 저장
+//        var oldBalance = userRepository.getBalance(userId)
+//
+//        //차감 후 값 계산
+//        var calculatedBalance = oldBalance - totalPrice
+//
+//        //수행
+//        userRepository.setBalance(calculatedBalance, userId)
+//
+//        //수행 후 잔고 저장
+//        var newBalance = userRepository.getBalance(userId)
+//
+//        //멀쩡히 잘 차감되었으면 success 반환
+//        if (newBalance == calculatedBalance)
+//            return "success"
+//
+//        //아니면 원래 값으로 되돌리고 failed 반환
+//        else {
+//            userRepository.setBalance(oldBalance, userId)
+//            return "failed"
+//        }
+//    }
     
 }
