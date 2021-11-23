@@ -20,9 +20,9 @@ class FlightController(private val flightService: FlightService) {
         // 출발일도 선택한다.
         // 이에 맞춰 비행 정보를 불러온다. (현재 요청한 내용은 아시아나와  일반 시간으로 고정되어 있음. 즉 프론트 엔드의 입력값에 따라 요청을 다르게 해야함 )
         // 비행정보를 화면에 표와 같이 나타내면, 사용자는 해당 비행 정보를 선택하고 비행정보의 id? Num? 을 가진 채 예약으로 넘어간다.
-        for (i in flightInfoArr) {
-            println(i)
-        }
+//        for (i in flightInfoArr) {
+//            println(i)
+//        }
         return "flightInfo";
     }
 
