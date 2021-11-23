@@ -6,16 +6,40 @@ import org.springframework.stereotype.Service
 
 @Service
 class BookCheckService (private val bookCheckRepository: BookCheckRepository){
-    fun isExistence(customerID: String): Boolean {
+    fun isCustomerIdExistence(customerID: String): Boolean {
         val bookCheck: BookCheck? = bookCheckRepository.findByCustomerID(customerID)
-
         return bookCheck != null
     }
 
-    fun getDto(customerID: String): BookCheckRequestDto {
+    fun isBookIdExistence(bookID: Int): Boolean {
+        val bookCheck: BookCheck? = bookCheckRepository.getMaxId(bookID)
+        return bookCheck != null
+    }
+
+    fun getDtoByCustomerID(customerID: String): BookCheckRequestDto {
         val bookCheck: BookCheck = bookCheckRepository.findByCustomerID(customerID)!!
 
         return BookCheckRequestDto(
+            bookCheck.bookId,
+            bookCheck.CustomerID,
+            bookCheck.FlightNum,
+            bookCheck.DepartmentDate,
+            bookCheck.Gender,
+            bookCheck.FirstName,
+            bookCheck.LastName,
+            bookCheck.BirthDate,
+            bookCheck.AirLine,
+            bookCheck.SeatClass,
+            bookCheck.ArriveAirport,
+            bookCheck.DepartmentAirport
+        )
+    }
+
+    fun getDtoByBookID(bookID: Int): BookCheckRequestDto {
+        val bookCheck: BookCheck = bookCheckRepository.getMaxId(bookID)!!
+
+        return BookCheckRequestDto(
+            bookCheck.bookId,
             bookCheck.CustomerID,
             bookCheck.FlightNum,
             bookCheck.DepartmentDate,

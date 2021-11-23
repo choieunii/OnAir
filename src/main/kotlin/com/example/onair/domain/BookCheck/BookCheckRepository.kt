@@ -6,4 +6,6 @@ import org.springframework.data.jpa.repository.Query
 
 interface BookCheckRepository : JpaRepository<BookCheck, String> {
     fun findByCustomerID(customerID: String): BookCheck?
+    @Query("SELECT MAX(bookId) FROM BookCheck")
+    fun getMaxId(bookId: Int) : BookCheck?
 }

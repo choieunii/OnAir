@@ -9,6 +9,8 @@ import javax.persistence.Table
 @Table(name = "bookCheck")
 data class BookCheck( // data class -> equals, copy, toString, componentN
     @Id
+    @Column(name = "book_id", nullable = false)
+    var bookId : Int,
     @Column(name = "CustomerID", nullable=false) //
     var CustomerID: String,
     @Column(name = "FlightNum", nullable=false) //
