@@ -126,6 +126,7 @@
                     <%
                         List<Flight> res = (List<Flight>) pageContext.getAttribute("flight");
                         System.out.println(res);
+                        if(res!=null){
                         for (Flight f : res) {
                     %>
                     <tr>
@@ -137,6 +138,7 @@
                         <td><%=f.getAA()%></td>
                     </tr>
                     <%
+                        }
                         }
                     %>
                     </tbody>

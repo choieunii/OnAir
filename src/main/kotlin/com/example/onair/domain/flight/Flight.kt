@@ -15,6 +15,10 @@ data class Flight( // data class -> equals, copy, toString, componentN
         var departmentAirport: String,
         @Column(name = "arrive_airport", nullable=false) //
         var arriveAirport: String,
+        @Column(name = "department_date", nullable = false) //
+        var departmentDate: String,
+        @Column(name = "arrive_date", nullable = false) //
+        var arriveDate: String,
         @Column(name = "department_time", nullable = false) //
         var departmentTime: String,
         @Column(name = "arrive_time", nullable = false) //
@@ -36,7 +40,16 @@ data class Flight( // data class -> equals, copy, toString, componentN
                 return arriveAirport;
         }
         fun getDD():String{
+                return departmentDate;
+        }
+        fun getAD():String{
+                return arriveDate;
+        }
+        fun getDT():String{
                 return departmentTime;
+        }
+        fun getAT():String{
+                return arriveTime;
         }
         fun getEC():Int{
                 return economyCharge;
