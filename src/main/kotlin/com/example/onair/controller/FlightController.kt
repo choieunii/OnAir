@@ -6,6 +6,8 @@ import org.springframework.ui.Model
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.RequestMapping
+import javax.servlet.http.HttpServletRequest
+import javax.servlet.http.HttpSession
 
 @Controller
 class FlightController(private val flightService: FlightService) {
@@ -31,5 +33,16 @@ class FlightController(private val flightService: FlightService) {
         val flightInfo = flightService.getFlightOnAirInfo(departAirportId, arrAirportId);
         model.addAttribute("flight", flightInfo)
         return "flightInfo"
+    }
+
+    @RequestMapping("/book2")
+    fun book2(request : HttpServletRequest, session: HttpSession): String {
+        val departmentAirport = request.getParameter("departmentAirport")
+        val arriveAirport = request.getParameter("arriveAirport")
+        val departmentDate = request.getParameter("departmentDate")
+        val flightNum = flightService.getFlightNum(departmentAirport, arriveAirport, departmentDate)
+        session.setAttribute("flightNum", flightNum)
+        session.setAttribute("grade", request.getParameter("grade"))
+        return "book2"
     }
 }
