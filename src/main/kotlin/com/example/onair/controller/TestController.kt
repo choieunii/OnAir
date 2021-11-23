@@ -16,10 +16,10 @@ class TestController (private val testService:TestService){
     fun book(): String {
         return "book";
     }
-    @RequestMapping("/book2")
-    fun book2(): String {
-        return "book2";
-    }
+//    @RequestMapping("/book2")
+//    fun book2(): String {
+//        return "book2";
+//    }
 
     @RequestMapping("/signUp")
     fun signUp(): String {

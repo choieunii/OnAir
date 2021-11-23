@@ -1,8 +1,11 @@
 <%@ page language="java" contentType="text/html;charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ page import="java.io.PrintWriter"%>
 <%@ page import="java.sql.Connection" %>
 <%@ page import="java.sql.PreparedStatement" %>
 <%@ page import="java.sql.ResultSet" %>
+<%@ page import="com.example.onair.domain.flight.Flight" %>
+<%@ page import="java.util.List" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -72,19 +75,79 @@
     </nav>
     <div class="frame">
         <div class="sub-frame">
-            <h2>서울(인천)(ICN)출발 운항 노선입니다.</h2><br>
-            <div style="width:300px; height:50px; display: flex;">
-                <div class="airInfo">
-                    아시아나항공
+            <h1 style="text-align: center;">운항 정보</h1><br><hr><br>
+            <form method="post" action="flightInfo">
+                <div style="display: flex;">
+                    <h2>출발지</h2>
+                    <button type="submit" class="button-1" style=" background-color: #bcbcbc;  width: 100px; height: 40px; margin-bottom:15px; border-radius: 3px;">검색</button>
+                </div><br>
+                <div class="seat" id="departmentInfo">
+                    <input type="radio" class="radio-input" name="departAirportId" id="incheonDpt" value="1" autocomplete="off" required>
+                    <label class="radio-label" for="incheonDpt" style="height:60px; padding:15px; font-size: 20px;">인천</label>
+                    <input type="radio" class="radio-input" name="departAirportId" id="busanDpt" value="2" autocomplete="off" required>
+                    <label class="radio-label" for="busanDpt" style="height:60px; padding:15px; font-size: 20px;">부산</label>
+                    <input type="radio" class="radio-input" name="departAirportId" id="jejuDpt" value="3" autocomplete="off" required>
+                    <label class="radio-label" for="jejuDpt" style="height:60px; padding:15px; font-size: 20px;">제주</label>
+                    <input type="radio" class="radio-input" name="departAirportId" id="gimpoDpt" value="4" autocomplete="off" required>
+                    <label class="radio-label" for="gimpoDpt" style="height:60px; padding:15px; font-size: 20px;">김포</label>
+                    <input type="radio" class="radio-input" name="departAirportId" id="gimhaeDpt" value="5" autocomplete="off" required>
+                    <label class="radio-label" for="gimhaeDpt" style="height:60px; padding:15px; font-size: 20px;">김해</label>
+                </div><br><br>
+                <h2>도착지</h2><br>
+                <div class="seat" id="arriveInfo">
+                    <input type="radio" class="radio-input" name="arrAirportId" id="incheonArr" value="1" autocomplete="off" required>
+                    <label class="radio-label" for="incheonArr" style="height:60px; padding:15px; font-size: 20px;">서울</label>
+                    <input type="radio" class="radio-input" name="arrAirportId" id="busanArr" value="2" autocomplete="off" required>
+                    <label class="radio-label" for="busanArr" style="height:60px; padding:15px; font-size: 20px;">부산</label>
+                    <input type="radio" class="radio-input" name="arrAirportId" id="jejuArr" value="3" autocomplete="off" required>
+                    <label class="radio-label" for="jejuArr" style="height:60px; padding:15px; font-size: 20px;">제주</label>
+                    <input type="radio" class="radio-input" name="arrAirportId" id="dokyoArr" value="4" autocomplete="off" required>
+                    <label class="radio-label" for="dokyoArr" style="height:60px; padding:15px; font-size: 20px;">도쿄</label>
+                    <input type="radio" class="radio-input" name="arrAirportId" id="beijingArr" value="5" autocomplete="off" required>
+                    <label class="radio-label" for="beijingArr" style="height:60px; padding:15px; font-size: 20px;">베이징</label>
+                    <input type="radio" class="radio-input" name="arrAirportId" id="danangArr" value="6" autocomplete="off" required>
+                    <label class="radio-label" for="danangArr" style="height:60px; padding:15px; font-size: 20px;">다낭</label>
+                    <input type="radio" class="radio-input" name="arrAirportId" id="kyotoArr" value="7" autocomplete="off" required>
+                    <label class="radio-label" for="kyotoArr" style="height:60px; padding:15px; font-size: 20px;">쿄토</label>
                 </div>
-                <div class="flight">
-                    공통
-                </div>
-            </div><br><br>
-            <h1>운항정보영역</h1>
-            <br><br><br><br><br><br><br><br><br><br><br><br><br>
-            <br><br><br><br><br><br><br><br><br><br><br>
+            </form>
+            <br><br><br>
+                <table style="border-left:2px solid #fff; border-top:2px #fff;">
+                    <tbody>
+                    <tr>
+                        <th>항공번호</th>
+                        <th>출발날짜</th>
+                        <th>도착날짜</th>
+                        <th>출발시간</th>
+                        <th>도착시간</th>
+                        <th>출발공항</th>
+                        <th>도착공항</th>
+                    </tr>
+                    <c:set var="flight" value="${flight}" />
+                    <%
+                        List<Flight> res = (List<Flight>) pageContext.getAttribute("flight");
+                        System.out.println(res);
+                        if(res!=null){
+                            for (Flight f : res) {
+                    %>
+                    <tr>
+                        <td><%=f.getFN()%></td>
+                        <td><%=f.getDD()%></td>
+                        <td><%=f.getAD()%></td>
+                        <td><%=f.getDT()%></td>
+                        <td><%=f.getAT()%></td>
+                        <td><%=f.getDMA()%></td>
+                        <td><%=f.getAA()%></td>
+                    </tr>
+                    <%
+                            }
+                        }
+                    %>
+                    </tbody>
+                </table>
+            <br><br><br><br>
             <button class="button-1" onclick="location.href='book'">예약하기</button>
+            <br><br><br><br>
         </div>
     </div>
 </div>

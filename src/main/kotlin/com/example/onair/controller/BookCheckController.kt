@@ -8,6 +8,10 @@ import org.springframework.web.bind.annotation.RequestMapping
 @Controller
 class BookCheckController (private val bookCheckService: BookCheckService){
     @RequestMapping("/bookCheck")
+    fun getBookCheck(): String {
+        return "bookCheck" //존재 여부 확인
+    }
+
     fun bookCheck(customerID: String): Boolean {
         return bookCheckService.check(customerID) //존재 여부 확인
     }

@@ -88,7 +88,9 @@
     <div class="frame">
         <div class="sub-frame">
             <h1 style="text-align: center;">결제 정보</h1><br><hr><br><br><br>
-            <form method="post" action="#">
+
+            <!-- model의 result가 "failed"면 결제에 실패했다는 메세지 출력 -->
+            <form method="post" action="payment_proceed">
                 <table>
                     <tbody>
                     <tr>

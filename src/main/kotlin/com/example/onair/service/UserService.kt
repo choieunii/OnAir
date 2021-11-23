@@ -152,4 +152,36 @@ class UserService(private val userRepository: UserRepository) {
     fun resetSessionUser(session: HttpSession) {
         session.invalidate();
     }
+
+    fun setBalance(totalPrice: Int, userId: String): String {
+        //기존 잔고 저장
+        var oldInfo = userRepository.findByUserId(userId)
+
+        //유저 정보를 찾지 못했으면 NotFound반환
+        if (oldInfo == null)
+            return "NotFound"
+
+        //차감 후 값 계산
+        var calculatedBalance = oldInfo.point - totalPrice
+
+        //수행
+        userRepository.setBalance(calculatedBalance, userId)
+
+        //수행 후 잔고 저장
+        var newInfo = userRepository.findByUserId(userId)
+
+        if (newInfo != null) {
+            //멀쩡히 잘 차감되었으면 success 반환
+            if (newInfo.point == calculatedBalance)
+                return "success"
+
+            //아니면 원래 값으로 되돌리고 failed 반환
+            else {
+                userRepository.setBalance(oldInfo.point, userId)
+                return "failed"
+            }
+        }
+        else
+            return "NotFound"
+    }
 }
