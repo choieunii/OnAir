@@ -35,7 +35,7 @@ class BookController (private val bookService: BookService, private val flightSe
             instance?.year = Integer.parseInt(adultYear[i])
             instance?.month = Integer.parseInt(adultMonth[i])
             instance?.day = Integer.parseInt(adultDay[i])
-            instance?.airline =adultAirline[i]
+            instance?.airline = adultAirline[i]
 
             passengerList.add(instance)
         }
@@ -95,11 +95,11 @@ class BookController (private val bookService: BookService, private val flightSe
 
         //session에 저장되어있는 grade, flightNum을 이용하여 totalPrice 구하기
         if (grade.equals("economy"))
-            price = flightService.getCharge("EconomyCharge", flightNum as Int)
+            price = flightService.getCharge("EconomyCharge", flightNum as Int) as Int
         else if (grade.equals("business"))
-            price = flightService.getCharge("BusinessCharge", flightNum as Int)
+            price = flightService.getCharge("BusinessCharge", flightNum as Int) as Int
         else if (grade.equals("first"))
-            price = flightService.getCharge("FirstCharge", flightNum as Int)
+            price = flightService.getCharge("FirstCharge", flightNum as Int) as Int
 
         session.setAttribute("totalCharge", price * totalNum)
 

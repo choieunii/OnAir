@@ -8,11 +8,6 @@ import javax.servlet.http.HttpSession
 
 @Controller
 class FlightController (private val flightService:FlightService){
-    @RequestMapping("/flightInfo")
-    fun flightInfo(): String {
-        val flight = flightService.getTasks()
-        return "flightInfo";
-    }
 
     @RequestMapping("/book2")
     fun book2(request : HttpServletRequest, session: HttpSession): String {
