@@ -19,5 +19,4 @@ class FlightController (private val flightService:FlightService){
         session.setAttribute("grade", request.getParameter("grade"))
         return "book2"
     }
-
 }

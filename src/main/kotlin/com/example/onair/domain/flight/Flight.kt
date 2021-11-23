@@ -20,7 +20,7 @@ data class Flight( // data class -> equals, copy, toString, componentN
         @Column(name = "economyCharge", nullable=false) //
         var economyCharge: Int,
         @Column(name = "businessCharge", nullable=false) //
-        var BusinessCharge: Int,
-        @Column(name = "FirstCharge", nullable=false) //
-        var FirstCharge: Int
+        var businessCharge: Int,
+        @Column(name = "firstCharge", nullable=false) //
+        var firstCharge: Int
 )

@@ -1,7 +1,7 @@
 package com.example.onair.controller
 
-import com.example.onair.dto.PassengerDto
-import com.example.onair.service.BookService
+import com.example.onair.dto.BookCheckRequestDto
+import com.example.onair.service.BookCheckService
 import com.example.onair.service.FlightService
 import com.example.onair.service.UserService
 import org.springframework.ui.Model
@@ -9,15 +9,15 @@ import org.springframework.web.bind.annotation.RequestMapping
 import javax.servlet.http.HttpServletRequest
 import javax.servlet.http.HttpSession
 
-class BookController (private val bookService: BookService, private val flightService: FlightService, private val userService: UserService) {
+class BookController (private val bookService: BookCheckService, private val flightService: FlightService, private val userService: UserService) {
     @RequestMapping("/payment")
-    fun payment(request : HttpServletRequest, session : HttpSession) : String {
+    fun payment(request: HttpServletRequest, session: HttpSession): String {
         var adultNum = Integer.parseInt(request.getParameter("adult"))
         var childrenNum = Integer.parseInt(request.getParameter("children"))
         var infantNum = Integer.parseInt(request.getParameter("infant"))
-        var passengerList = arrayListOf<PassengerDto?>()
+        var passengerList = arrayListOf<BookCheckRequestDto?>()
 
-        var instance : PassengerDto? = null
+        var instance: BookCheckRequestDto? = null
 
         //adult의 수만큼 passengerList에 값 add
         var adultGender = request.getParameterValues("adultGender")
@@ -28,15 +28,12 @@ class BookController (private val bookService: BookService, private val flightSe
         var adultDay = request.getParameterValues("adultDay")
         var adultAirline = request.getParameterValues("adultAirLine")
 
-        for (i : Int in 0 until adultNum) {
-            instance?.gender = adultGender[i]
-            instance?.firstName = adultFirstName[i]
-            instance?.lastName = adultLastName[i]
-            instance?.year = Integer.parseInt(adultYear[i])
-            instance?.month = Integer.parseInt(adultMonth[i])
-            instance?.day = Integer.parseInt(adultDay[i])
-            instance?.airline = adultAirline[i]
-
+        for (i: Int in 0 until adultNum) {
+            instance?.Gender = adultGender[i]
+            instance?.FirstName = adultFirstName[i]
+            instance?.LastName = adultLastName[i]
+            instance?.BirthDate = adultYear[i] + " - " + adultMonth[i] + " - " + adultDay[i]
+            instance?.AirLine = adultAirline[i]
             passengerList.add(instance)
         }
 
@@ -49,14 +46,12 @@ class BookController (private val bookService: BookService, private val flightSe
         var childrenDay = request.getParameterValues("childrenDay")
         var childrenAirline = request.getParameterValues("childrenAirLine")
 
-        for (i : Int in 0 until childrenNum) {
-            instance?.gender = childrenGender[i]
-            instance?.firstName = childrenFirstName[i]
-            instance?.lastName = childrenLastName[i]
-            instance?.year = Integer.parseInt(childrenYear[i])
-            instance?.month = Integer.parseInt(childrenMonth[i])
-            instance?.day = Integer.parseInt(childrenDay[i])
-            instance?.airline =childrenAirline[i]
+        for (i: Int in 0 until childrenNum) {
+            instance?.Gender = childrenGender[i]
+            instance?.FirstName = childrenFirstName[i]
+            instance?.LastName = childrenLastName[i]
+            instance?.BirthDate = childrenYear[i] + " - " + childrenMonth[i] + " - " + childrenDay[i]
+            instance?.AirLine = childrenAirline[i]
 
             passengerList.add(instance)
         }
@@ -71,14 +66,12 @@ class BookController (private val bookService: BookService, private val flightSe
         var infantDay = request.getParameterValues("infantDay")
         var infantAirline = request.getParameterValues("infantAirline")
 
-        for (i : Int in 0 until infantNum) {
-            instance?.gender = infantGender[i]
-            instance?.firstName = infantFirstName[i]
-            instance?.lastName = infantLastName[i]
-            instance?.year = Integer.parseInt(infantYear[i])
-            instance?.month = Integer.parseInt(infantMonth[i])
-            instance?.day = Integer.parseInt(infantDay[i])
-            instance?.airline =infantAirline[i]
+        for (i: Int in 0 until infantNum) {
+            instance?.Gender = infantGender[i]
+            instance?.FirstName = infantFirstName[i]
+            instance?.LastName = infantLastName[i]
+            instance?.BirthDate = infantYear[i] + " - " + infantMonth[i] + " - " + infantDay[i]
+            instance?.AirLine = infantAirline[i]
 
             passengerList.add(instance)
         }
@@ -89,17 +82,11 @@ class BookController (private val bookService: BookService, private val flightSe
 
         //가격 구하는 부분
         var totalNum = adultNum + childrenNum + infantNum
-        var grade = session.getAttribute("grade")
-        var flightNum = session.getAttribute("flightNum")
-        var price = 0
+        var grade = session.getAttribute("grade") as String
+        var flightNum = session.getAttribute("flightNum") as Int
+        var price = flightService.getCharge(grade, flightNum)
 
         //session에 저장되어있는 grade, flightNum을 이용하여 totalPrice 구하기
-        if (grade.equals("economy"))
-            price = flightService.getCharge("EconomyCharge", flightNum as Int) as Int
-        else if (grade.equals("business"))
-            price = flightService.getCharge("BusinessCharge", flightNum as Int) as Int
-        else if (grade.equals("first"))
-            price = flightService.getCharge("FirstCharge", flightNum as Int) as Int
 
         session.setAttribute("totalCharge", price * totalNum)
 
@@ -107,7 +94,7 @@ class BookController (private val bookService: BookService, private val flightSe
     }
 
     @RequestMapping("/payment_proceed")
-    fun payment_process(session: HttpSession, model : Model) : String {
+    fun payment_process(session: HttpSession, model: Model): String {
         var totalCharge = session.getAttribute("totalCharge") as Int
         var userId = session.getAttribute("userId") as String
 
@@ -116,11 +103,17 @@ class BookController (private val bookService: BookService, private val flightSe
 
         //성공 시 사람 수만큼 DB에 추가
         if (result.equals("success")) {
-            var passengerList = session.getAttribute("PassengerList") as ArrayList<PassengerDto>
+            var passengerList = session.getAttribute("PassengerList") as ArrayList<BookCheckRequestDto>
             var flightNum = session.getAttribute("flightNum") as Int
             var seatClass = session.getAttribute("seatClass") as String
-            for (i : Int in 0 until passengerList.size) {
-                bookService.addToDB(passengerList.get(i), userId, flightNum, seatClass)
+            for (i: Int in 0 until passengerList.size) {
+                var result = bookService.addToDB(passengerList.get(i), userId, flightNum, seatClass)
+
+                //등록 실패 시 일단 돌아감. 근데 차감된 금액하고 중간에 끊어진 저장을 어떻게 해야할지 정하긴 해야 할듯
+                if (result.equals("failed")) {
+                    model.addAttribute("result", result)
+                    return "payment"
+                }
             }
 
 
@@ -131,14 +124,12 @@ class BookController (private val bookService: BookService, private val flightSe
 
             //예약 확인 페이지로
             return "bookCheck"
-        }
-
-        else {
+        } else {
             //값 업데이트 실패 시 실패했다는 값 model에 넣어서 결제 페이지로.
             model.addAttribute("result", "failed")
             return "payment"
         }
 
     }
-
 }
+
