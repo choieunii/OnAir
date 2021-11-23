@@ -4,11 +4,12 @@ import com.example.onair.service.FlightService
 import org.springframework.stereotype.Controller
 import org.springframework.ui.Model
 import org.springframework.web.bind.annotation.GetMapping
+import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.RequestMapping
 
 @Controller
 class FlightController(private val flightService: FlightService) {
-    @RequestMapping("/flightInfo")
+    @GetMapping("/flightInfo")
     fun flightInfo(model: Model): String {
         val flightInfoArr = flightService.getFlightInfo() // 비행 정보를 불러옴
         val airportInfoArr = flightService.getAirPortInfo() // 공항 정보를 불러옴
@@ -23,5 +24,12 @@ class FlightController(private val flightService: FlightService) {
             println(i)
         }
         return "flightInfo";
+    }
+
+    @PostMapping("/flightInfo")
+    fun getFlightInfo(departAirportId: Int, arrAirportId: Int, model: Model): String {
+        val flightInfo = flightService.getFlightOnAirInfo(departAirportId, arrAirportId);
+        model.addAttribute("flight", flightInfo)
+        return "flightInfo"
     }
 }
