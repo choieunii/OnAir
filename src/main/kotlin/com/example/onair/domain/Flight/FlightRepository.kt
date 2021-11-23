@@ -6,6 +6,6 @@ import org.springframework.stereotype.Repository
 
 @Repository
 interface FlightRepository : JpaRepository<Flight, String>{
-    @Query("SELECT f FROM Flight f WHERE f.DepartmentAirport = :departAirport and f.ArriveAirport = :arrAirport")
+    @Query("SELECT f FROM Flight f WHERE f.departmentAirport = :departAirport and f.arriveAirport = :arrAirport")
     fun getFlightOnAirInfo(departAirport: String, arrAirport: String): List<Flight>?
 }
