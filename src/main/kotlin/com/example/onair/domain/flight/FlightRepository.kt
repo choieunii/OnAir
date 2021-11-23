@@ -1,4 +1,4 @@
-package com.example.onair.domain.Flight
+package com.example.onair.domain.flight
 
 import com.example.onair.domain.flight.Flight
 import org.springframework.data.jpa.repository.JpaRepository
@@ -13,5 +13,4 @@ interface FlightRepository : JpaRepository<Flight, String>{
     fun getFlightNum(depAirport : String, arrAirport : String, dDate : String) : Int
     @Query("SELECT %?1% FROM Flight WHERE FlightNum = %?2%")
     fun getCharge(SeatType : String, FlightNum : Int) : Int
-
 }
