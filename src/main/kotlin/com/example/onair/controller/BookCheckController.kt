@@ -39,4 +39,9 @@ class BookCheckController (private val bookCheckService: BookCheckService){
         return bookCheckService.getInformation(request)[select]
     }
 
+    //예약 취소가 성공하면 true 반환
+    fun cancelByBookID(bookID: Int): Boolean{
+        return bookCheckService.cancelByBookID(bookID)
+    }
+
 }

@@ -65,4 +65,9 @@ class BookCheckService (private val bookCheckRepository: BookCheckRepository){
         )
     }
 
+    fun cancelByBookID(bookID: Int): Boolean{
+        bookCheckRepository.deleteById(bookID)
+        return !isBookIdExistence(bookID)
+    }
+
 }
