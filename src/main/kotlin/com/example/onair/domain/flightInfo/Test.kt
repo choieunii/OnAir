@@ -6,7 +6,7 @@ import javax.persistence.Id
 import javax.persistence.Table
 @Entity
 @Table(name = "FLIGHT_INFORMATION")
-data class Test (
+data class FlightInformation (
         @Id
         @Column(name = "FlightNum")
         var FlightNum : Number = 0,
@@ -26,7 +26,7 @@ data class Test (
 
 @Entity
 @Table(name = "CUSTOMER")
-data class CUSTOMER (
+data class Customer (
         @Id
         @Column(name = "CustomerID")
         var CustomerID : Number = 0,
@@ -50,7 +50,7 @@ data class CUSTOMER (
 
 @Entity
 @Table(name = "BOOK_INFO")
-data class BOOK_INFO (
+data class BookInfo (
         @Id
         @Column(name = "BookID")
         var BookID : Number = 0,

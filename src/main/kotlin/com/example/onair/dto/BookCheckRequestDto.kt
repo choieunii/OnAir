@@ -15,3 +15,12 @@ data class BookCheckRequestDto ( // data class -> equals, copy, toString, compon
     val ArriveAirport: String,
     val DepartmentAirport: String
 )
+
+data class BookCheckResponseDto(
+    var Name: String,
+    var AirLine: String,
+    var DepartmentAirport: String,
+    var ArriveAirport : String,
+    var DepartmentDate: String,
+    var SeatClass: String
+)

@@ -48,7 +48,8 @@ nav .dropdown-content {
     padding: 5px;
     box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
 }
-nav .dropdown-content a {
+nav .dropdown-content a,
+nav .dropdown-content p {
     color: #fff;
     padding: 8px;
     text-decoration: none;
@@ -426,4 +427,65 @@ table th.last {
 
 .button:hover {
     background: #3876ac;
+}
+
+.tabs {
+    display: flex;
+    flex-wrap: wrap;
+    max-width: 100%;
+}
+
+.tabs__label {
+    padding: 10px 16px;
+    cursor: pointer;
+    font-size:20px;
+}
+
+.tabs__radio {
+    display: none;
+}
+
+.tabs__content {
+    order: 1;
+    width: 100%;
+    line-height: 1.5;
+    font-size: 0.9em;
+    display: none;
+}
+
+.tabs__radio:checked + .tabs__label {
+    font-weight: bold;
+    color: #535F68;
+    border-bottom: 2px solid #535F68;
+}
+
+.tabs__radio:checked + .tabs__label + .tabs__content {
+    display: initial;
+}
+
+.tabs__content form .user-details{
+    display:flex;
+    flex-wrap:wrap;
+    justify-content: space-between;
+}
+
+.tabs__content form .user-details .input-box {
+    margin-bottom:15px;
+    width: calc(100% / 2 - 20px);
+}
+.user-details .input-box .details{
+    display:block;
+    font-weight:bold;
+    margin-bottom: 5px;
+    font-size:20px;
+}
+
+.tabs__content form .user-details input {
+    height:45px;
+    width:100%;
+    outline:none;
+    border-radius: 5px;
+    border:1px solid #ccc;
+    padding-left: 15px;
+    font-size:18px;
 }
