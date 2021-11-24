@@ -1,8 +1,11 @@
 <%@ page language="java" contentType="text/html;charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ page import="java.io.PrintWriter"%>
 <%@ page import="java.sql.Connection" %>
 <%@ page import="java.sql.PreparedStatement" %>
 <%@ page import="java.sql.ResultSet" %>
+<%@ page import="com.example.onair.domain.bookCheck.BookCheck" %>
+<%@ page import="java.util.List" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -73,32 +76,45 @@
     <div class="frame">
         <div class="sub-frame">
             <h1 style="text-align: center;">예약 내역</h1><br><hr><br><br><br>
-            <div style="display: flex;">
-                <h2>예약번호&nbsp;<font style="color:#ef0000;">35468765</font></h2>
-                <button class="button-1" style=" background-color: #bcbcbc; border-radius: 3px;">예약 취소/환불</button>
-            </div><br><br>
+            <form method="delete" action="bookCheck">
+                <div style="display: flex;">
+                    <h2>예약번호&nbsp;<font style="color:#ef0000;">35468765</font></h2>
+                    <button type="submit" class="button-1" style=" background-color: #bcbcbc; border-radius: 3px;">예약 취소/환불</button>
+                </div><br><br>
 
-            <table style="border-left:2px solid #fff; border-top:2px #fff;">
-                <tbody>
-                <tr>
-                    <th>성명</th>
-                    <th>회원번호</th>
-                    <th>출발지</th>
-                    <th>도착지</th>
-                    <th>탑승일</th>
-                    <th>죄석등급</th>
-                </tr>
-                <tr>
-                    <td>윤대현</td>
-                    <td>001564</td>
-                    <td>서울</td>
-                    <td>부산</td>
-                    <td>21-11-06</td>
-                    <td>비즈니스</td>
-                </tr>
+                <table style="border-left:2px solid #fff; border-top:2px #fff;">
+                    <tbody>
+                    <tr>
+                        <th>성명</th>
+                        <th>회원번호</th>
+                        <th>출발지</th>
+                        <th>도착지</th>
+                        <th>탑승일</th>
+                        <th>죄석등급</th>
+                    </tr>
+                    <c:set var="bookList" value="${bookList}" />
+                    <%
+                        List<BookCheck> res = (List<BookCheck>) pageContext.getAttribute("bookList");
+                        System.out.println(res);
+                        if(res!=null){
+                            for (BookCheck f : res) {
+                    %>
+                    <tr>
+                        <td><%=f.getNM()%></td>
+                        <td><%=f.getFN()%></td>
+                        <td><%=f.getDA()%></td>
+                        <td><%=f.getAA()%></td>
+                        <td><%=f.getDD()%></td>
+                        <td><%=f.getSC()%></td>
+                    </tr>
+                    <%
+                            }
+                        }
+                    %>
+                    </tbody>
+                </table><br><br><br>
 
-                </tbody>
-            </table><br><br><br>
+            </form>
         </div>
     </div>
 </div>

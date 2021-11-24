@@ -30,6 +30,9 @@ dependencies {
 	implementation("org.apache.tomcat.embed:tomcat-embed-jasper")
 	implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.2.0")
 	implementation("org.projectlombok:lombok:1.18.18")
+    implementation("org.junit.jupiter:junit-jupiter:5.7.0")
+	implementation("org.junit.jupiter:junit-jupiter:5.7.0")
+	implementation("junit:junit:4.13.1")
 	developmentOnly("org.springframework.boot:spring-boot-devtools")
 	testImplementation("org.springframework.boot:spring-boot-starter-test")
 }

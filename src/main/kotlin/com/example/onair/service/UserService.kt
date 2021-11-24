@@ -141,6 +141,7 @@ class UserService(private val userRepository: UserRepository) {
     }
 
     fun setSessionUser(user: User?, session: HttpSession) {
+        session.setAttribute("id", user?.id);
         session.setAttribute("user_id", user?.userId);
         session.setAttribute("name", user?.name);
         session.setAttribute("age", user?.age);
