@@ -101,13 +101,13 @@
                     <label class="radio-label" for="busanArr" style="height:60px; padding:15px; font-size: 20px;">부산</label>
                     <input type="radio" class="radio-input" name="arrAirportId" id="jejuArr" value="3" autocomplete="off" required>
                     <label class="radio-label" for="jejuArr" style="height:60px; padding:15px; font-size: 20px;">제주</label>
-                    <input type="radio" class="radio-input" name="arrAirportId" id="dokyoArr" value="4" autocomplete="off" required>
+                    <input type="radio" class="radio-input" name="arrAirportId" id="dokyoArr" value="6" autocomplete="off" required>
                     <label class="radio-label" for="dokyoArr" style="height:60px; padding:15px; font-size: 20px;">도쿄</label>
-                    <input type="radio" class="radio-input" name="arrAirportId" id="beijingArr" value="5" autocomplete="off" required>
+                    <input type="radio" class="radio-input" name="arrAirportId" id="beijingArr" value="7" autocomplete="off" required>
                     <label class="radio-label" for="beijingArr" style="height:60px; padding:15px; font-size: 20px;">베이징</label>
-                    <input type="radio" class="radio-input" name="arrAirportId" id="danangArr" value="6" autocomplete="off" required>
+                    <input type="radio" class="radio-input" name="arrAirportId" id="danangArr" value="8" autocomplete="off" required>
                     <label class="radio-label" for="danangArr" style="height:60px; padding:15px; font-size: 20px;">다낭</label>
-                    <input type="radio" class="radio-input" name="arrAirportId" id="kyotoArr" value="7" autocomplete="off" required>
+                    <input type="radio" class="radio-input" name="arrAirportId" id="kyotoArr" value="9" autocomplete="off" required>
                     <label class="radio-label" for="kyotoArr" style="height:60px; padding:15px; font-size: 20px;">쿄토</label>
                 </div>
             </form>
