@@ -25,7 +25,7 @@ class BookCheckController (private val bookCheckService: BookCheckService){
 
     @DeleteMapping("/bookCheck")
     fun deleteBookCheck(bookId : Int):String{
-        val res = bookCheckService.deleteBookCheck(bookId = bookId);
+        val res = bookCheckService.cancelByBookID(bookId = bookId);
         return "bookCheck";
     }
 
@@ -60,6 +60,9 @@ class BookCheckController (private val bookCheckService: BookCheckService){
     //map에서 특정 조건에 맞는 정보 하나만 가져오기
     fun getInformationSelected(request: BookCheckRequestDto, select : String): String? {
         return bookCheckService.getInformation(request)[select]
+    }
+    fun cancelByBookID(bookID: Int): String{
+        return bookCheckService.cancelByBookID(bookID)
     }
 
 }

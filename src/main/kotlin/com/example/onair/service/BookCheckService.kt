@@ -46,22 +46,22 @@ class BookCheckService (private val bookCheckRepository: BookCheckRepository, pr
     fun addToDB(input : BookCheckRequestDto, user_id : String, Flight_Id : Int, seat_class : String) : String {
         var flightInfo = flightRepository.findInfoByFlightNum(Flight_Id)
         if (flightInfo != null) {
-            var instance = BookCheck(
-                bookId = bookCheckRepository.getMaxId(),
-                customerID = user_id,
-                flightNum = Flight_Id,
-                gender = input.Gender,
-                firstName = input.FirstName,
-                lastName = input.LastName,
-                birthDate = input.BirthDate,
-                airLine = input.AirLine,
-                seatClass = seat_class,
-                departmentDate = flightInfo.departmentDate,
-                arriveAirport = flightInfo.arriveAirport,
-                departmentAirport = flightInfo.departmentAirport
-            )
+//            var instance = BookCheck(
+//                bookId = bookCheckRepository.getMaxId(),
+//                customerID = user_id,
+//                flightNum = Flight_Id,
+//                gender = input.Gender,
+//                firstName = input.FirstName,
+//                lastName = input.LastName,
+//                birthDate = input.BirthDate,
+//                airLine = input.AirLine,
+//                seatClass = seat_class,
+//                departmentDate = flightInfo.departmentDate,
+//                arriveAirport = flightInfo.arriveAirport,
+//                departmentAirport = flightInfo.departmentAirport
+//            )
 
-            bookCheckRepository.save(instance)
+//            bookCheckRepository.save(instance)
 
             return "success"
         } else {
@@ -85,7 +85,7 @@ class BookCheckService (private val bookCheckRepository: BookCheckRepository, pr
         )
     }
 
-    fun deleteBookCheck(bookId: Int): String{
+    fun cancelByBookID(bookId: Int): String{
         val res = bookCheckRepository.deleteById(bookId);
         println(res);
         return "Success";
