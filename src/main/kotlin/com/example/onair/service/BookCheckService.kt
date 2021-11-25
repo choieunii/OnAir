@@ -11,6 +11,7 @@ class BookCheckService (private val bookCheckRepository: BookCheckRepository, pr
         val bookCheck: List<BookCheck>? = bookCheckRepository.findByCustomerID(customerID)
         return bookCheck !==null
     }
+
     fun check(customerID: String): Boolean {
         val bookCheck: List<BookCheck>? = bookCheckRepository.findByCustomerID(customerID)
 
@@ -31,7 +32,7 @@ class BookCheckService (private val bookCheckRepository: BookCheckRepository, pr
             return true
         }
         return false
-    }
+        }
 
     fun print(request: BookCheckRequestDto): Map<String, String> {
         return mapOf(
@@ -46,22 +47,22 @@ class BookCheckService (private val bookCheckRepository: BookCheckRepository, pr
     fun addToDB(input : BookCheckRequestDto, user_id : String, Flight_Id : Int, seat_class : String) : String {
         var flightInfo = flightRepository.findInfoByFlightNum(Flight_Id)
         if (flightInfo != null) {
-//            var instance = BookCheck(
-//                bookId = bookCheckRepository.getMaxId(),
-//                customerID = user_id,
-//                flightNum = Flight_Id,
-//                gender = input.Gender,
-//                firstName = input.FirstName,
-//                lastName = input.LastName,
-//                birthDate = input.BirthDate,
-//                airLine = input.AirLine,
-//                seatClass = seat_class,
-//                departmentDate = flightInfo.departmentDate,
-//                arriveAirport = flightInfo.arriveAirport,
-//                departmentAirport = flightInfo.departmentAirport
-//            )
+            var instance = BookCheck(
+                bookId = bookCheckRepository.getMaxId(),
+                customerID = user_id,
+                flightNum = Flight_Id,
+                gender = input.Gender,
+                firstName = input.FirstName,
+                lastName = input.LastName,
+                birthDate = input.BirthDate,
+                airLine = input.AirLine,
+                seatClass = seat_class,
+                departmentDate = flightInfo.departmentDate,
+                arriveAirport = flightInfo.arriveAirport,
+                departmentAirport = flightInfo.departmentAirport
+            )
 
-//            bookCheckRepository.save(instance)
+            bookCheckRepository.save(instance)
 
             return "success"
         } else {
@@ -90,5 +91,4 @@ class BookCheckService (private val bookCheckRepository: BookCheckRepository, pr
         println(res);
         return "Success";
     }
-
 }

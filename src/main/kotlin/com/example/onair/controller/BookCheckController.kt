@@ -6,7 +6,6 @@ import org.springframework.stereotype.Controller
 import org.springframework.ui.Model
 import org.springframework.web.bind.annotation.DeleteMapping
 import org.springframework.web.bind.annotation.GetMapping
-import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.RequestMapping
 import javax.servlet.http.HttpSession
 
@@ -19,8 +18,10 @@ class BookCheckController (private val bookCheckService: BookCheckService){
             val bookCheckList = bookCheckService.getBookCheck(customerID = customerID as String)
             model.addAttribute("bookList", bookCheckList);
             println(bookCheckList);
+            return "bookCheck" //존재 여부 확인
+        }else {
+            return "login"
         }
-        return "bookCheck" //존재 여부 확인
     }
 
     @DeleteMapping("/bookCheck")
@@ -64,5 +65,4 @@ class BookCheckController (private val bookCheckService: BookCheckService){
     fun cancelByBookID(bookID: Int): String{
         return bookCheckService.cancelByBookID(bookID)
     }
-
 }
