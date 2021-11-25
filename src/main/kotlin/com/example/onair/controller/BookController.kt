@@ -4,12 +4,25 @@ import com.example.onair.dto.BookCheckRequestDto
 import com.example.onair.service.BookCheckService
 import com.example.onair.service.FlightService
 import com.example.onair.service.UserService
+import org.springframework.stereotype.Controller
 import org.springframework.ui.Model
 import org.springframework.web.bind.annotation.RequestMapping
 import javax.servlet.http.HttpServletRequest
 import javax.servlet.http.HttpSession
 
+@Controller
 class BookController (private val bookService: BookCheckService, private val flightService: FlightService, private val userService: UserService) {
+    @RequestMapping("/book")
+    fun book(session : HttpSession) : String {
+        print(session.getAttribute("id"))
+
+        if (session.getAttribute("user_id") == null) {
+            return "login"
+        }
+        else
+            return "book"
+    }
+
     @RequestMapping("/payment")
     fun payment(request: HttpServletRequest, session: HttpSession): String {
         var adultNum = Integer.parseInt(request.getParameter("adult"))
@@ -115,12 +128,10 @@ class BookController (private val bookService: BookCheckService, private val fli
                     return "payment"
                 }
             }
-
-
             //사용했던 session의 attribute 초기화
-            session.setAttribute("flightNum", null)
-            session.setAttribute("grade", null)
-            session.setAttribute("PassengerList", null)
+            session.removeAttribute("flightNum")
+            session.removeAttribute("grade")
+            session.removeAttribute("PassengerList")
 
             //예약 확인 페이지로
             return "bookCheck"

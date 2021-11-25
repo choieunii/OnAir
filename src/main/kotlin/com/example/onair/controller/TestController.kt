@@ -12,10 +12,6 @@ class TestController (private val testService:TestService){
     fun index(): String {
         return "index";
     }
-    @RequestMapping("/book")
-    fun book(): String {
-        return "book";
-    }
 //    @RequestMapping("/book2")
 //    fun book2(): String {
 //        return "book2";
@@ -24,11 +20,6 @@ class TestController (private val testService:TestService){
     @RequestMapping("/signUp")
     fun signUp(): String {
         return "signUp";
-    }
-    @RequestMapping("/payment")
-    fun paymentInfo(): String {
-        val test = testService.getTasks()
-        return "payment";
     }
     @RequestMapping("/guide")
     fun guideInfo(): String {

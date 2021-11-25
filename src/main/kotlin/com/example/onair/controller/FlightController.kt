@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.RequestMapping
 import javax.servlet.http.HttpServletRequest
+import javax.servlet.http.HttpServletResponse
 import javax.servlet.http.HttpSession
 
 @Controller
@@ -36,11 +37,27 @@ class FlightController(private val flightService: FlightService) {
     }
 
     @RequestMapping("/book2")
-    fun book2(request : HttpServletRequest, session: HttpSession): String {
+    fun book2(request : HttpServletRequest, session: HttpSession, response : HttpServletResponse) : String {
         val departmentAirport = request.getParameter("departmentAirport")
         val arriveAirport = request.getParameter("arriveAirport")
         val departmentDate = request.getParameter("departmentDate")
         val flightNum = flightService.getFlightNum(departmentAirport, arriveAirport, departmentDate)
+
+
+        print("deparmentAirport : " + departmentAirport)
+        print("arriveAirport : " + arriveAirport)
+        print("departmentDate : " + departmentDate)
+
+
+        if (flightNum == -1) {
+            response.setContentType("text/html; charset=utf-8");
+            var out = response.writer
+            out.println("<script>alert('해당하는 항공편이 없습니다!'); </script>");
+            out.flush();
+
+            return "book"
+        }
+
         session.setAttribute("flightNum", flightNum)
         session.setAttribute("grade", request.getParameter("grade"))
         return "book2"
