@@ -28,36 +28,35 @@ data class Flight( // data class -> equals, copy, toString, componentN
         @Column(name = "business_charge", nullable=false) //
         var businessCharge: Int,
         @Column(name = "first_charge", nullable=false) //
-        var firstCharge: Int
-){
-        fun getFN():Int{
-                return flightNum;
+        var firstCharge: Int) {
+        fun getFN(): Int {
+            return flightNum;
         }
-        fun getDMA():String{
-                return departmentAirport;
+        fun getDMA(): String {
+            return departmentAirport;
         }
-        fun getAA():String{
-                return arriveAirport;
+        fun getAA(): String {
+            return arriveAirport;
         }
-        fun getDD():String{
-                return departmentDate;
+        fun getDD(): String {
+            return departmentDate;
         }
-        fun getAD():String{
-                return arriveDate;
+        fun getAD(): String {
+            return arriveDate;
         }
-        fun getDT():String{
-                return departmentTime;
+        fun getDT(): String {
+            return departmentTime;
         }
-        fun getAT():String{
-                return arriveTime;
+        fun getAT(): String {
+            return arriveTime;
         }
-        fun getEC():Int{
-                return economyCharge;
+        fun getEC(): Int {
+            return economyCharge;
         }
-        fun getBC():Int{
-                return businessCharge;
+        fun getBC(): Int {
+            return businessCharge;
         }
-        fun getFC():Int{
-                return firstCharge;
+        fun getFC(): Int {
+            return firstCharge;
         }
 }
