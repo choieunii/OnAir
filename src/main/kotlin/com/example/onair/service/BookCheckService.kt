@@ -3,6 +3,7 @@ import com.example.onair.domain.User.User
 import com.example.onair.domain.User.UserRepository
 import com.example.onair.domain.bookCheck.BookCheck
 import com.example.onair.domain.bookCheck.BookCheckRepository
+import com.example.onair.domain.flight.Flight
 import com.example.onair.domain.flight.FlightRepository
 import com.example.onair.dto.BookCheckCancelResponseDto
 import com.example.onair.dto.BookCheckRequestDto
@@ -89,29 +90,36 @@ class BookCheckService (private val bookCheckRepository: BookCheckRepository, pr
         )
     }
 
-    fun refundUserPoint(userId: String, bookId: Int): BookCheckCancelResponseDto {
+    fun refundUserPoint(userId: String, bookId: Array<Int>): BookCheckCancelResponseDto {
         val user = userRepository.findByUserId(userId);
-        val bookCheck = bookCheckRepository.findByBookId(bookId);
-        val flight = flightRepository.findInfoByFlightNum(bookCheck.flightNum);
         val prevUserPoint = user?.point!!;
-        var refundPoint = 0;
+        var currUserPoint = prevUserPoint;
 
-        if(bookCheck.seatClass === "economy"){
-            refundPoint = flight?.economyCharge!!;
-        }else if(bookCheck.seatClass === "business"){
-            refundPoint = flight?.businessCharge!!;
-        }else{
-            refundPoint = flight?.firstCharge!!;
+        for(book in bookId){
+            val bookCheck = bookCheckRepository.findByBookId(book);
+            val flight = flightRepository.findInfoByFlightNum(bookCheck.flightNum);
+            val refundPoint = getChargeFromSeatClass(bookCheck, flight!!);
+            currUserPoint += refundPoint;
         }
-        val currUserPoint = prevUserPoint + refundPoint;
         val res = userRepository.setBalance(currUserPoint, userId);
 
-        return BookCheckCancelResponseDto(user.name, refundPoint, prevUserPoint, currUserPoint);
+        return BookCheckCancelResponseDto(user.name, currUserPoint - prevUserPoint, prevUserPoint, currUserPoint);
     }
 
-    fun cancelByBookID(bookId: Int): String{
-        val res = bookCheckRepository.deleteById(bookId);
-        println(res);
+    fun getChargeFromSeatClass(bookCheck: BookCheck, flight: Flight): Int{
+        if(bookCheck.seatClass === "economy"){
+            return flight.economyCharge;
+        }else if(bookCheck.seatClass === "business"){
+            return flight.businessCharge;
+        }else{
+            return flight.firstCharge;
+        }
+    }
+
+    fun cancelByBookID(bookId: Array<Int>): String{
+        for(book in bookId) {
+            val res = bookCheckRepository.deleteById(book);
+        }
         return "Success";
     }
 }

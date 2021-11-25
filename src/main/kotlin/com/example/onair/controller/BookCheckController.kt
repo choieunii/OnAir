@@ -26,12 +26,13 @@ class BookCheckController(private val bookCheckService: BookCheckService) {
     }
 
     @PostMapping("/bookCheck")
-    fun deleteBookCheck(bookId: Int, session: HttpSession, model: Model): String {
+    fun deleteBookCheck(bookId: Array<Int>, session: HttpSession, model: Model): String {
         val customerID = session.getAttribute("user_id");
         val refund = bookCheckService.refundUserPoint(userId = customerID as String, bookId = bookId);
-        println(refund);
         val res = bookCheckService.cancelByBookID(bookId = bookId);
         val bookCheckList = bookCheckService.getBookCheck(customerID = customerID as String)
+        println(refund)
+        model.addAttribute("res", refund);
         model.addAttribute("bookList", bookCheckList);
         return "bookCheck";
     }
@@ -70,7 +71,4 @@ class BookCheckController(private val bookCheckService: BookCheckService) {
         return bookCheckService.getInformation(request)[select]
     }
 
-    fun cancelByBookID(bookID: Int): String {
-        return bookCheckService.cancelByBookID(bookID)
-    }
 }

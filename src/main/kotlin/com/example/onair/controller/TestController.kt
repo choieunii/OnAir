@@ -35,10 +35,10 @@ class TestController (private val testService:TestService){
         val test = testService.getTasks()
         return "guide";
     }
-    @RequestMapping("/myPage")
-    fun myPageInfo(): String {
-        val test = testService.getTasks()
-        return "myPage";
-    }
+//    @RequestMapping("/myPage")
+//    fun myPageInfo(): String {
+//        val test = testService.getTasks()
+//        return "myPage";
+//    }
 }
 
