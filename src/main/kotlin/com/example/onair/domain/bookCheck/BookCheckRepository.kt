@@ -6,6 +6,7 @@ import org.springframework.stereotype.Repository
 
 @Repository
 interface BookCheckRepository: JpaRepository<BookCheck, Int> {
+    fun findByBookId(bookId: Int) : BookCheck;
     @Query("SELECT MAX(bookId) FROM BookCheck")
     fun getMaxId() : Int
     fun findByCustomerID(customerID: String): List<BookCheck>?

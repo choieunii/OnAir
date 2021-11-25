@@ -26,3 +26,10 @@ data class BookCheckResponseDto(
     var DepartmentDate: String,
     var SeatClass: String
 )
+
+data class BookCheckCancelResponseDto(
+    val userName: String,
+    val refundPoint: Int,
+    val prevUserPoint: Int,
+    val currUserPoint: Int
+)

@@ -1,12 +1,15 @@
 package com.example.onair.service
+import com.example.onair.domain.User.User
+import com.example.onair.domain.User.UserRepository
 import com.example.onair.domain.bookCheck.BookCheck
 import com.example.onair.domain.bookCheck.BookCheckRepository
 import com.example.onair.domain.flight.FlightRepository
+import com.example.onair.dto.BookCheckCancelResponseDto
 import com.example.onair.dto.BookCheckRequestDto
 import org.springframework.stereotype.Service
 
 @Service
-class BookCheckService (private val bookCheckRepository: BookCheckRepository, private val flightRepository: FlightRepository){
+class BookCheckService (private val bookCheckRepository: BookCheckRepository, private val flightRepository: FlightRepository, private val userRepository: UserRepository){
     fun isExistence(customerID: String): Boolean {
         val bookCheck: List<BookCheck>? = bookCheckRepository.findByCustomerID(customerID)
         return bookCheck !==null
@@ -84,6 +87,26 @@ class BookCheckService (private val bookCheckRepository: BookCheckRepository, pr
             "DepartmentDate" to request.DepartmentDate,
             "SeatClass" to request.SeatClass
         )
+    }
+
+    fun refundUserPoint(userId: String, bookId: Int): BookCheckCancelResponseDto {
+        val user = userRepository.findByUserId(userId);
+        val bookCheck = bookCheckRepository.findByBookId(bookId);
+        val flight = flightRepository.findInfoByFlightNum(bookCheck.flightNum);
+        val prevUserPoint = user?.point!!;
+        var refundPoint = 0;
+
+        if(bookCheck.seatClass === "economy"){
+            refundPoint = flight?.economyCharge!!;
+        }else if(bookCheck.seatClass === "business"){
+            refundPoint = flight?.businessCharge!!;
+        }else{
+            refundPoint = flight?.firstCharge!!;
+        }
+        val currUserPoint = prevUserPoint + refundPoint;
+        val res = userRepository.setBalance(currUserPoint, userId);
+
+        return BookCheckCancelResponseDto(user.name, refundPoint, prevUserPoint, currUserPoint);
     }
 
     fun cancelByBookID(bookId: Int): String{

@@ -85,7 +85,7 @@
     <div class="frame">
         <div class="sub-frame">
             <h1 style="text-align: center;">예약 내역</h1><br><hr><br><br><br>
-            <form method="delete" action="bookCheck">
+            <form method="post" action="bookCheck">
                 <div style="display: flex;">
                     <button type="submit" class="button-1" style=" background-color: #bcbcbc; border-radius: 3px;">예약 취소/환불</button>
                 </div><br><br><br>
