@@ -2,6 +2,7 @@ package com.example.onair.dto
 
 import javax.persistence.Column
 
+
 data class BookCheckRequestDto ( // data class -> equals, copy, toString, componentN
     var bookId : Int,
     var CustomerID: String,
