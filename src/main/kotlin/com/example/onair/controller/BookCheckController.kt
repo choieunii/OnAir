@@ -18,8 +18,10 @@ class BookCheckController (private val bookCheckService: BookCheckService){
             val bookCheckList = bookCheckService.getBookCheck(customerID = customerID as String)
             model.addAttribute("bookList", bookCheckList);
             println(bookCheckList);
+            return "bookCheck" //존재 여부 확인
+        }else {
+            return "login"
         }
-        return "bookCheck" //존재 여부 확인
     }
 
     @DeleteMapping("/bookCheck")
