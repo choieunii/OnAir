@@ -28,7 +28,6 @@ class TestController (private val testService:TestService){
     }
     @RequestMapping("/myPage")
     fun myPageInfo(): String {
-        val test = testService.getTasks()
         return "myPage";
     }
 }

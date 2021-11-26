@@ -141,10 +141,14 @@
                                 <label class="radio-label" for="50000" style="height:60px; padding:15px; font-size: 20px;">+50000</label>
                                 <input type="radio" class="radio-input" name="point" id="100000" value=100000 autocomplete="off" required>
                                 <label class="radio-label" for="100000" style="height:60px; padding:15px; font-size: 20px;">+100000</label>
-                                <input type="radio" class="radio-input" name="point" id="200000" value=200000 autocomplete="off" required>
-                                <label class="radio-label" for="200000" style="height:60px; padding:15px; font-size: 20px;">+200000</label>
-                                <input type="radio" class="radio-input" name="point" id="300000" value=300000 autocomplete="off" required>
-                                <label class="radio-label" for="300000" style="height:60px; padding:15px; font-size: 20px;">+300000</label>
+                                <input type="radio" class="radio-input" name="point" id="500000" value=500000 autocomplete="off" required>
+                                <label class="radio-label" for="500000" style="height:60px; padding:15px; font-size: 20px;">+500000</label>
+                                <input type="radio" class="radio-input" name="point" id="1000000" value=1000000 autocomplete="off" required>
+                                <label class="radio-label" for="1000000" style="height:60px; padding:15px; font-size: 20px;">+1000000</label>
+                                <input type="radio" class="radio-input" name="point" id="2000000" value=2000000 autocomplete="off" required>
+                                <label class="radio-label" for="2000000" style="height:60px; padding:15px; font-size: 20px;">+2000000</label>
+                                <input type="radio" class="radio-input" name="point" id="5000000" value=5000000 autocomplete="off" required>
+                                <label class="radio-label" for="5000000" style="height:60px; padding:15px; font-size: 20px;">+5000000</label>
                             </div><br><br>
                             <script>
                                 $(document).ready(function() {

@@ -74,14 +74,17 @@
         <div class="sub-frame">
             <form action="payment" method="post">
                 <h1 style="text-align: center;">탑승자 정보</h1><br><hr><br><br><br>
-
                 <%
                     int adult = Integer.parseInt(request.getParameter("adult"));
                     int children = Integer.parseInt(request.getParameter("children"));
                     int infant = Integer.parseInt(request.getParameter("infant"));
                     int k=1, i=1, j=1;
+                %>
+                    <input type = "hidden" name = "adult" value = "<%=adult%>">
+                    <input type = "hidden" name = "children" value = "<%=children%>">
+                    <input type = "hidden" name = "infant" value = "<%=infant%>">
+                <%
                     while(k <= adult) {
-
                 %>
                 <h2>성인<%=k %></h2>
                 <table>

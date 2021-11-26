@@ -36,25 +36,33 @@ class FlightController(private val flightService: FlightService) {
         return "flightInfo"
     }
 
-    @RequestMapping("/book2")
-    fun book2(request : HttpServletRequest, session: HttpSession, response : HttpServletResponse) : String {
+    @PostMapping("/book2")
+    fun book2(request: HttpServletRequest, session: HttpSession, model: Model) : String {
         val departmentAirport = request.getParameter("departmentAirport")
+        print("deparmentAirport : $departmentAirport \n")
+
         val arriveAirport = request.getParameter("arriveAirport")
+        print("arriveAirport : $arriveAirport\n")
+
         val departmentDate = request.getParameter("departmentDate")
+        print("departmentDate : $departmentDate\n")
+
+        println("grade : " + request.getParameter("grade"))
+
         val flightNum = flightService.getFlightNum(departmentAirport, arriveAirport, departmentDate)
 
+        println("FlightNum : $flightNum")
 
-        print("deparmentAirport : " + departmentAirport)
-        print("arriveAirport : " + arriveAirport)
-        print("departmentDate : " + departmentDate)
-
-
+        //해당 노선 검색 못했을 시
         if (flightNum == -1) {
-            response.setContentType("text/html; charset=utf-8");
-            var out = response.writer
-            out.println("<script>alert('해당하는 항공편이 없습니다!'); </script>");
-            out.flush();
-
+            var result = "failed"
+            model.addAttribute("result", result)
+            return "book"
+        }
+        //노선이 두 개 이상 검색되었을 시
+        else if (flightNum == -2) {
+            var result = "duplicated"
+            model.addAttribute("result", result)
             return "book"
         }
 

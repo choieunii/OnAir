@@ -69,8 +69,6 @@
         <c:set var="response" value="${response}" />
         <%
             String res = (String)pageContext.getAttribute("response") ;
-        %>
-        <%
             if (res!=null) {
         %>
         <script type="text/javascript">

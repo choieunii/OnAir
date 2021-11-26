@@ -6,6 +6,7 @@ import com.example.onair.domain.bookCheck.BookCheckRepository
 import com.example.onair.domain.flight.FlightRepository
 import com.example.onair.dto.BookCheckCancelResponseDto
 import com.example.onair.dto.BookCheckRequestDto
+import com.example.onair.dto.PassengerDto
 import org.springframework.stereotype.Service
 
 @Service
@@ -47,7 +48,7 @@ class BookCheckService (private val bookCheckRepository: BookCheckRepository, pr
             "SeatClass" to request.SeatClass
         )
     }
-    fun addToDB(input : BookCheckRequestDto, user_id : String, Flight_Id : Int, seat_class : String) : String {
+    fun addToDB(input : PassengerDto, user_id : String, Flight_Id : Int, seat_class : String) : String {
         var flightInfo = flightRepository.findInfoByFlightNum(Flight_Id)
         if (flightInfo != null) {
             var instance = BookCheck(
@@ -104,7 +105,7 @@ class BookCheckService (private val bookCheckRepository: BookCheckRepository, pr
             refundPoint = flight?.firstCharge!!;
         }
         val currUserPoint = prevUserPoint + refundPoint;
-        val res = userRepository.setBalance(currUserPoint, userId);
+        val res = userRepository.updateUserPoint(currUserPoint, userId);
 
         return BookCheckCancelResponseDto(user.name, refundPoint, prevUserPoint, currUserPoint);
     }
