@@ -9,6 +9,7 @@ import org.springframework.stereotype.Controller
 import org.springframework.ui.Model
 import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.RequestMapping
+import org.springframework.web.servlet.mvc.support.RedirectAttributes
 import javax.servlet.http.HttpServletRequest
 import javax.servlet.http.HttpSession
 
@@ -118,7 +119,7 @@ class BookController (private val bookService: BookCheckService, private val fli
     }
 
     @PostMapping("/payment_proceed")
-    fun payment_process(session: HttpSession, model: Model): String {
+    fun payment_process(session: HttpSession, model: Model, redirectAttributes: RedirectAttributes): String {
         var totalCharge = session.getAttribute("totalCharge") as Int
         var userId = session.getAttribute("user_id") as String
 
@@ -147,8 +148,8 @@ class BookController (private val bookService: BookCheckService, private val fli
                 session.removeAttribute("totalCharge")
 
                 //예약 확인 페이지로
-                model.addAttribute("result", "success")
-                return "bookCheck"
+                redirectAttributes.addFlashAttribute("result", "success")
+                return "redirect:/bookCheck"
             } else {
                 //값 업데이트 실패 시 실패했다는 값 model에 넣어서 결제 페이지로.
                 model.addAttribute("result", "noPassenger")

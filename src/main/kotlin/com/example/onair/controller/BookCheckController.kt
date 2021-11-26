@@ -1,5 +1,6 @@
 package com.example.onair.controller
 
+import com.example.onair.dto.BookCheckCancelResponseDto
 import com.example.onair.dto.BookCheckRequestDto
 import com.example.onair.service.BookCheckService
 import org.springframework.stereotype.Controller
@@ -27,13 +28,14 @@ class BookCheckController(private val bookCheckService: BookCheckService) {
 
     @PostMapping("/bookCheck")
     fun deleteBookCheck(bookId: Array<Int>, session: HttpSession, model: Model): String {
-        val customerID = session.getAttribute("user_id");
-        val refund = bookCheckService.refundUserPoint(userId = customerID as String, bookId = bookId);
-        val res = bookCheckService.cancelByBookID(bookId = bookId);
+        val customerID = session.getAttribute("user_id")
+        val refund = bookCheckService.refundUserPoint(userId = customerID as String, bookId = bookId)
+        val res = bookCheckService.cancelByBookID(bookId = bookId)
         val bookCheckList = bookCheckService.getBookCheck(customerID = customerID as String)
-        println(refund)
-        model.addAttribute("res", refund);
-        model.addAttribute("bookList", bookCheckList);
+
+        model.addAttribute("bookList", bookCheckList)
+        model.addAttribute("refundPoint", refund.refundPoint)
+        model.addAttribute("count", res)
         return "bookCheck";
     }
 

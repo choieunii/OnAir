@@ -29,7 +29,7 @@ class FlightController(private val flightService: FlightService) {
         return "flightInfo";
     }
 
-    @PostMapping("/flightInfo")
+    @RequestMapping("/flightInfo")
     fun getFlightInfo(departAirportId: Int, arrAirportId: Int, model: Model): String {
         val flightInfo = flightService.getFlightOnAirInfo(departAirportId, arrAirportId);
         model.addAttribute("flight", flightInfo)
