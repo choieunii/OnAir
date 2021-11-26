@@ -89,8 +89,6 @@
         String result = (String)pageContext.getAttribute("result");
         String refund = String.valueOf(pageContext.getAttribute("refundPoint"));
         String count = String.valueOf(pageContext.getAttribute("count"));
-        System.out.println("refund : " + refund);
-        System.out.println("count : " + count);
         if (!refund.equals("null")) {
     %>
         <script type = "text/javascript">
@@ -123,7 +121,7 @@
                 <table style="border-left:2px solid #fff; border-top:2px #fff;">
                     <tbody>
                     <tr>
-                        <th style="text-align:center; width:50px;"><input type="checkbox" name="bookId" value="selectall" onclick="selectAll(this)"></th>
+                        <th style="text-align:center; width:50px;"><input type="checkbox" name="bookIdAll" onclick="selectAll(this)"></th>
                         <th>성명</th>
                         <th>항공사</th>
                         <th>출발공항</th>
