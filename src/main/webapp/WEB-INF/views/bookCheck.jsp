@@ -82,6 +82,36 @@
             }
         %>
     </nav>
+    <c:set var = "result" value = "${result}" />
+    <c:set var = "refundPoint" value = "${refundPoint}" />
+    <c:set var = "count" value = "${count}" />
+    <%
+        String result = (String)pageContext.getAttribute("result");
+        String refund = String.valueOf(pageContext.getAttribute("refundPoint"));
+        String count = String.valueOf(pageContext.getAttribute("count"));
+        System.out.println("refund : " + refund);
+        System.out.println("count : " + count);
+        if (!refund.equals("null")) {
+    %>
+        <script type = "text/javascript">
+            alert(<%=count%> + "개가 취소되었습니다. 총 환불 금액은 "+ <%=refund%> + "원 입니다.");
+        </script>
+    <%
+        } else if (result != null && result.equals("success")) {
+    %>
+        <script type = "text/javascript">
+            alert("예약이 완료되었습니다");
+        </script>
+    <%
+        }
+            pageContext.removeAttribute("count");
+            pageContext.removeAttribute("refundPoint");
+            pageContext.removeAttribute("result");
+    %>
+    <c:remove var = "refundPoint" />
+    <c:remove var = "result" />
+    <c:remove var = "count" />
+
     <div class="frame">
         <div class="sub-frame">
             <h1 style="text-align: center;">예약 내역</h1><br><hr><br><br><br>

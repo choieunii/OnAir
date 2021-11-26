@@ -79,24 +79,29 @@
                     int adult = Integer.parseInt(request.getParameter("adult"));
                     int children = Integer.parseInt(request.getParameter("children"));
                     int infant = Integer.parseInt(request.getParameter("infant"));
-                    int k=1, i=1, j=1;
-                    while(k <= adult) {
+                %>
+                    <input type = "hidden" name = "adult" value = "<%=adult%>">
+                    <input type = "hidden" name = "children" value = "<%=children%>">
+                    <input type = "hidden" name = "infant" value = "<%=infant%>">
+                <%
+                    int k=0, i=0, j=0;
+                    while(k < adult) {
 
                 %>
-                <h2>성인<%=k %></h2>
+                <h2>성인<%=(k+1) %></h2>
                 <table>
                     <tbody>
                     <tr>
                         <th>성별</th>
                         <td style="font-size: 18px;">
-                            <input type="radio"	id="adultMale"	name="adultGender<%=k %>" value="M"><label for="adultMale">&nbsp;남자</label>&nbsp;&nbsp;&nbsp;
-                            <input type="radio"	id="adultFemale"	name="adultGender<%=k %>" value="F"><label for="adultFemale">&nbsp;여자</label>
+                            <input type="radio"   id="adultMale"   name="adultGender<%=k %>" value="M"><label for="adultMale">&nbsp;남자</label>&nbsp;&nbsp;&nbsp;
+                            <input type="radio"   id="adultFemale"   name="adultGender<%=k %>" value="F"><label for="adultFemale">&nbsp;여자</label>
                         </td>
                     </tr>
                     <tr>
                         <th>이름</th>
                         <td>
-                            <input type="text"	id="adultLastName" name="adultLastName<%=k %>" value="" placeholder="성(영문)" title="성"	style="width:35%; text-transform:none; ime-mode:disabled; font-size: 18px; padding:5px; border:1px solid #bcbcbc; border-radius:3px;" />
+                            <input type="text"   id="adultLastName" name="adultLastName<%=k %>" value="" placeholder="성(영문)" title="성"   style="width:35%; text-transform:none; ime-mode:disabled; font-size: 18px; padding:5px; border:1px solid #bcbcbc; border-radius:3px;" />
                             <input type="text" id="adultFirstName" name="adultFirstName<%=k %>" value="" placeholder="이름" title="이름" style="width:55%; text-transform:none; ime-mode:disabled; font-size: 18px; padding:5px; border:1px solid #bcbcbc; border-radius:3px;" />
                         </td>
                     </tr>
@@ -259,22 +264,22 @@
                     }
                 %>
                 <%
-                    while(i <= children) {
+                    while(i < children) {
                 %>
-                <h2>유아<%=i %></h2>
+                <h2>유아<%=(i+1) %></h2>
                 <table>
                     <tbody>
                     <tr>
                         <th>성별</th>
                         <td style="font-size: 18px;">
-                            <input type="radio"	id="childrenMale"	name="childrenMale<%=i %>" value="M"><label for="childrenMale">&nbsp;남자</label>&nbsp;&nbsp;&nbsp;
-                            <input type="radio"	id="childrenFemale"	name="childrenFemale<%=i %>" value="F"><label for="childrenFemale">&nbsp;여자</label>
+                            <input type="radio"   id="childrenMale"   name="childrenGender<%=i %>" value="M"><label for="childrenMale">&nbsp;남자</label>&nbsp;&nbsp;&nbsp;
+                            <input type="radio"   id="childrenFemale"   name="childrenGender<%=i %>" value="F"><label for="childrenFemale">&nbsp;여자</label>
                         </td>
                     </tr>
                     <tr>
                         <th>이름</th>
                         <td>
-                            <input type="text"	id="childrenLastName" name="childrenLastName<%=i %>" value="" placeholder="성(영문)" title="성"	style="width:35%; text-transform:none; ime-mode:disabled; font-size: 18px; padding:5px; border:1px solid #bcbcbc; border-radius:3px;" />
+                            <input type="text"   id="childrenLastName" name="childrenLastName<%=i %>" value="" placeholder="성(영문)" title="성"   style="width:35%; text-transform:none; ime-mode:disabled; font-size: 18px; padding:5px; border:1px solid #bcbcbc; border-radius:3px;" />
                             <input type="text" id="childrenFirstName" name="childrenFirstName<%=i %>" value="" placeholder="이름" title="이름" style="width:55%; text-transform:none; ime-mode:disabled; font-size: 18px; padding:5px; border:1px solid #bcbcbc; border-radius:3px;" />
                         </td>
                     </tr>
@@ -437,22 +442,22 @@
                     }
                 %>
                 <%
-                    while(j <= infant) {
+                    while(j < infant) {
                 %>
-                <h2>영아<%=j %></h2>
+                <h2>영아<%=(j+1) %></h2>
                 <table>
                     <tbody>
                     <tr>
                         <th>성별</th>
                         <td style="font-size: 18px;">
-                            <input type="radio"	id="infantMale"	name="infantMale<%=j %>" value="M"><label for="infantMale">&nbsp;남자</label>&nbsp;&nbsp;&nbsp;
-                            <input type="radio"	id="infantFemale"	name="infantFemale<%=j %>" value="F"><label for="infantFemale">&nbsp;여자</label>
+                            <input type="radio"   id="infantMale"   name="infantGender<%=j %>" value="M"><label for="infantMale">&nbsp;남자</label>&nbsp;&nbsp;&nbsp;
+                            <input type="radio"   id="infantFemale"   name="infantGender<%=j %>" value="F"><label for="infantFemale">&nbsp;여자</label>
                         </td>
                     </tr>
                     <tr>
                         <th>이름</th>
                         <td>
-                            <input type="text"	id="infantLastName" name="infantLastName<%=j %>" value="" placeholder="성(영문)" title="성"	style="width:35%; text-transform:none; ime-mode:disabled; font-size: 18px; padding:5px; border:1px solid #bcbcbc; border-radius:3px;">
+                            <input type="text"   id="infantLastName" name="infantLastName<%=j %>" value="" placeholder="성(영문)" title="성"   style="width:35%; text-transform:none; ime-mode:disabled; font-size: 18px; padding:5px; border:1px solid #bcbcbc; border-radius:3px;">
                             <input type="text" id="infantFirstName" name="infantFirstName<%=j %>" value="" placeholder="이름" title="이름" style="width:55%; text-transform:none; ime-mode:disabled; font-size: 18px; padding:5px; border:1px solid #bcbcbc; border-radius:3px;">
                         </td>
                     </tr>
@@ -614,9 +619,10 @@
                         j++;
                     }
                 %>
-                <button class="button-1" style="left:0%; background-color: #bcbcbc;" onclick="history.back()">이전</button>
                 <button class="button-1" type="submit" class="">결제</button>
             </form>
+            <button class="button-1" style="left:0%; background-color: #bcbcbc;" onclick="location.href='book'">이전</button>
+
 
 
             <br><br><br><br><br><br>

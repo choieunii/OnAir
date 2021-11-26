@@ -1,4 +1,5 @@
 <%@ page language="java" contentType="text/html;charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ page import="java.io.PrintWriter"%>
 <%@ page import="java.sql.Connection" %>
 <%@ page import="java.sql.PreparedStatement" %>
@@ -71,12 +72,34 @@
         %>
     </nav>
     <div class="frame">
+        <!-- 오류났는지 탐색하는 부분 -->
+        <c:set var="result" value="${result}" />
+        <%
+            String res = (String)pageContext.getAttribute("result");
+            if (res != null && res.equals("failed")) {
+        %>
+            <script type = "text/javascript">
+                alert("노선 정보를 정확하게 입력해주세요");
+            </script>
+        <%
+            } else if (res != null && res.equals("duplicated")) {
+        %>
+            <script type = "text/javascript">
+                 alert("노선이 두 개 이상 탐색됩니다");
+            </script>
+        <%
+            }
+            pageContext.removeAttribute("result");
+        %>
+        <c:remove var = "result"/>
+
         <div class="sub-frame">
             <form method="post" action="book2">
                 <h2>여정/날짜 선택</h2>
                 <br>
                 <div class="journey" id="journey">
-                    <input type="radio" class="radio-input" name="journey" id="round-trip" autocomplete="off" checked required>
+                    <input type="radio" class="radio-input" name="journey" id="roun
+                    d-trip" autocomplete="off" checked required>
                     <label class="radio-label" for="round-trip">왕복</label>
                     <input type="radio" class="radio-input" name="journey" id="one-way" autocomplete="off" required>
                     <label class="radio-label" for="one-way">편도</label>
@@ -87,13 +110,13 @@
                         <span></span>
                         <label style="font-size: 20px;">출발지</label>
                     </div>
-                    <div class="txt_field" name="arriveAirport" id="arriveAirport" style="width:33%">
-                        <input type="text" style="font-size: 22px;" required>
+                    <div class="txt_field"style="width:33%">
+                        <input type="text" name="arriveAirport" id="arriveAirport"  style="font-size: 22px;" required>
                         <span></span>
                         <label style="font-size: 20px;">도착지</label>
                     </div>
-                    <div class="txt_field" name="departmentDate" id="departmentDate" style="width:33%">
-                        <input type="text" onfocus="(this.type='date')" onblur="(this.type='text')" style="font-size: 22px;" required>
+                    <div class="txt_field" style="width:33%">
+                        <input type="text" name="departmentDate" id="departmentDate" onfocus="(this.type='date')" onblur="(this.type='text')" style="font-size: 22px;" required>
                         <span></span>
                         <label style="font-size: 20px;">탑승일</label>
                     </div>
@@ -128,11 +151,11 @@
 
                 <h2>좌석 등급 선택</h2><br>
                 <div class="seat" id="seat">
-                    <input type="radio" class="radio-input" name="grade" id="economy" autocomplete="off" checked required>
+                    <input type="radio" class="radio-input" name="grade" id = "economy" value="economy" autocomplete="off" checked required>
                     <label class="radio-label" for="economy" style="height:60px; padding:15px; font-size: 20px;">이코노미</label>
-                    <input type="radio" class="radio-input" name="grade" id="business" autocomplete="off" required>
+                    <input type="radio" class="radio-input" name="grade" id = "business" value="business" autocomplete="off" required>
                     <label class="radio-label" for="business" style="height:60px; padding:15px; font-size: 20px;">비즈니스</label>
-                    <input type="radio" class="radio-input" name="grade" id="first" autocomplete="off" required>
+                    <input type="radio" class="radio-input" name="grade" id = "first" value="first" autocomplete="off" required>
                     <label class="radio-label" for="first" style="height:60px; padding:15px; font-size: 20px;">퍼스트</label>
                 </div><br><br><br><br>
 

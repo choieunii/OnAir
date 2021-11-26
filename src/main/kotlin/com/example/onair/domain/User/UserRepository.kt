@@ -13,9 +13,4 @@ interface UserRepository: JpaRepository<User, Long> {
     @Modifying
     @Query("UPDATE User u SET u.point = :point WHERE u.userId = :userId")
     fun updateUserPoint(point: Int, userId: String): Int?
-
-    @Transactional
-    @Modifying
-    @Query("UPDATE User u SET u.point = :newValue WHERE u.userId = :userId")
-    fun setBalance(newValue : Int, userId : String): Int?
 }

@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.RequestMapping
 import javax.servlet.http.HttpServletRequest
+import javax.servlet.http.HttpServletResponse
 import javax.servlet.http.HttpSession
 
 @Controller
@@ -28,19 +29,34 @@ class FlightController(private val flightService: FlightService) {
         return "flightInfo";
     }
 
-    @PostMapping("/flightInfo")
+    @RequestMapping("/flightInfo")
     fun getFlightInfo(departAirportId: Int, arrAirportId: Int, model: Model): String {
         val flightInfo = flightService.getFlightOnAirInfo(departAirportId, arrAirportId);
         model.addAttribute("flight", flightInfo)
         return "flightInfo"
     }
 
-    @RequestMapping("/book2")
-    fun book2(request : HttpServletRequest, session: HttpSession): String {
+    @PostMapping("/book2")
+    fun book2(request: HttpServletRequest, session: HttpSession, model: Model) : String {
         val departmentAirport = request.getParameter("departmentAirport")
         val arriveAirport = request.getParameter("arriveAirport")
         val departmentDate = request.getParameter("departmentDate")
+
         val flightNum = flightService.getFlightNum(departmentAirport, arriveAirport, departmentDate)
+
+        //해당 노선 검색 못했을 시
+        if (flightNum == -1) {
+            var result = "failed"
+            model.addAttribute("result", result)
+            return "book"
+        }
+        //노선이 두 개 이상 검색되었을 시
+        else if (flightNum == -2) {
+            var result = "duplicated"
+            model.addAttribute("result", result)
+            return "book"
+        }
+
         session.setAttribute("flightNum", flightNum)
         session.setAttribute("grade", request.getParameter("grade"))
         return "book2"

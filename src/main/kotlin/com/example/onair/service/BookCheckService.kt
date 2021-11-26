@@ -7,6 +7,7 @@ import com.example.onair.domain.flight.Flight
 import com.example.onair.domain.flight.FlightRepository
 import com.example.onair.dto.BookCheckCancelResponseDto
 import com.example.onair.dto.BookCheckRequestDto
+import com.example.onair.dto.PassengerDto
 import org.springframework.stereotype.Service
 
 @Service
@@ -48,11 +49,10 @@ class BookCheckService (private val bookCheckRepository: BookCheckRepository, pr
             "SeatClass" to request.SeatClass
         )
     }
-    fun addToDB(input : BookCheckRequestDto, user_id : String, Flight_Id : Int, seat_class : String) : String {
+    fun addToDB(input : PassengerDto, user_id : String, Flight_Id : Int, seat_class : String) : String {
         var flightInfo = flightRepository.findInfoByFlightNum(Flight_Id)
         if (flightInfo != null) {
             var instance = BookCheck(
-                bookId = bookCheckRepository.getMaxId(),
                 customerID = user_id,
                 flightNum = Flight_Id,
                 gender = input.Gender,
@@ -73,6 +73,7 @@ class BookCheckService (private val bookCheckRepository: BookCheckRepository, pr
             return "failed"
         }
     }
+
     fun getBookCheck(customerID: String): List<BookCheck>? {
         val bookCheck: List<BookCheck>? = bookCheckRepository.findByCustomerID(customerID);
         // Customer Id로 찾는 bookchech 정보는 List일 것. 정보가 하나가 아니기 때문에
@@ -101,7 +102,7 @@ class BookCheckService (private val bookCheckRepository: BookCheckRepository, pr
             val refundPoint = getChargeFromSeatClass(bookCheck, flight!!);
             currUserPoint += refundPoint;
         }
-        val res = userRepository.setBalance(currUserPoint, userId);
+        val res = userRepository.updateUserPoint(currUserPoint, userId);
 
         return BookCheckCancelResponseDto(user.name, currUserPoint - prevUserPoint, prevUserPoint, currUserPoint);
     }
@@ -116,10 +117,12 @@ class BookCheckService (private val bookCheckRepository: BookCheckRepository, pr
         }
     }
 
-    fun cancelByBookID(bookId: Array<Int>): String{
+    fun cancelByBookID(bookId: Array<Int>): Int {
+        var count = 0
         for(book in bookId) {
-            val res = bookCheckRepository.deleteById(book);
+            val res = bookCheckRepository.deleteByBookId(book);
+            count += res
         }
-        return "Success";
+        return count;
     }
 }

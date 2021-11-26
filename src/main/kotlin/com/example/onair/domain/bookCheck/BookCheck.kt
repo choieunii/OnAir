@@ -1,16 +1,14 @@
 package com.example.onair.domain.bookCheck
 
-import javax.persistence.Column
-import javax.persistence.Entity
-import javax.persistence.Id
-import javax.persistence.Table
+import javax.persistence.*
 
-@Entity
+
 @Table(name = "bookCheck")
+@Entity
 class BookCheck( // data class -> equals, copy, toString, componentN
     @Id
-    @Column(name = "book_id", nullable = false)
-    var bookId: Int,
+    @GeneratedValue(strategy= GenerationType.IDENTITY)
+    var bookId: Int = 0,
     @Column(name = "customer_id", nullable = false) //
     var customerID: String,
     @Column(name = "flight_num", nullable = false) //
@@ -39,11 +37,11 @@ class BookCheck( // data class -> equals, copy, toString, componentN
     }
 
     fun getNM(): String {
-        return firstName + lastName;
+        return "$lastName $firstName";
     }
 
-    fun getFN(): Int {
-        return flightNum;
+    fun getFN(): String {
+        return airLine
     }
 
     fun getDA(): String {

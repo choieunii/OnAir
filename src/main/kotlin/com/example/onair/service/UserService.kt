@@ -159,9 +159,22 @@ class UserService(private val userRepository: UserRepository) {
         session.invalidate();
     }
 
+    fun getBalance(userId : String) : Int{
+        var info = userRepository.findByUserId(userId)
+        if (info != null)
+            return info.point
+
+        //-1 반환되면 정보 못찾음
+        else
+            return -1
+    }
+
     fun setBalance(totalPrice: Int, userId: String): String {
-        //기존 잔고 저장
+        //기존 잔고  저장
         var oldInfo = userRepository.findByUserId(userId)
+        if (oldInfo != null) {
+            println("수정 전 잔고 : " + oldInfo.point)
+        }
 
         //유저 정보를 찾지 못했으면 NotFound반환
         if (oldInfo == null)
@@ -169,25 +182,21 @@ class UserService(private val userRepository: UserRepository) {
 
         //차감 후 값 계산
         var calculatedBalance = oldInfo.point - totalPrice
+        println("수정 후 잔고 : $calculatedBalance")
 
         //수행
-        userRepository.setBalance(calculatedBalance, userId)
+        val execute = userRepository.updateUserPoint(calculatedBalance, userId)
+        println("수정된 열의 수 : $execute")
 
         //수행 후 잔고 저장
         var newInfo = userRepository.findByUserId(userId)
-
         if (newInfo != null) {
-            //멀쩡히 잘 차감되었으면 success 반환
-            if (newInfo.point == calculatedBalance)
-                return "success"
-
-            //아니면 원래 값으로 되돌리고 failed 반환
-            else {
-                userRepository.setBalance(oldInfo.point, userId)
-                return "failed"
-            }
+            println("실제 수정 후 잔고 : " + newInfo.point)
         }
+
+        if (execute == 1)
+            return "success"
         else
-            return "NotFound"
+            return "failed"
     }
 }

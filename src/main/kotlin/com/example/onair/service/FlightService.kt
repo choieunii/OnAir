@@ -80,7 +80,7 @@ class FlightService(private val flightRepository: FlightRepository, private val 
         var info = flightRepository.getFlightNum(dep, ari, date)
 
         //-1이 반횐되면 검색 결과 없음
-        if (info == null)
+        if (info == null || info.isEmpty())
             return -1
         //-2가 반환되면 둘 이상의 결과가 나온 것
         else if (info.size > 1)
