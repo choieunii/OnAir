@@ -127,6 +127,16 @@ class UserController(private val userService: UserService) {
         }
     }
 
+    @RequestMapping("/myPage")
+    fun myPageInfo(session: HttpSession, model: Model): String {
+        val userId = session.getAttribute("user_id");
+        val user = userService.getUserById(userId as String);
+        userService.setSessionUser(user, session);
+
+        return "myPage";
+    }
+
+
     @PostMapping("/myPage")
     fun updateMyPage(req: MyPageUpdateDto,session: HttpSession, model: Model): String{
         val updateUser = userService.updateMyPageInfo(req);

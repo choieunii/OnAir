@@ -12,6 +12,11 @@ import javax.servlet.http.HttpSession
 
 @Service
 class UserService(private val userRepository: UserRepository) {
+
+    fun getUserById(user_id: String):User?{
+        return userRepository.findByUserId(user_id);
+    }
+
     fun login(user_id: String, password: String): Pair<User?, String> {
         val user = userRepository.findByUserId(user_id);
         if (user == null) {
