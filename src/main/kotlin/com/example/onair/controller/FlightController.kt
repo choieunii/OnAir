@@ -39,19 +39,10 @@ class FlightController(private val flightService: FlightService) {
     @PostMapping("/book2")
     fun book2(request: HttpServletRequest, session: HttpSession, model: Model) : String {
         val departmentAirport = request.getParameter("departmentAirport")
-        print("deparmentAirport : $departmentAirport \n")
-
         val arriveAirport = request.getParameter("arriveAirport")
-        print("arriveAirport : $arriveAirport\n")
-
         val departmentDate = request.getParameter("departmentDate")
-        print("departmentDate : $departmentDate\n")
-
-        println("grade : " + request.getParameter("grade"))
 
         val flightNum = flightService.getFlightNum(departmentAirport, arriveAirport, departmentDate)
-
-        println("FlightNum : $flightNum")
 
         //해당 노선 검색 못했을 시
         if (flightNum == -1) {

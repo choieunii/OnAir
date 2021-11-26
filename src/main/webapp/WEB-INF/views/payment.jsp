@@ -128,7 +128,7 @@
                         <th>보유 금액</th>
                         <td>
                             <label id="checkPoint"><%=balance%>원</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                            <button class="checkPoint"> <a href = "myPage"> 포인트 충전 </a></button>
+                            <button class="checkPoint"> <a href = 'myPage' style = "color:#FFF; text-decoration: none"> 포인트 충전 </a></button>
                         </td>
                     </tr>
                     <tr>

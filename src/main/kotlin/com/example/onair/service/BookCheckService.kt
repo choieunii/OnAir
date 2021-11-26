@@ -52,7 +52,7 @@ class BookCheckService (private val bookCheckRepository: BookCheckRepository, pr
         var flightInfo = flightRepository.findInfoByFlightNum(Flight_Id)
         if (flightInfo != null) {
             var instance = BookCheck(
-                bookId = bookCheckRepository.getMaxId(),
+                bookId = bookCheckRepository.getMaxId() + 1,
                 customerID = user_id,
                 flightNum = Flight_Id,
                 gender = input.Gender,

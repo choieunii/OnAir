@@ -89,7 +89,9 @@
             </script>
         <%
             }
+            pageContext.removeAttribute("result");
         %>
+        <c:remove var = "result"/>
 
         <div class="sub-frame">
             <form method="post" action="book2">

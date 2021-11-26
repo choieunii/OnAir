@@ -35,9 +35,21 @@
     <nav>
         <!--<img src="images/logo.png" class="logo">-->
         <a href="index" style="color:#fff; font-size: 30px;"><b>OnAir</b></a>
+        <c:set var="result" value="${result}" />
         <%
             String user_id = null;
             String name = null;
+            String result = (String)pageContext.getAttribute("result");
+
+            if (result != null && result.equals("success")) {
+        %>
+            <script type = "text/javascript">
+                alert("예약이 완료되었습니다");
+            </script>
+        <%
+                pageContext.removeAttribute("result");
+            } //end if
+
             if(session.getAttribute("user_id") != null) {
                 user_id = (String) session.getAttribute("user_id");
                 name = (String) session.getAttribute("name");
@@ -82,6 +94,7 @@
             }
         %>
     </nav>
+
     <div class="frame">
         <div class="sub-frame">
             <h1 style="text-align: center;">예약 내역</h1><br><hr><br><br><br>

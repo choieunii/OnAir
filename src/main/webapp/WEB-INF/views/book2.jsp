@@ -74,39 +74,41 @@
         <div class="sub-frame">
             <form action="payment" method="post">
                 <h1 style="text-align: center;">탑승자 정보</h1><br><hr><br><br><br>
+
                 <%
                     int adult = Integer.parseInt(request.getParameter("adult"));
                     int children = Integer.parseInt(request.getParameter("children"));
                     int infant = Integer.parseInt(request.getParameter("infant"));
-                    int k=1, i=1, j=1;
                 %>
                     <input type = "hidden" name = "adult" value = "<%=adult%>">
                     <input type = "hidden" name = "children" value = "<%=children%>">
                     <input type = "hidden" name = "infant" value = "<%=infant%>">
                 <%
-                    while(k <= adult) {
+                    int k=0, i=0, j=0;
+                    while(k < adult) {
+
                 %>
-                <h2>성인<%=k %></h2>
+                <h2>성인<%=(k+1) %></h2>
                 <table>
                     <tbody>
                     <tr>
                         <th>성별</th>
                         <td style="font-size: 18px;">
-                            <input type="radio"	id="adultMale"	name="adultGender" value="M"><label for="adultMale">&nbsp;남자</label>&nbsp;&nbsp;&nbsp;
-                            <input type="radio"	id="adultFemale"	name="adultGender" value="F"><label for="adultFemale">&nbsp;여자</label>
+                            <input type="radio"   id="adultMale"   name="adultGender<%=k %>" value="M"><label for="adultMale">&nbsp;남자</label>&nbsp;&nbsp;&nbsp;
+                            <input type="radio"   id="adultFemale"   name="adultGender<%=k %>" value="F"><label for="adultFemale">&nbsp;여자</label>
                         </td>
                     </tr>
                     <tr>
                         <th>이름</th>
                         <td>
-                            <input type="text"	id="adultLastName" name="adultLastName" value="" placeholder="성(영문)" title="성"	style="width:35%; text-transform:none; ime-mode:disabled; font-size: 18px; padding:5px; border:1px solid #bcbcbc; border-radius:3px;" />
-                            <input type="text" id="adultFirstName" name="adultFirstName" value="" placeholder="이름" title="이름" style="width:55%; text-transform:none; ime-mode:disabled; font-size: 18px; padding:5px; border:1px solid #bcbcbc; border-radius:3px;" />
+                            <input type="text"   id="adultLastName" name="adultLastName<%=k %>" value="" placeholder="성(영문)" title="성"   style="width:35%; text-transform:none; ime-mode:disabled; font-size: 18px; padding:5px; border:1px solid #bcbcbc; border-radius:3px;" />
+                            <input type="text" id="adultFirstName" name="adultFirstName<%=k %>" value="" placeholder="이름" title="이름" style="width:55%; text-transform:none; ime-mode:disabled; font-size: 18px; padding:5px; border:1px solid #bcbcbc; border-radius:3px;" />
                         </td>
                     </tr>
                     <tr>
                         <th>생년월일</th>
                         <td>
-                            <select id="adultYear" name="adultYear" title="생년월일 연도" style="width: 30%;  font-size: 18px; padding:5px; border:1px solid #bcbcbc; border-radius:3px;">
+                            <select id="adultYear" name="adultYear<%=k %>" title="생년월일 연도" style="width: 30%;  font-size: 18px; padding:5px; border:1px solid #bcbcbc; border-radius:3px;">
                                 <option value="">년</option>
                                 <option value="2021"> 2021</option>
                                 <option value="2020"> 2020</option>
@@ -171,7 +173,7 @@
                                 <option value="1961"> 1961</option>
                                 <option value="1960"> 1960</option>
                             </select>
-                            <select id="adultMonth" name="adultMonth" title="생년월일 월" style="width: 30%;  font-size: 18px; padding:5px; border:1px solid #bcbcbc; border-radius:3px;">
+                            <select id="adultMonth" name="adultMonth<%=k %>" title="생년월일 월" style="width: 30%;  font-size: 18px; padding:5px; border:1px solid #bcbcbc; border-radius:3px;">
                                 <option value="">월</option>
                                 <option value="01">01</option>
                                 <option value="02">02</option>
@@ -186,7 +188,7 @@
                                 <option value="11">11</option>
                                 <option value="12">12</option>
                             </select>
-                            <select id="adultDay" name="adultDay" title="생년월일 일" style="width: 29.5%;  font-size: 18px; padding:5px; border:1px solid #bcbcbc; border-radius:3px;">
+                            <select id="adultDay" name="adultDay<%=k %>" title="생년월일 일" style="width: 29.5%;  font-size: 18px; padding:5px; border:1px solid #bcbcbc; border-radius:3px;">
                                 <option value="">일</option>
                                 <option value="01"> 01</option>
                                 <option value="02"> 02</option>
@@ -225,7 +227,7 @@
                     <tr>
                         <th>항공사</th>
                         <td>
-                            <select id="adultAirLine" name="adultAirLine" title="항공사" style="width: 40%;   font-size: 18px; padding:5px; border:1px solid #bcbcbc; border-radius:3px;"">
+                            <select id="adultAirLine" name="adultAirLine<%=k %>" title="항공사" style="width: 40%;   font-size: 18px; padding:5px; border:1px solid #bcbcbc; border-radius:3px;"">
                             <option value="SA" >남아프리카항공 - Voyager</option>
                             <option value="LH" >루프트한자 - Miles &amp; More</option>
                             <option value="SN" >브뤼셀항공 - Miles &amp; More</option>
@@ -262,29 +264,29 @@
                     }
                 %>
                 <%
-                    while(i <= children) {
+                    while(i < children) {
                 %>
-                <h2>유아<%=i %></h2>
+                <h2>유아<%=(i+1) %></h2>
                 <table>
                     <tbody>
                     <tr>
                         <th>성별</th>
                         <td style="font-size: 18px;">
-                            <input type="radio"	id="childrenMale"	name="childrenMale" value="M"><label for="childrenMale">&nbsp;남자</label>&nbsp;&nbsp;&nbsp;
-                            <input type="radio"	id="childrenFemale"	name="childrenFemale" value="F"><label for="childrenFemale">&nbsp;여자</label>
+                            <input type="radio"   id="childrenMale"   name="childrenGender<%=i %>" value="M"><label for="childrenMale">&nbsp;남자</label>&nbsp;&nbsp;&nbsp;
+                            <input type="radio"   id="childrenFemale"   name="childrenGender<%=i %>" value="F"><label for="childrenFemale">&nbsp;여자</label>
                         </td>
                     </tr>
                     <tr>
                         <th>이름</th>
                         <td>
-                            <input type="text"	id="childrenLastName" name="childrenLastName" value="" placeholder="성(영문)" title="성"	style="width:35%; text-transform:none; ime-mode:disabled; font-size: 18px; padding:5px; border:1px solid #bcbcbc; border-radius:3px;" />
-                            <input type="text" id="childrenFirstName" name="childrenFirstName" value="" placeholder="이름" title="이름" style="width:55%; text-transform:none; ime-mode:disabled; font-size: 18px; padding:5px; border:1px solid #bcbcbc; border-radius:3px;" />
+                            <input type="text"   id="childrenLastName" name="childrenLastName<%=i %>" value="" placeholder="성(영문)" title="성"   style="width:35%; text-transform:none; ime-mode:disabled; font-size: 18px; padding:5px; border:1px solid #bcbcbc; border-radius:3px;" />
+                            <input type="text" id="childrenFirstName" name="childrenFirstName<%=i %>" value="" placeholder="이름" title="이름" style="width:55%; text-transform:none; ime-mode:disabled; font-size: 18px; padding:5px; border:1px solid #bcbcbc; border-radius:3px;" />
                         </td>
                     </tr>
                     <tr>
                         <th>생년월일</th>
                         <td>
-                            <select id="childrenYear" name="childrenYear" title="생년월일 연도" style="width: 30%;  font-size: 18px; padding:5px; border:1px solid #bcbcbc; border-radius:3px;">
+                            <select id="childrenYear" name="childrenYear<%=i %>" title="생년월일 연도" style="width: 30%;  font-size: 18px; padding:5px; border:1px solid #bcbcbc; border-radius:3px;">
                                 <option value="">년</option>
                                 <option value="2021"> 2021</option>
                                 <option value="2020"> 2020</option>
@@ -349,7 +351,7 @@
                                 <option value="1961"> 1961</option>
                                 <option value="1960"> 1960</option>
                             </select>
-                            <select id="childrenMonth" name="childrenMonth" title="생년월일 월" style="width: 30%;  font-size: 18px; padding:5px; border:1px solid #bcbcbc; border-radius:3px;">
+                            <select id="childrenMonth" name="childrenMonth<%=i %>" title="생년월일 월" style="width: 30%;  font-size: 18px; padding:5px; border:1px solid #bcbcbc; border-radius:3px;">
                                 <option value="">월</option>
                                 <option value="01">01</option>
                                 <option value="02">02</option>
@@ -364,7 +366,7 @@
                                 <option value="11">11</option>
                                 <option value="12">12</option>
                             </select>
-                            <select id="childrenDay" name="childrenDay" title="생년월일 일" style="width: 29.5%;  font-size: 18px; padding:5px; border:1px solid #bcbcbc; border-radius:3px;">
+                            <select id="childrenDay" name="childrenDay<%=i %>" title="생년월일 일" style="width: 29.5%;  font-size: 18px; padding:5px; border:1px solid #bcbcbc; border-radius:3px;">
                                 <option value="">일</option>
                                 <option value="01"> 01</option>
                                 <option value="02"> 02</option>
@@ -403,7 +405,7 @@
                     <tr>
                         <th>항공사</th>
                         <td>
-                            <select id="childrenAirLine" name="childrenAirLine" title="항공사" style="width: 40%;   font-size: 18px; padding:5px; border:1px solid #bcbcbc; border-radius:3px;"">
+                            <select id="childrenAirLine" name="childrenAirLine<%=i %>" title="항공사" style="width: 40%;   font-size: 18px; padding:5px; border:1px solid #bcbcbc; border-radius:3px;"">
                             <option value="SA" >남아프리카항공 - Voyager</option>
                             <option value="LH" >루프트한자 - Miles &amp; More</option>
                             <option value="SN" >브뤼셀항공 - Miles &amp; More</option>
@@ -440,29 +442,29 @@
                     }
                 %>
                 <%
-                    while(j <= infant) {
+                    while(j < infant) {
                 %>
-                <h2>영아<%=j %></h2>
+                <h2>영아<%=(j+1) %></h2>
                 <table>
                     <tbody>
                     <tr>
                         <th>성별</th>
                         <td style="font-size: 18px;">
-                            <input type="radio"	id="infantMale"	name="infantMale" value="M"><label for="infantMale">&nbsp;남자</label>&nbsp;&nbsp;&nbsp;
-                            <input type="radio"	id="infantFemale"	name="infantFemale" value="F"><label for="infantFemale">&nbsp;여자</label>
+                            <input type="radio"   id="infantMale"   name="infantGender<%=j %>" value="M"><label for="infantMale">&nbsp;남자</label>&nbsp;&nbsp;&nbsp;
+                            <input type="radio"   id="infantFemale"   name="infantGender<%=j %>" value="F"><label for="infantFemale">&nbsp;여자</label>
                         </td>
                     </tr>
                     <tr>
                         <th>이름</th>
                         <td>
-                            <input type="text"	id="infantLastName" name="infantLastName" value="" placeholder="성(영문)" title="성"	style="width:35%; text-transform:none; ime-mode:disabled; font-size: 18px; padding:5px; border:1px solid #bcbcbc; border-radius:3px;">
-                            <input type="text" id="infantFirstName" name="infantFirstName" value="" placeholder="이름" title="이름" style="width:55%; text-transform:none; ime-mode:disabled; font-size: 18px; padding:5px; border:1px solid #bcbcbc; border-radius:3px;">
+                            <input type="text"   id="infantLastName" name="infantLastName<%=j %>" value="" placeholder="성(영문)" title="성"   style="width:35%; text-transform:none; ime-mode:disabled; font-size: 18px; padding:5px; border:1px solid #bcbcbc; border-radius:3px;">
+                            <input type="text" id="infantFirstName" name="infantFirstName<%=j %>" value="" placeholder="이름" title="이름" style="width:55%; text-transform:none; ime-mode:disabled; font-size: 18px; padding:5px; border:1px solid #bcbcbc; border-radius:3px;">
                         </td>
                     </tr>
                     <tr>
                         <th>생년월일</th>
                         <td>
-                            <select id="infantYear" name="infantYear" title="생년월일 연도" style="width: 30%;  font-size: 18px; padding:5px; border:1px solid #bcbcbc; border-radius:3px;">
+                            <select id="infantYear" name="infantYear<%=j %>" title="생년월일 연도" style="width: 30%;  font-size: 18px; padding:5px; border:1px solid #bcbcbc; border-radius:3px;">
                                 <option value="">년</option>
                                 <option value="2021"> 2021</option>
                                 <option value="2020"> 2020</option>
@@ -527,7 +529,7 @@
                                 <option value="1961"> 1961</option>
                                 <option value="1960"> 1960</option>
                             </select>
-                            <select id="infantMonth" name="infantMonth" title="생년월일 월" style="width: 30%;  font-size: 18px; padding:5px; border:1px solid #bcbcbc; border-radius:3px;">
+                            <select id="infantMonth" name="infantMonth<%=j %>" title="생년월일 월" style="width: 30%;  font-size: 18px; padding:5px; border:1px solid #bcbcbc; border-radius:3px;">
                                 <option value="">월</option>
                                 <option value="01">01</option>
                                 <option value="02">02</option>
@@ -542,7 +544,7 @@
                                 <option value="11">11</option>
                                 <option value="12">12</option>
                             </select>
-                            <select id="infantDay" name="infantDay" title="생년월일 일" style="width: 29.5%;  font-size: 18px; padding:5px; border:1px solid #bcbcbc; border-radius:3px;">
+                            <select id="infantDay" name="infantDay<%=j %>" title="생년월일 일" style="width: 29.5%;  font-size: 18px; padding:5px; border:1px solid #bcbcbc; border-radius:3px;">
                                 <option value="">일</option>
                                 <option value="01"> 01</option>
                                 <option value="02"> 02</option>
@@ -581,7 +583,7 @@
                     <tr>
                         <th>항공사</th>
                         <td>
-                            <select id="infantAirLine" name="infantAirLine" title="항공사" style="width: 40%;   font-size: 18px; padding:5px; border:1px solid #bcbcbc; border-radius:3px;"">
+                            <select id="infantAirLine" name="infantAirLine<%=j %>" title="항공사" style="width: 40%;   font-size: 18px; padding:5px; border:1px solid #bcbcbc; border-radius:3px;"">
                             <option value="SA" >남아프리카항공 - Voyager</option>
                             <option value="LH" >루프트한자 - Miles &amp; More</option>
                             <option value="SN" >브뤼셀항공 - Miles &amp; More</option>
@@ -617,9 +619,10 @@
                         j++;
                     }
                 %>
-                <button class="button-1" style="left:0%; background-color: #bcbcbc;" onclick="history.back()">이전</button>
                 <button class="button-1" type="submit" class="">결제</button>
             </form>
+            <button class="button-1" style="left:0%; background-color: #bcbcbc;" onclick="location.href='book'">이전</button>
+
 
 
             <br><br><br><br><br><br>
