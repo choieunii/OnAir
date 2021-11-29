@@ -107,8 +107,7 @@ class UserService(private val userRepository: UserRepository) {
         val res = KakaoOauth().getKakaoUserInfo(token);
         val properties: Map<String, *> = res?.get("properties") as Map<String, *>
         val profile: Map<String, *> = res.get("kakao_account") as Map<String, *>
-
-        val checkUserEmail = userRepository.findByEmail(profile.get("email").toString());
+        val checkUserEmail = userRepository.findByEmail(profile?.get("email").toString());
 
         if (checkUserEmail != null) return Pair(checkUserEmail, "login");
 
